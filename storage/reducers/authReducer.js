@@ -1,5 +1,5 @@
 import * as axios from "axios"
-import api from "../axios/authApi"
+import api, {serverUrl} from "../axios/authApi"
 import {getCookie} from 'cookies-next'
 import Router from "next/router";
 
@@ -50,7 +50,6 @@ export default function authReducer(state = initialState, action) {
                 ...action.user
             }
         case setGuestType:
-            console.log(action.guest.mobileSubLevel, 'йди нахуй')
             return {
                 ...state,
                 login: action.guest.login,
@@ -59,7 +58,7 @@ export default function authReducer(state = initialState, action) {
                 mobileSubOrderId: action.guest.mobileSubOrderId
             }
         case setFullProfileType:
-            console.log(action.profile.results)
+
             return {
                 ...action.profile.results,
                 login: state.login,
@@ -92,16 +91,15 @@ const setFullProfile = (profile) => ({type: setFullProfileType, profile})
 //     console.log(response.data.results);
 // }
 export const changeMac = (login, newMac) => async (dispatch) => {
-    const response = await api.post(`http://localhost:8000/ministra/changeMacAddress`, {
+    const response = await api.post(`${serverUrl}/ministra/changeMacAddress`, {
         login: login,
         newMac: newMac
     }, {withCredentials: true})
-    console.log(response)
     setMacAction(newMac)
 }
 
 export const register = (login, password, fullName, email, phone, address) => async (dispatch) => {
-    const response = await axios.post(`http://localhost:8000/api/registration`, {
+    const response = await axios.post(`${serverUrl}/api/registration`, {
         login: login,
         password: password,
         fullName: fullName,
@@ -115,7 +113,7 @@ export const register = (login, password, fullName, email, phone, address) => as
 }
 
 export const login = (login, password) => async (dispatch) => {
-    const response = await axios.post(`http://localhost:8000/api/login`, {
+    const response = await axios.post(`${serverUrl}/api/login`, {
         login: login,
         password: password
     }, {withCredentials: true})
@@ -133,11 +131,11 @@ export const login = (login, password) => async (dispatch) => {
 }
 
 export const checkAuth = () => async (dispatch) => {
-    const response = await axios.get(`http://localhost:8000/api/refresh`, {withCredentials: true})
+    const response = await axios.get(`${serverUrl}/api/refresh`, {withCredentials: true})
 }
 
 export const createSubThunk = ({login, password, fullName, tariff, orderId, acqId, paymentData}) => async (dispatch) => {
-    const response = await api.post(`http://localhost:8000/payments/callback`, {
+    const response = await api.post(`${serverUrl}/payments/callback`, {
         login: login,
         password: password,
         fullName: fullName,
@@ -150,7 +148,7 @@ export const createSubThunk = ({login, password, fullName, tariff, orderId, acqI
 }
 
 export const cancelSubThunk = ({login, password}) => async (dispatch) => {
-    const response = await api.post(`http://localhost:8000/payments/cancelSub`, {
+    const response = await api.post(`${serverUrl}/payments/cancelSub`, {
         login: login,
         password: password
     }, {withCredentials: true})
@@ -158,26 +156,25 @@ export const cancelSubThunk = ({login, password}) => async (dispatch) => {
 }
 
 export const cancelMobileSubThunk = ({password}) => async (dispatch) => {
-    const response = await api.post(`http://localhost:8000/payments/cancelMobileSub`, {
+    const response = await api.post(`${serverUrl}/payments/cancelMobileSub`, {
         password: password
     }, {withCredentials: true})
 }
 
 export const getProfile = (redirect = true) => async (dispatch) => {
-    const response = await api.get('http://localhost:8000/api/refresh', {withCredentials: true})
+    const response = await api.get(`${serverUrl}/api/refresh`, {withCredentials: true})
     if(!response) {
         Router.push('/auth/login')
         return
     }
     localStorage.setItem('token', response.data.userData.accessToken)
-    console.log(response.data.userData.user, 'aboba')
     dispatch(setGuestAction(response.data.userData.user))
     if (redirect) {
         Router.push('/profile')
     }
 }
 export const getFullProfile = () => async (dispatch) => {
-    const response = await api.get('http://localhost:8000/api/getFullProfile', {withCredentials: true})
+    const response = await api.get(`${serverUrl}/api/getFullProfile`, {withCredentials: true})
     if(!response){
         Router.push('/auth/login')
         return

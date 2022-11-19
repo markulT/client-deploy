@@ -1,5 +1,7 @@
 import * as axios from 'axios'
 
+export const serverUrl = "https://api-resttv.info"
+
 const api = axios.create({
     withCredentials: true,
     baseUrl: '',
@@ -21,9 +23,7 @@ api.interceptors.response.use((config) => {
 
     const originalRequest = error.config
     if (error.response.status == 401) {
-        console.log('nigga')
-        const response = await axios.get(`http://localhost:8000/api/refresh`, { withCredentials: true })
-        console.log(response)
+        const response = await axios.get(`${serverUrl}/api/refresh`, { withCredentials: true })
         localStorage.setItem('token', response.data.userData.accessToken)
         return api.request(originalRequest)
     }

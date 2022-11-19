@@ -92,7 +92,7 @@ export default function ProfilePage() {
                         <h3 className="text-3xl text-center text-dead_violet font-bold">Standart
                         </h3>
                         <p className="text-center text-text-gray text-2xl mt-4">
-                            Дешёвый тариф. Текст
+                            Стандартный тарифф
                         </p>
                         <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-dead_violet mt-4 rounded-3xl p-3 text-lg font-medium">Заказать</button>
                     </div>
@@ -100,7 +100,7 @@ export default function ProfilePage() {
                         <h3 className="text-3xl text-center text-dead_violet font-bold">Premium
                         </h3>
                         <p className="text-center text-text-gray text-2xl mt-4">
-                            Премиум тариф. Текст
+                            Премиум тариф. Расширеные возможности
                         </p>
                         <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-dead_violet mt-4 rounded-3xl p-3 text-lg font-medium">Заказать</button>
                     </div>
@@ -118,10 +118,10 @@ export default function ProfilePage() {
                 <h2 className="text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписка Mobile Maximum</h2>
                 <div className="flex items-center justify-around mt-8">
                     <div className="bg-white rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
-                        <h3 className="text-3xl text-center text-dead_violet font-bold">Standart
+                        <h3 className="text-3xl text-center text-dead_violet font-bold">Полный доступ
                         </h3>
                         <p className="text-center text-text-gray text-2xl mt-4">
-                            Дешёвый тариф. Текст йобр
+                            Тарифф с полным доступом
                         </p>
                         <button onClick={()=>{router.push('/payGateway/mobile')}} className="bg-dead_violet mt-4 rounded-3xl p-3 text-lg font-medium">Заказать</button>
                     </div>

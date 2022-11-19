@@ -36,9 +36,6 @@ export default function Home() {
     const requestVideoUrl = () => {
         dispatch(getVideoUrl())
     }
-    const logUrl = () => {
-        console.log(currentUrl)
-    }
     const getVideoPLayer = () => {
         dispatch(getVideo(currentUrl))
     }

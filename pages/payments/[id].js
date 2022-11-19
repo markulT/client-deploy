@@ -53,7 +53,6 @@ export default function PaymentsPage() {
 
     useEffectOnce(()=>{
         if (!!document) {
-            console.log(document)
             window.LiqPayCheckoutCallback = function() {
                 LiqPayCheckout.init({
                     data: liqpayDataList[tariffId].data,
@@ -61,8 +60,6 @@ export default function PaymentsPage() {
                     embedTo: "#liqpay_checkout",
                     mode: "embed" // embed || popup,
                 }).on("liqpay.callback", async function(data){
-                    console.log(data.status);
-                    console.log(data);
                     if(data.status == "subscribed") {
                         await createSub(paymentData.password, tariffId, data.order_id, data.acq_id, data)
                         await dispatch(getProfile(false))

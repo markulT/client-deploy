@@ -1,4 +1,4 @@
-import api from "../axios/authApi"
+import api, {serverUrl} from "../axios/authApi"
 
 const SET_USERS_LIST = 'SET_USERS_LIST'
 
@@ -23,6 +23,6 @@ export default function usersReducer(state = initalState, action) {
 export const setUsersList = (usersList) => ({ type: SET_USERS_LIST, usersList })
 
 export const getUsersList = () => async (dispatch) => {
-    const response = await api.get('http://localhost:8000/api/users', { withCredentials: true })
+    const response = await api.get(`${serverUrl}/api/users`, { withCredentials: true })
     dispatch(setUsersList(response.data))
 }

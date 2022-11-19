@@ -71,7 +71,7 @@ export default function Policy() {
                         <input type="checkbox" className={'w-16'} id={'read'} checked={read} onChange={(e) => {
                             setRead(e.target.checked)
                         }}/>
-                        <span className="text-xl">Я прочел всю эту хуету</span>
+                        <span className="text-xl">Я прочел все условия</span>
 
                     </div>
                     <button disabled={!read} className="bg-dead_violet rounded-3xl p-3 text-lg font-medium" onClick={() => {

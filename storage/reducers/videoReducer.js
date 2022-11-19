@@ -31,7 +31,6 @@ export const getVideoUrl = () => async (dispatch) => {
 }
 export const getVideo = (url) => async (dispatch) => {
     const response = await axios.get(url,{"X-UserId":"20005000"})
-    console.log(response.data)
     dispatch(setVideoPlayer(response.data))
 
 }
