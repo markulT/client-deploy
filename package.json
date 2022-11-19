@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "@sentry/nextjs": "^7.20.0",
     "axios": "^0.27.2",
     "cookies-next": "^2.1.1",
     "formik": "^2.2.9",
