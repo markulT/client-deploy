@@ -65,7 +65,7 @@ export default function Home() {
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh] scale-x-[-1]" src="/PickRestTV/Lending/tv1.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh] scale-x-[-1]" src="/PickRestTV/Lending/tv1.png" alt="tv"/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet font-medium pl-4">400+ телеканалов</h3>
                                     <p className="text-text-gray text-4xl pl-4">Каждый член семьи найдет, что
@@ -86,12 +86,13 @@ export default function Home() {
                                 </div>
                                 <img className="h-auto grow-0
                         shrink-0 basis-1 h-screen md:h-[50vh] rotate-12" src="/PickRestTV/Lending/remoteCntrl2.png"
-                                     alt=""/>
+                                     alt="hd quality"/>
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/earth3.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/earth3.png"
+                                     alt="international"/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Мульти
                                         Национальность</h3>
@@ -109,12 +110,13 @@ export default function Home() {
                                         классика.</p>
                                 </div>
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/cinema4.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/cinema4.png"
+                                     alt="online cinema"/>
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/gift5.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/gift5.png" alt="gifts"/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Акции и подарки</h3>
                                     <p className="text-text-gray text-4xl pl-4">Мы заботимся о наших постоянных клиентах
@@ -125,7 +127,7 @@ export default function Home() {
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/archive6.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/archive6.png" alt="archive"/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl pl-4 text-dead_violet font-medium">Архив телепрограмм</h3>
                                     <p className="text-text-gray pl-4 text-4xl">Главная ценность для нас — это вы и ваше
@@ -136,7 +138,8 @@ export default function Home() {
                             <div
                                 className="bg-white mt-16 mb-16 rounded-3xl flex-col flex pt-8 pb-8 flex-col lg:flex-row items-center justify-between w-full md">
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/adm7.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/adm7.png"
+                                     alt="parental control"/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="pl-4 text-6xl text-dead_violet font-medium">Родительский
                                         контроль</h3>
@@ -148,7 +151,7 @@ export default function Home() {
                             <div
                                 className="bg-white mt-16 mb-16 pt-8 pb-8 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
                                 <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/wifi8.png" alt=""/>
+                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/wifi8.png" alt="adaptive"/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Адаптивное
                                         ‍вещание</h3>
@@ -172,7 +175,7 @@ export default function Home() {
                                     “Зарегистрироваться”
                                     Придумайте логин и пароль для своей учетной записи</p>
                                 <img src="/PickRestTV/Lending/userSteps.png" className="h-auto grow-0 pb-8
-                        shrink-0 basis-1"/>
+                        shrink-0 basis-1" alt="howto"/>
                             </div>
 
                             <div
@@ -183,7 +186,7 @@ export default function Home() {
                                     день и время, чтобы вам было максимально удобно встретиться с нашим техническим
                                     специалистом.</p>
                                 <img src="/PickRestTV/Lending/locationSteps.png" className="h-auto grow-0
-                        shrink-0 basis-1 pb-8"/>
+                        shrink-0 basis-1 pb-8" alt="meeting"/>
                             </div>
 
                             <div
@@ -194,7 +197,7 @@ export default function Home() {
                                     и демонстраци возможностей оборудования смотрите любимые каналы и телепередачи в
                                     качестве Full HD</p>
                                 <img src="/PickRestTV/Lending/saluteSteps.png" className="h-auto grow-0
-                        shrink-0 basis-1"/>
+                        shrink-0 basis-1" alt="enjoy"/>
                             </div>
                         </div>
                     </div>
@@ -212,7 +215,7 @@ export default function Home() {
                                 </p>
                             </div>
                             <div className="lg:basis-1/4 order-first lg:order-1 lg:shrink-0 h-[30vh]">
-                                <img src="/PickRestTV/Lending/FAQ.png" className="h-full w-auto" alt=""/>
+                                <img src="/PickRestTV/Lending/FAQ.png" className="h-full w-auto" alt="difficulty"/>
                             </div>
                             <div
                                 className="basis-1/3 p-4 shrink-0 lg:order-last mt-8 lg:mt-0 flex-col items-center bg-white rounded-3xl">
@@ -270,7 +273,7 @@ export default function Home() {
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
                                     <img className="h-full w-auto lg:rotate-12"
-                                         src="/PickRestTV/Lending/loveFeedback.png" alt=""/>
+                                         src="/PickRestTV/Lending/loveFeedback.png" alt="feed1"/>
                                 </div>
                             </div>
                             <div className="flex mt-8 flex-col-reverse lg:flex-row items-center basis-[50%]">
@@ -288,7 +291,7 @@ export default function Home() {
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
                                     <img className="h-full w-auto rotate-[-13.65deg]"
-                                         src="/PickRestTV/Lending/likeFeedback.png" alt=""/>
+                                         src="/PickRestTV/Lending/likeFeedback.png" alt="feed2"/>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +300,7 @@ export default function Home() {
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
                                     <img className="h-full w-auto rotate-12"
-                                         src="/PickRestTV/Lending/5starsFeedback.png" alt=""/>
+                                         src="/PickRestTV/Lending/5starsFeedback.png" alt="feed3"/>
                                 </div>
                                 <div
                                     className="flex items-start flex-col bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
@@ -313,7 +316,7 @@ export default function Home() {
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
                                     <img className="h-full w-auto rotate-[-13.65deg]"
-                                         src="/PickRestTV/Lending/Face_LoveFeedback.png" alt=""/>
+                                         src="/PickRestTV/Lending/Face_LoveFeedback.png" alt="feed4"/>
                                 </div>
                                 <div
                                     className="flex items-start flex-col items-end bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
