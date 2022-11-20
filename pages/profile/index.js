@@ -136,47 +136,5 @@ export default function ProfilePage() {
                 </div>
             </div>
         </div>
-        // <>
-        //     <div>
-        //         <div>Login : {user.login}</div>
-        //         <div>Full Name : {user.fullName}</div>
-        //         <div>Cancel subscription:</div>
-        //         <button>Cancel</button>
-        //         <input type="text" value={password} onChange={(e)=>{
-        //             setPassword(e.target.value)
-        //         }}/>
-        //
-        //         <button onClick={()=>{
-        //             createSub(password, 1)
-        //         }}>Create sub</button>
-        //         <div>Pay: Nigga</div>
-        //         <div className="flex">
-        //             <div className="flex-1">
-        //                 <p className="text-lg">
-        //                     Tariff Standart
-        //                 </p>
-        //                 <button onClick={()=>{
-        //                     router.push(`/payGateway/${1}`)
-        //                 }}>Order</button>
-        //             </div>
-        //             <div className="flex-1">
-        //                 <p className="text-lg">
-        //                     Tariff Premium
-        //                 </p>
-        //                 <button onClick={()=>{
-        //                     router.push(`/payGateway/${2}`)
-        //                 }}>Order</button>
-        //             </div>
-        //         </div>
-        //         <div>Отмена подписки</div>
-        //         <button onClick={()=>{
-        //             router.push("/payments/cancelSub")
-        //         }}>Cancel</button>
-        //         <div>Пробний период</div>
-        //         <button onClick={()=>{
-        //             router.push(`/payments/freeTrial`)
-        //         }}>Free trial</button>
-        //     </div>
-        // </>
     )
 }
