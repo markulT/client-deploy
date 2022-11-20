@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {cancelMobileSubThunk, cancelSubThunk, getProfile} from "../../storage/reducers/authReducer";
-import Router from "next/router";
-import {router} from "next/client";
+import Router, {useRouter} from "next/router";
+
 
 export default function CancelMobileSub() {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const user = useSelector(state=>state.authReducer)
-
+    const router = useRouter()
     const cancelSub = async () => {
         await dispatch(cancelMobileSubThunk({password:password}))
         await dispatch(getProfile())
