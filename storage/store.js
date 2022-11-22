@@ -6,7 +6,6 @@ import { createWrapper } from "next-redux-wrapper";
 import authReducer from "./reducers/authReducer";
 import usersReducer from "./reducers/usersReducer";
 import payReducer from "./reducers/payReducer";
-import {videoReducer} from "./reducers/videoReducer";
 import signupReducer from "./reducers/signReducer";
 
 // initial states here
@@ -19,7 +18,6 @@ const reducers = combineReducers({
     authReducer: authReducer,
     usersReducer: usersReducer,
     payReducer:payReducer,
-    videoReducer:videoReducer,
     signupReducer:signupReducer
 })
 

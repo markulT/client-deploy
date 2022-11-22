@@ -1,13 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
 import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../storage/reducers/authReducer'
-import { getUsersList } from '../../storage/reducers/usersReducer'
-import c from './auth.module.css'
-import Test from "../../comps/Test";
 import {useRouter} from "next/router";
-import Button from "../../comps/Button";
 
 export default function LoginPage() {
     const router = useRouter()

@@ -1,4 +1,3 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
 import Link from 'next/link'
 import { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -101,45 +100,3 @@ export default function RegisterPage() {
         </div>
     )
 }
-
-// export default function RegisterPage() {
-//
-//     const dispatch = useDispatch()
-//
-//     return (
-//         <div>
-//             <h2>Register: </h2>
-//             <Formik
-//                 initialValues={{
-//                     login: '',
-//                     password: '',
-//                     fullName: ''
-//                 }}
-//                 // validate={values => {
-//                 //     const error = {}
-//                 //     if (!values.login || !values.password) {
-//                 //         errors.login = 'required'
-//                 //     }
-//                 //     return errors
-//                 // }}
-//                 onSubmit={(values) => {
-//                     alert(`${values.login} and ${values.password}`)
-//                     dispatch(register(values.login, values.password, values.fullName))
-//                 }}
-//             >
-//                 <Form>
-//                     <label htmlFor='login'>Login</label>
-//                     <Field className={c.input} id='login' name='login' placeholder='Login...'></Field>
-//                     <label htmlFor='password'>Password :</label>
-//                     <Field className={c.input} id='password' name='password' placeholder='Password...'></Field>
-//                     <label htmlFor='fullName'>Full name :</label>
-//                     <Field className={c.input} id='fullName' name='fullName' placeholder='Full Name...'></Field>
-//                     <button type='submit'>Submit</button>
-//                 </Form>
-//             </Formik>
-//             <Link href='/auth/login'>
-//                 <a>Already have an account</a>
-//             </Link>
-//         </div>
-//     )
-// }

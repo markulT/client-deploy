@@ -5,7 +5,6 @@ import styles from '../styles/Home.module.css'
 import Script from "next/script";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {getVideo, getVideoUrl} from "../storage/reducers/videoReducer";
 import {useCallback, useEffect, useState} from "react";
 import {AiFillCaretUp} from "@react-icons/all-files/ai/AiFillCaretUp";
 import {getProfile} from "../storage/reducers/authReducer";
@@ -14,8 +13,6 @@ import {getProfile} from "../storage/reducers/authReducer";
 export default function Home() {
     const router = useRouter()
     const dispatch = useDispatch()
-    const currentUrl = useSelector(state => state.videoReducer.videoUrl)
-    const currentPlayer = useSelector(state => state.videoReducer.videoPlayer)
     const [scrollTop, setScrollTop] = useState(false)
     const onScroll = useCallback(event => {
         if (window.scrollY > 0) {
@@ -33,19 +30,12 @@ export default function Home() {
         }
     }, [])
 
-    const requestVideoUrl = () => {
-        dispatch(getVideoUrl())
-    }
-    const getVideoPLayer = () => {
-        dispatch(getVideo(currentUrl))
-    }
-
     return (
         <div className="w-full overflow-hidden">
 
 
             <main className={styles.main}>
-                <section className="font-[Oswald] bg-[url('/backgpick.png')] h-screen md:h-[85vh] w-full">
+                <section className="font-[Oswald] bg-[url('/PickRestTV/Lending/backgpick.png')] h-screen md:h-[85vh] w-full">
                     <div className="container mx-auto h-full flex-col flex items-center justify-center">
                         <h2 className="text-5xl font-medium">Подключайтесь</h2>
                         <h3 className="text-xl text-center mt-4">Интернет телевидение<br/>
@@ -64,8 +54,7 @@ export default function Home() {
                             </h2>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh] scale-x-[-1]" src="/PickRestTV/Lending/tv1.png" alt="tv"/>
+                                <Image src={'/PickRestTV/Lending/tv1.png'} width={1500} height={1500} className={'scale-x-[-1]'} />
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet font-medium pl-4">400+ телеканалов</h3>
                                     <p className="text-text-gray text-4xl pl-4">Каждый член семьи найдет, что
@@ -84,15 +73,12 @@ export default function Home() {
                                         звук, отсутствие зависаний и помех делают просмотр максимально комфортным.
                                         Качество сигнала не зависит от погодных условий.</p>
                                 </div>
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh] rotate-12" src="/PickRestTV/Lending/remoteCntrl2.png"
-                                     alt="hd quality"/>
+                                <Image className={'rotate-12'} src={'/PickRestTV/Lending/remoteCntrl2.png'} width={1500} height={1500} />
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/earth3.png"
-                                     alt="international"/>
+                                <Image width={1500} height={1500} src='/PickRestTV/Lending/earth3.png'/>
+
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Мульти
                                         Национальность</h3>
@@ -109,14 +95,11 @@ export default function Home() {
                                         новинки кинопроката, любимые сериалы, лучшие мультфильмы и советская
                                         классика.</p>
                                 </div>
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/cinema4.png"
-                                     alt="online cinema"/>
+                                <Image src={'/PickRestTV/Lending/cinema4.png'} width={1500} height={1500} />
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/gift5.png" alt="gifts"/>
+                                <Image src={'/PickRestTV/Lending/gift5.png'} width={1500} height={1500} />
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Акции и подарки</h3>
                                     <p className="text-text-gray text-4xl pl-4">Мы заботимся о наших постоянных клиентах
@@ -126,8 +109,7 @@ export default function Home() {
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/archive6.png" alt="archive"/>
+                                <Image src={'/PickRestTV/Lending/archive6.png'} width={1500} height={1500} />
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl pl-4 text-dead_violet font-medium">Архив телепрограмм</h3>
                                     <p className="text-text-gray pl-4 text-4xl">Главная ценность для нас — это вы и ваше
@@ -137,9 +119,7 @@ export default function Home() {
                             </div>
                             <div
                                 className="bg-white mt-16 mb-16 rounded-3xl flex-col flex pt-8 pb-8 flex-col lg:flex-row items-center justify-between w-full md">
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/adm7.png"
-                                     alt="parental control"/>
+                                <Image src={'/PickRestTV/Lending/adm7.png'} width={1500} height={1500} />
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="pl-4 text-6xl text-dead_violet font-medium">Родительский
                                         контроль</h3>
@@ -150,8 +130,7 @@ export default function Home() {
                             </div>
                             <div
                                 className="bg-white mt-16 mb-16 pt-8 pb-8 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <img className="h-auto grow-0
-                        shrink-0 basis-1 h-screen md:h-[50vh]" src="/PickRestTV/Lending/wifi8.png" alt="adaptive"/>
+                                <Image src={'/PickRestTV/Lending/wifi8.png'} width={1500} height={1500} />
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Адаптивное
                                         ‍вещание</h3>
@@ -174,8 +153,7 @@ export default function Home() {
                                 <p className="text-center text-2xl md:text-xl text-xl text-text-gray">Нажмите кнопку
                                     “Зарегистрироваться”
                                     Придумайте логин и пароль для своей учетной записи</p>
-                                <img src="/PickRestTV/Lending/userSteps.png" className="h-auto grow-0 pb-8
-                        shrink-0 basis-1" alt="howto"/>
+                                <Image src={'/PickRestTV/Lending/userSteps.png'} width={1500} height={1500} />
                             </div>
 
                             <div
@@ -185,8 +163,7 @@ export default function Home() {
                                 <p className="text-center text-2xl md:text-xl text-xl text-text-gray">Назначьте сами
                                     день и время, чтобы вам было максимально удобно встретиться с нашим техническим
                                     специалистом.</p>
-                                <img src="/PickRestTV/Lending/locationSteps.png" className="h-auto grow-0
-                        shrink-0 basis-1 pb-8" alt="meeting"/>
+                                <Image src={'/PickRestTV/Lending/locationSteps.png'} width={1500} height={1500} />
                             </div>
 
                             <div
@@ -196,8 +173,7 @@ export default function Home() {
                                 <p className="text-center text-2xl md:text-xl text-text-gray">После подключения системы
                                     и демонстраци возможностей оборудования смотрите любимые каналы и телепередачи в
                                     качестве Full HD</p>
-                                <img src="/PickRestTV/Lending/saluteSteps.png" className="h-auto grow-0
-                        shrink-0 basis-1" alt="enjoy"/>
+                                <Image src={'/PickRestTV/Lending/saluteSteps.png'} width={1500} height={1370} />
                             </div>
                         </div>
                     </div>
@@ -215,7 +191,7 @@ export default function Home() {
                                 </p>
                             </div>
                             <div className="lg:basis-1/4 order-first lg:order-1 lg:shrink-0 h-[30vh]">
-                                <img src="/PickRestTV/Lending/FAQ.png" className="h-full w-auto" alt="difficulty"/>
+                                <Image src={'/PickRestTV/Lending/FAQ.png'} width={1500} height={1500} />
                             </div>
                             <div
                                 className="basis-1/3 p-4 shrink-0 lg:order-last mt-8 lg:mt-0 flex-col items-center bg-white rounded-3xl">
@@ -272,8 +248,7 @@ export default function Home() {
                                 </div>
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
-                                    <img className="h-full w-auto lg:rotate-12"
-                                         src="/PickRestTV/Lending/loveFeedback.png" alt="feed1"/>
+                                    <Image src={'/PickRestTV/Lending/loveFeedback.png'} width={1500} height={1500} />
                                 </div>
                             </div>
                             <div className="flex mt-8 flex-col-reverse lg:flex-row items-center basis-[50%]">
@@ -290,8 +265,7 @@ export default function Home() {
                                 </div>
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
-                                    <img className="h-full w-auto rotate-[-13.65deg]"
-                                         src="/PickRestTV/Lending/likeFeedback.png" alt="feed2"/>
+                                    <Image src={'/PickRestTV/Lending/likeFeedback.png'} width={1500} height={1500} />
                                 </div>
                             </div>
                         </div>
@@ -299,8 +273,7 @@ export default function Home() {
                             <div className="flex items-center mt-8 flex-col-reverse lg:flex-row basis-[50%]">
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
-                                    <img className="h-full w-auto rotate-12"
-                                         src="/PickRestTV/Lending/5starsFeedback.png" alt="feed3"/>
+                                    <Image src={'/PickRestTV/Lending/5starsFeedback.png'} width={1500} height={1500}/>
                                 </div>
                                 <div
                                     className="flex items-start flex-col bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
@@ -315,8 +288,7 @@ export default function Home() {
                             <div className="flex mt-8 flex-col-reverse lg:flex-row items-center basis-[50%]">
                                 <div
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]">
-                                    <img className="h-full w-auto rotate-[-13.65deg]"
-                                         src="/PickRestTV/Lending/Face_LoveFeedback.png" alt="feed4"/>
+                                    <Image src={'/PickRestTV/Lending/Face_LoveFeedback.png'} width={1500} height={1500} />
                                 </div>
                                 <div
                                     className="flex items-start flex-col items-end bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
