@@ -29,7 +29,15 @@ export default function Home() {
             window.removeEventListener('scroll', onScroll, {passive: true})
         }
     }, [])
-
+    // const getSize = () => {
+    //     if (window !== 'undefined') {
+    //         if (window.innerWidth > 1023) {
+    //             return window.innerWidth
+    //         } else {
+    //             return window.innerWidth * 0.5
+    //         }
+    //     }
+    // }
     return (
         <div className="w-full overflow-hidden">
 
@@ -55,7 +63,7 @@ export default function Home() {
                             </h2>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <Image src={'/PickRestTV/Lending/tv1.png'} width={1500} height={1500}
+                                <Image src={'/PickRestTV/Lending/tv1.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}
                                        className={'scale-x-[-1]'}/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet font-medium pl-4">400+ телеканалов</h3>
@@ -75,12 +83,12 @@ export default function Home() {
                                         звук, отсутствие зависаний и помех делают просмотр максимально комфортным.
                                         Качество сигнала не зависит от погодных условий.</p>
                                 </div>
-                                <Image className={'rotate-12'} src={'/PickRestTV/Lending/remoteCntrl2.png'} width={1500}
-                                       height={1500}/>
+                                <Image className={'rotate-12'} src={'/PickRestTV/Lending/remoteCntrl2.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}
+                                       height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <Image width={1500} height={1500} src='/PickRestTV/Lending/earth3.png'/>
+                                <Image width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} src='/PickRestTV/Lending/earth3.png'/>
 
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Мульти
@@ -98,11 +106,11 @@ export default function Home() {
                                         новинки кинопроката, любимые сериалы, лучшие мультфильмы и советская
                                         классика.</p>
                                 </div>
-                                <Image src={'/PickRestTV/Lending/cinema4.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/cinema4.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <Image src={'/PickRestTV/Lending/gift5.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/gift5.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Акции и подарки</h3>
                                     <p className="text-text-gray text-4xl pl-4">Мы заботимся о наших постоянных клиентах
@@ -112,7 +120,7 @@ export default function Home() {
                             </div>
                             <div
                                 className="bg-white pt-8 pb-8 mt-16 mb-16 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <Image src={'/PickRestTV/Lending/archive6.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/archive6.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl pl-4 text-dead_violet font-medium">Архив телепрограмм</h3>
                                     <p className="text-text-gray pl-4 text-4xl">Главная ценность для нас — это вы и ваше
@@ -122,7 +130,7 @@ export default function Home() {
                             </div>
                             <div
                                 className="bg-white mt-16 mb-16 rounded-3xl flex-col flex pt-8 pb-8 flex-col lg:flex-row items-center justify-between w-full md">
-                                <Image src={'/PickRestTV/Lending/adm7.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/adm7.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="pl-4 text-6xl text-dead_violet font-medium">Родительский
                                         контроль</h3>
@@ -133,7 +141,7 @@ export default function Home() {
                             </div>
                             <div
                                 className="bg-white mt-16 mb-16 pt-8 pb-8 rounded-3xl flex-col flex flex-col lg:flex-row items-center justify-between w-full md">
-                                <Image src={'/PickRestTV/Lending/wifi8.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/wifi8.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-6xl text-dead_violet pl-4 font-medium">Адаптивное
                                         ‍вещание</h3>
@@ -156,7 +164,7 @@ export default function Home() {
                                 <p className="text-center text-2xl md:text-xl text-xl text-text-gray">Нажмите кнопку
                                     “Зарегистрироваться”
                                     Придумайте логин и пароль для своей учетной записи</p>
-                                <Image src={'/PickRestTV/Lending/userSteps.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/userSteps.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                             </div>
 
                             <div
@@ -166,7 +174,7 @@ export default function Home() {
                                 <p className="text-center text-2xl md:text-xl text-xl text-text-gray">Назначьте сами
                                     день и время, чтобы вам было максимально удобно встретиться с нашим техническим
                                     специалистом.</p>
-                                <Image src={'/PickRestTV/Lending/locationSteps.png'} width={1500} height={1500}/>
+                                <Image src={'/PickRestTV/Lending/locationSteps.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                             </div>
 
                             <div
@@ -176,7 +184,7 @@ export default function Home() {
                                 <p className="text-center text-2xl md:text-xl text-text-gray">После подключения системы
                                     и демонстраци возможностей оборудования смотрите любимые каналы и телепередачи в
                                     качестве Full HD</p>
-                                <Image src={'/PickRestTV/Lending/saluteSteps.png'} width={1500} height={1370}/>
+                                <Image src={'/PickRestTV/Lending/saluteSteps.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                             </div>
                         </div>
                     </div>
@@ -194,8 +202,8 @@ export default function Home() {
                                 </p>
                             </div>
                             <Image src={'/PickRestTV/Lending/FAQ.png'}
-                                   className="lg:basis-1/4 order-first lg:order-1 lg:shrink-0 h-[30vh]" width={1500}
-                                   height={1500}/>
+                                   className="lg:basis-1/4 order-first lg:order-1 lg:shrink-0 h-[30vh]" width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}
+                                   height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                             <div
                                 className="basis-1/3 p-4 shrink-0 lg:order-last mt-8 lg:mt-0 flex-col items-center bg-white rounded-3xl">
                                 <h3 className="text-2xl text-center text-dead_violet font-bold">Есть ли каналы из
@@ -239,7 +247,7 @@ export default function Home() {
                     <div className="container mx-auto">
                         <h2 className="text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Что говорят клиенты о
                             REST TV</h2>
-                        <div className="flex flex-col-reverse lg:flex-row mt-8 pb-8 items-center justify-between">
+                        <div className="flex flex-col-reverse xl:flex-row mt-8 pb-8 items-center justify-between">
                             <div className="flex mt-8 flex-col-reverse lg:flex-row items-center basis-[50%]">
                                 <div
                                     className="flex items-start flex-col items-end bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
@@ -252,7 +260,7 @@ export default function Home() {
 
                                 <Image src={'/PickRestTV/Lending/loveFeedback.png'}
                                        className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh]"
-                                       width={1500} height={1500}/>
+                                       width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
 
                             </div>
                             <div className="flex mt-8 flex-col-reverse lg:flex-row items-center basis-[50%]">
@@ -270,16 +278,16 @@ export default function Home() {
 
                                 <Image
                                     className="w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh] scale-50 lg:scale-1"
-                                    src={'/PickRestTV/Lending/likeFeedback.png'} width={1000} height={1000}/>
+                                    src={'/PickRestTV/Lending/likeFeedback.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
 
                             </div>
                         </div>
-                        <div className="flex flex-col-reverse lg:flex-row mt-8 pb-8 items-center justify-between">
+                        <div className="flex flex-col-reverse xl:flex-row mt-8 pb-8 items-center justify-between">
                             <div className="flex items-center mt-8 flex-col-reverse lg:flex-row basis-[50%]">
 
                                 <Image
                                     className="pl-4 w-full h-[10vh] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh] scale-50 lg:scale-1"
-                                    src={'/PickRestTV/Lending/5starsFeedback.png'} width={1500} height={1500}/>
+                                    src={'/PickRestTV/Lending/5starsFeedback.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
 
                                 <div
                                     className="flex items-start flex-col bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
@@ -295,7 +303,7 @@ export default function Home() {
 
                                 <Image
                                     className="pl-8 w-full box-border h-[10vh] rotate-[-13.65deg] lg:w-auto lg:h-auto lg:basis-1/3 lg:shrink-0 h-[40vh] scale-75 lg:scale-1"
-                                    src={'/PickRestTV/Lending/Face_LoveFeedback.png'} width={1000} height={1000}/>
+                                    src={'/PickRestTV/Lending/Face_LoveFeedback.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                                 <div
                                     className="flex items-start flex-col items-end bg-white basis-[70%] rounded-3xl pt-4 pb-4 pl-8 pr-8">
                                     <p className="text-text-gray text-xl">За 89 шекелей в месяц — просто сказка. FullHD
