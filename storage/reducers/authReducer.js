@@ -121,6 +121,7 @@ export const login = (login, password) => async (dispatch) => {
         method:"POST",
         credentials:'include',
         body:JSON.stringify({login:login, password:password}),
+        mode:'cors',
         headers:{
             'Access-Control-Allow-Origin':'*',
             'Accept': 'application/json',
