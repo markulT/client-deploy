@@ -113,15 +113,26 @@ export const register = (login, password, fullName, email, phone, address) => as
 }
 
 export const login = (login, password) => async (dispatch) => {
-    const response = await axios.post(`${serverUrl}/api/login`, {
-        login: login,
-        password: password
-    }, {withCredentials: true})
+    // const response = await axios.post(`${serverUrl}/api/login`, {
+    //     login: login,
+    //     password: password
+    // }, {withCredentials: true})
+    const response = await fetch(`${serverUrl}/api/login`, {
+        method:"POST",
+        credentials:'include',
+        body:JSON.stringify({login:login, password:password}),
+        headers:{
+            'Access-Control-Allow-Origin':'*',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    })
+    const data = await response.json()
+    console.log(data)
+    localStorage.setItem('token', data.userData.accessToken)
 
-    localStorage.setItem('token', response.data.userData.accessToken)
-
-    const user = JSON.parse(response.data.userData.fullProfile)
-    const guest = response.data.userData.user
+    const user = JSON.parse(data.userData.fullProfile)
+    const guest = data.userData.user
     if (user.results == null) {
         dispatch(setGuestAction(guest))
     } else {
