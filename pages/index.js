@@ -77,7 +77,7 @@ export default function Home() {
                         
                     
                 </section>
-                <section className="bg-gradient-to-t w-full from-grad_from to-grad_to">
+                <section className="bg-gradient-to-t w-full from-grad_from to-grad_to flex flex-col">
                 <div
                     className={`fixed bottom-5 right-5 p-4 bg-black cursor-pointer rounded-[50%] ${scrollTop ? 'visible' : 'hidden'}`}
                     onClick={() => {

@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function HelpChunk() {
     return (
-        <div className="container flex flex-col mx-auto lg:h-[90vh]">
+        <div className="container flex flex-col mx-auto lg:min-h-[90vh]">
                         <div className="flex items-center justify-center">
                             <h2 className="text-gray-200 text-4xl sm:text-6xl text-center font-bold font-[Inter] mt-8">Как подключиться?</h2>
                         </div>
