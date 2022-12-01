@@ -10,15 +10,15 @@ const Layout = ({children}) => {
             <Navbar />
             {children}
             <footer className={styles.footer}>
-                <ul className="flex container flex-wrap text-xl text-text-gray">
+                <ul className="flex container flex-wrap text-xl text-gray-200 ">
                     <li>
-                        <a href="https://www.facebook.com/">Facebook</a>
+                        <a className="text-gray-200 hover:text-gray-400" href="https://www.facebook.com/">Facebook</a>
                     </li>
                     <li className="ml-8">
-                        <a href="https://www.whatsapp.com/?lang=ru">WhatsApp</a>
+                        <a className="text-gray-200 hover:text-gray-400" href="https://www.whatsapp.com/?lang=ru">WhatsApp</a>
                     </li>
                     <li className="ml-8">
-                        <a href="https://web.telegram.org/k/">Telegram</a>
+                        <a className="text-gray-200 hover:text-gray-400" href="https://web.telegram.org/k/">Telegram</a>
                     </li>
                 </ul>
             </footer>

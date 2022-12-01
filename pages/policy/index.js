@@ -9,12 +9,15 @@ export default function Policy() {
     const router = useRouter()
     const dispatch = useDispatch()
     return (
-        <div className={'min-h-[100%] font-[Inter] w-full bg-gradient-to-r from-grad_from to-grad_to'}>
-            <div className='container min-h-screen mx-auto pt-4'>
-                <div className="bg-grad_from pl-4 pr-4 rounded-3xl">
-                    <h2 className={'text-2xl pt-4'}>Магазин тимчасово не працює. Все буде Україна!</h2>
-                    <h2 className={'text-2xl mt-4'}>Політика конфіденційності сайту</h2>
-                    <h2 className={'text-2xl mt-4'}>09.07.2019</h2>
+        <div className="h-full bg-gradient-to-t from-grad_from to-grad_to ">
+        <div className={'font-[Inter] text-gray-200 items-center justify-center w-full'}>
+            <div className='container min-h-screen mx-auto pt-6 pb-4 '>
+                <div className="bg-gray-800 pl-4 pr-4 rounded-3xl ">
+                    <div className="text-center pt-2">
+                        <h2 className={'text-3xl mt-4'}>Політика конфіденційності сайту</h2>
+                    </div>
+                    
+                    
                     <h2 className={'text-2xl mt-4'}>ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ ТА ЗАХИСТУ ПЕРСОНАЛЬНИХ ДАНИХ</h2>
                     <h3 className={'text-xl'}>Розділ І. Загальні положення</h3>
                     <p className={'text-xl'}>1. Web - сайт _____ (далі – Сайт) належить на праві власності ____, код ЄДРПОУ ______ ( далі – Компанія) . Всі фрази об&apos;єкти права інтелектуальної власності, які містяться на сайті, окрім випадків, коли про це окремо зазначено, належать на праві власності Компанії.</p>
@@ -67,21 +70,26 @@ export default function Policy() {
                     <p className={'text-xl mt-2'}>- припинення правовідносин між споживачем та Компанією;</p>
                     <p className={'text-xl mt-2'}>- видання відповідного припису Уповноваженого Верховної ради з прав людини або визначених ним посадових осіб секретаріату Уповноваженого Верховної ради з прав людини;</p>
                     <p className={'text-xl mt-2'}>- набрання законної сили рішенням суду щодо видалення або знищення персональних даних.</p>
+                    <div className="text-end">
+                    <h2 className={'text-2xl mt-4'}>09.07.2019</h2>
+                    </div>
+
                     <div className={'flex mb-6 mt-6'}>
-                        <input type="checkbox" className={'w-16'} id={'read'} checked={read} onChange={(e) => {
+                        {/* <input type="checkbox" className={'w-16'} id={'read'} checked={read} onChange={(e) => {
                             setRead(e.target.checked)
                         }}/>
-                        <span className="text-xl">Я прочел все условия</span>
+                        <span className="text-xl">Я прочел все условия</span> */}
 
                     </div>
-                    <button disabled={!read} className="bg-dead_violet rounded-3xl p-3 text-lg font-medium" onClick={() => {
+                    {/* <button disabled={!read} className="bg-dead_violet mb-5 rounded-3xl p-3 text-lg font-medium" onClick={() => {
                         dispatch(setPolicy(read))
                         router.push('/auth/signup')
                     }}>
                         Подтвердить
-                    </button>
+                    </button> */}
                 </div>
             </div>
+        </div>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import {useCallback, useEffect, useState} from 'react'
 import style from '../../styles/payButton.module.css'
 import {useEffectOnce} from "../../hooks/useEffectOnce";
 import {AiOutlineDownCircle} from "@react-icons/all-files/ai/AiOutlineDownCircle";
+import { BsCart2 } from "react-icons/bs";
 
 
 export default function ProfilePage() {
@@ -54,76 +55,75 @@ export default function ProfilePage() {
         }
     }, [])
     return (
-        <div className="w-ful min-h-screen bg-gradient-to-r from-grad_from to-grad_to">
+        <div className="w-ful min-h-screen bg-gradient-to-t from-grad_from to-grad_to">
             <div className="container mx-auto">
                 <div className="flex flex-wrap md:flex-nowrap justify-center items-center pt-8">
                     <div className="basis-1/3">
-                        <img src="/PickRestTV/Profile/User.png" draggable={false} className="w-full select-none h-auto scale-x-[-1]" alt=""/>
+                        <img src="/PickRestTV/Profile/User.png" draggable={false} className="w-full select-none h-auto scale-x-[-1] " alt=""/>
                     </div>
-                    <div className={'text-center md:text-left'}>
-                        <h3 className="text-3xl font-medium text-dead_violet">{user.login}</h3>
-                        <h3 className="text-3xl font-medium text-dead_violet">{user.full_name}</h3>
-                        <h3 className="text-3xl font-medium text-dead_violet">Mobile Maximum {user.mobileSubLevel}</h3>
-                        <a href={'#subs'} className="text-3xl cursor-pointer font-medium text-dead_violet">{user.tariff_plan != "0" ? user.tariff_plan : "Приобретите подписку"}</a>
+                    <div className={'text-center md:text-left bg-gray-800 p-8 rounded-3xl transition-all duration-800 ease-in-out'}>
+                        <h3 className="text-3xl font-medium text-gray-200">Логин: {user.login}</h3>
+                        <h3 className="text-3xl font-medium text-gray-200">Полное имя: {user.full_name}</h3>
+                        <h3 className="text-3xl flex items-center font-medium text-gray-200">Мобильный тариф: {user.mobileSubLevel == 0 ? "Нету" : user.mobileSubLevel == null ? "Нету" : "Премиум"}<a href={'#subs'} className="scroll-smooth"><BsCart2 href={'#subs'} className={`${user.mobileSubLevel == "0" ? "visible" : user.mobileSubLevel == null ? "visible" : "hidden"} text-gray-200 hover:text-gray-400 ml-3 mt-2 cursor-pointer w-7 h-7`}/></a></h3>
+                        <a  className="text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan == "0" ? "Нету" : user.tariff_plan == null ? "Нету" : user.tariff_plan == "1" ? "Стандарт" : "Премиум"}<a href={'#subs'} className="scroll-smooth"><BsCart2 href={'#subs'} className={`${user.tariff_plan == "0" ? "visible" : user.tariff_plan == null ? "visible" : "hidden"} text-gray-200 hover:text-gray-400 ml-3 mt-2 cursor-pointer w-7 h-7`}/></a></a>
                         <div className="flex flex-wrap flex-col items-center">
-                            <h3 className={`${macOpen ? 'text-4xl' : 'text-3xl'} transition-all duration-200 ease-in font-medium text-dead_violet`}>{user.stb_mac ? user.stb_mac : "Установите свой мак адрес"} <AiOutlineDownCircle onClick={()=>{
+                            <h3 className={`${macOpen ? 'text-3xl' : 'text-3xl'} transition-all duration-200 ease-in font-medium text-gray-200`}>{user.stb_mac ? user.stb_mac : "Установите свой мак адрес"} <AiOutlineDownCircle onClick={()=>{
                                 setMac('')
                                 setMacOpen(!macOpen)}
-                            } className="text-3xl inline cursor-pointer ml-4 mr-4" /></h3>
+                            } className={`${macOpen ? "rotate-180" : "rotate-0"} transition-all duration-500 text-3xl inline cursor-pointer ml-4 mr-4 focus:rotate-90 text-color-gray-200 hover:text-gray-400`}/></h3>
 
-                            <div className={`${macOpen ? "visible" : "hidden"} bg-white rounded-3xl p-6 flex flex-wrap items-center`}>
-                            <div className={`group`}>
-                                <input type="text" value={mac} onChange={(e)=>{setMac(e.target.value)}} className="bg-transparent" required />
-                                <span className="highlight"></span>
-                                <span className="bar"></span>
-                                <label>Mac Address</label>
+                            <div className={`${macOpen ? "visible opacity-100" : "hidden opacity-0"} transition-all duration-500 bg-gray-700 rounded-3xl mt-3 p-6 flex flex-wrap items-center`}>
+                            <div className={`group items-start h-2 w-80`}>
+                                <input type="text" value={mac} onChange={(e)=>{setMac(e.target.value)}} className="absolute  right-0 text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-500  text-gray-300 autofill:bg-gray-800" required />
+                                <label className="text-gray-400 focus:text-gray-200">Mac Address</label>
                             </div>
-                                <button onClick={changeMacAddress} className="bg-dead_violet rounded-3xl p-3 text-lg font-medium">Submit</button>
+                                <button onClick={changeMacAddress} className="bg-gray-800 hover:bg-gray-600 text-gray-200 rounded-2xl ml-3 p-3 text-lg font-medium">Готово</button>
                             </div>
                         </div>
-                        <h3  className="text-3xl font-medium text-dead_violet">{tariffs[user.tariff_plan]}</h3>
+                        {/* <h3  className="text-3xl font-medium text-gray-200">{tariffs[user.tariff_plan]}</h3> */}
                     </div>
                 </div>
             </div>
             <div className="container mx-auto">
-                <h2 id={"subs"} className="text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
+                <h2 id={"subs"} className="text-gray-200 text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
                 <div className="flex items-center justify-around mt-8">
-                    <div className="bg-white rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
-                        <h3 className="text-3xl text-center text-dead_violet font-bold">Standart
+                    <div className="bg-gray-800 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                        <h3 className="text-3xl text-center text-gray-200 font-bold">Standart
                         </h3>
-                        <p className="text-center text-text-gray text-2xl mt-4">
-                            Стандартный тарифф
+                        <p className="text-center text-gray-300 text-2xl mt-4">
+                            Стандартный тариф. <br/> 200 каналов включено
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-dead_violet mt-4 rounded-3xl p-3 text-lg font-medium">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 text-lg font-medium">Заказать</button>
                     </div>
-                    <div className="bg-white rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
-                        <h3 className="text-3xl text-center text-dead_violet font-bold">Premium
+                    <div className="bg-gray-800 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                        <h3 className="text-3xl text-center text-gray-200 font-bold">Premium
                         </h3>
-                        <p className="text-center text-text-gray text-2xl mt-4">
-                            Премиум тариф. Расширеные возможности
+                        <p className="text-center text-gray-300 text-2xl mt-4 px-90 ">
+                            Премиум тариф.<br/>
+                            <span className="whitespace-nowrap">Расширеные возможности</span>
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-dead_violet mt-4 rounded-3xl p-3 text-lg font-medium">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 text-lg font-medium">Заказать</button>
                     </div>
                 </div>
                 <div className="container pb-8 mx-auto">
                     <div className="flex items-center justify-center w-full">
                         <button onClick={()=>{
                             router.push("/payments/cancelSub")
-                        }} className="bg-red-500 rounded-3xl p-3 text-lg font-medium mr-4">Отменить подписку</button>
+                        }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 text-lg font-medium mr-4">Отменить подписку</button>
                     </div>
                 </div>
 
             </div>
             <div className="container mx-auto pb-4">
-                <h2 className="text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписка Mobile Maximum</h2>
+                <h2 id="subsMobile" className="text-6xl text-gray-200 text-center flex-wrap font-bold font-[Inter] mt-8">Подписка Mobile Maximum</h2>
                 <div className="flex items-center justify-around mt-8">
-                    <div className="bg-white rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
-                        <h3 className="text-3xl text-center text-dead_violet font-bold">Полный доступ
+                    <div className="bg-gray-800 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                        <h3 className="text-3xl text-center text-gray-200 font-bold">Полный доступ
                         </h3>
-                        <p className="text-center text-text-gray text-2xl mt-4">
+                        <p className="text-center text-gray-300 text-2xl mt-4">
                             Тарифф с полным доступом
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/mobile')}} className="bg-dead_violet mt-4 rounded-3xl p-3 text-lg font-medium">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/mobile')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 text-lg font-medium">Заказать</button>
                     </div>
 
                 </div>
@@ -131,7 +131,7 @@ export default function ProfilePage() {
                     <div className="flex items-center justify-center w-full">
                         <button onClick={()=>{
                             router.push("/payments/cancelMobileSub")
-                        }} className="bg-red-500 rounded-3xl p-3 text-lg font-medium mr-4">Отменить подписку</button>
+                        }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 text-lg font-medium mr-4">Отменить подписку</button>
                     </div>
                 </div>
             </div>
