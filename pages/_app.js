@@ -5,6 +5,7 @@ import Layout from "../comps/Layout";
 import {getFullProfile, getProfile} from "../storage/reducers/authReducer";
 import {useEffect} from "react";
 import Router from "next/router";
+import "modernizr";
 
 function MyApp({Component, pageProps}) {
     const dispatch = useDispatch()

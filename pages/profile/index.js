@@ -7,7 +7,7 @@ import style from '../../styles/payButton.module.css'
 import {useEffectOnce} from "../../hooks/useEffectOnce";
 import {AiOutlineDownCircle} from "@react-icons/all-files/ai/AiOutlineDownCircle";
 import { BsCart2 } from "react-icons/bs";
-
+import Image from 'next/image'
 
 export default function ProfilePage() {
     const user = useSelector(state => state.authReducer)
@@ -53,19 +53,22 @@ export default function ProfilePage() {
                 pathname: '/auth/login'
             })
         }
+        
     }, [])
     return (
         <div className="w-ful min-h-screen bg-gradient-to-t from-grad_from to-grad_to">
             <div className="container mx-auto">
                 <div className="flex flex-wrap md:flex-nowrap justify-center items-center pt-8">
                     <div className="basis-1/3">
-                        <img src="/PickRestTV/Profile/User.png" draggable={false} className="w-full select-none h-auto scale-x-[-1] " alt=""/>
+                        <Image src={'/PickRestTV/Profile/User.png'}
+                                   className="w-full select-none h-auto scale-x-[-1]" draggable={false} width={700}
+                                   height={700}/>
                     </div>
                     <div className={'text-center md:text-left bg-gray-800 p-8 rounded-3xl transition-all duration-800 ease-in-out'}>
                         <h3 className="text-3xl font-medium text-gray-200">Логин: {user.login}</h3>
                         <h3 className="text-3xl font-medium text-gray-200">Полное имя: {user.full_name}</h3>
-                        <h3 className="text-3xl flex items-center font-medium text-gray-200">Мобильный тариф: {user.mobileSubLevel == 0 ? "Нету" : user.mobileSubLevel == null ? "Нету" : "Премиум"}<a href={'#subs'} className="scroll-smooth"><BsCart2 href={'#subs'} className={`${user.mobileSubLevel == "0" ? "visible" : user.mobileSubLevel == null ? "visible" : "hidden"} text-gray-200 hover:text-gray-400 ml-3 mt-2 cursor-pointer w-7 h-7`}/></a></h3>
-                        <a  className="text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan == "0" ? "Нету" : user.tariff_plan == null ? "Нету" : user.tariff_plan == "1" ? "Стандарт" : "Премиум"}<a href={'#subs'} className="scroll-smooth"><BsCart2 href={'#subs'} className={`${user.tariff_plan == "0" ? "visible" : user.tariff_plan == null ? "visible" : "hidden"} text-gray-200 hover:text-gray-400 ml-3 mt-2 cursor-pointer w-7 h-7`}/></a></a>
+                        <h3 className="text-3xl flex items-center font-medium text-gray-200">Мобильный тариф: {user.mobileSubLevel == 0 ? "Нету" : user.mobileSubLevel == null ? "Нету" : "Премиум"}</h3>
+                        <a  className="text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan == "0" ? "Нету" : user.tariff_plan == null ? "Нету" : user.tariff_plan == "1" ? "Стандарт" : "Премиум"}</a>
                         <div className="flex flex-wrap flex-col items-center">
                             <h3 className={`${macOpen ? 'text-3xl' : 'text-3xl'} transition-all duration-200 ease-in font-medium text-gray-200`}>{user.stb_mac ? user.stb_mac : "Установите свой мак адрес"} <AiOutlineDownCircle onClick={()=>{
                                 setMac('')
@@ -86,7 +89,7 @@ export default function ProfilePage() {
             </div>
             <div className="container mx-auto">
                 <h2 id={"subs"} className="text-gray-200 text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
-                <div className="flex items-center justify-around mt-8">
+                <div className="flex flex-col sm:flex-row items-center justify-around mt-8">
                     <div className="bg-gray-800 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Standart
                         </h3>
@@ -95,7 +98,7 @@ export default function ProfilePage() {
                         </p>
                         <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 text-lg font-medium">Заказать</button>
                     </div>
-                    <div className="bg-gray-800 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                    <div className="bg-gray-800 mt-8 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Premium
                         </h3>
                         <p className="text-center text-gray-300 text-2xl mt-4 px-90 ">

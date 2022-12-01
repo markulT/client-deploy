@@ -129,3 +129,10 @@ input:focus ~ .highlight {
   from { background:transparent; }
   to 	{ width:0; background:transparent; }
 }
+
+html.webp #backImg {
+  background-image: url('/PickRestTV/webp/Landing/backgpick.webp');
+}
+html #backImg {
+  background-image: url('/PickRestTV/Lending/backgpick.png');
+}

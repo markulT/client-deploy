@@ -4,7 +4,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createWrapper } from "next-redux-wrapper";
 // import rootReducer from "./reducers";
 import authReducer from "./reducers/authReducer";
-import usersReducer from "./reducers/usersReducer";
 import payReducer from "./reducers/payReducer";
 import signupReducer from "./reducers/signReducer";
 
@@ -16,7 +15,6 @@ const middleware = [thunk];
 
 const reducers = combineReducers({
     authReducer: authReducer,
-    usersReducer: usersReducer,
     payReducer:payReducer,
     signupReducer:signupReducer
 })
