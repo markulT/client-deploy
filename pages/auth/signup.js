@@ -92,13 +92,13 @@ export default function RegisterPage() {
                             <label className="ml-2">Адресс</label>
                         </div>
                         </div>
-                        <div className="flex items-center mb-5 mt-[-30px] justify-center sm:justify-start sm:ml-0">
+                        <div className="flex items-center mb-5 mt-[-30px] mx-12 justify-center sm:justify-start sm:mx-0">
             <div className="flex items-center mr-2 ">
                 <input value={policyRead} onClick={()=>{setPolicyRead(!policyRead)}}  type="checkbox" className="w-4 h-4 bg-red-100 border-red-300 text-red-500 focus:ring-red-200"/>
         </div>
-        <Link href={'/policy'}>
-        <a className="text-gray-200 text-lg">Я согласен с
-        <a href="#" className=" text-gray-400 text-lg  hover:underline hover:text-gray-500"> политикой конфиденициальности</a></a>
+        <Link href={'/policy'} >
+        <a className="text-gray-200 text-sm sm:text-lg">Я согласен с
+        <a href="#" className=" text-gray-400 text-sm sm:text-lg  hover:underline hover:text-gray-500"> политикой конфиденициальности</a></a>
     </Link>
     </div>
                     </form>
