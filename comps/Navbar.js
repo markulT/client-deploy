@@ -31,7 +31,7 @@ export default function Navbar() {
                     <div className="text-5xl font-[Poppins] cursor-pointer h-[48px] w-auto" onClick={() => {
                         router.push('/')
                     }}>
-                        <img src="/PickRestTV/Lending/resttv.png" className="h-full w-auto" alt=""/>
+                        <img src="/PickRestTV/Lending/resttv.png" className="h-full w-auto hover:scale-125 transition-all duration-500" alt=""/>
                     </div>
                     <div onClick={() => {
                         setOpen(!open)
@@ -42,14 +42,14 @@ export default function Navbar() {
                         className={`md:flex md:flex-row flex flex-col items-center z-20 md:pb-0 pb-12 md-:px-0 absolute md:static  bg-gray-800  w-full md:w-auto left-0 md:pl-0  transition-all duration-200 ease-in ${open ? 'top-20' : 'top-[-490px]'}`}>
                         <div className=" inline-block md:ml-8 text-xl md:my-0 my-7">
                             <Link className="align-middle md:flex-1 md:ml-8 text-xl" href={"/"}>
-                                <a className=" hover:text-gray-400 text-gray-200 items-center">
+                                <a className=" hover:text-gray-400 text-gray-200 items-center transition-all duration-300">
                                     <BiHome className={'inline text-2xl mb-1 mr-2'} />
                                     Главная
                                 </a>
                             </Link>
                         </div>
                         {login ?
-                           <div className="relative  inline-block align-middle flex-1 md:ml-8 text-xl md:my-0 my-0  bg-indigo-500 hover:bg-indigo-500 p-3 rounded-2xl"> 
+                           <div className="relative  inline-block align-middle flex-1 md:ml-8 text-xl md:my-0 my-0  bg-indigo-500 hover:bg-indigo-500 p-3 rounded-2xl transition-all duration-300">
                             <div >
                              
                                    <a className=" text-gray-200 flex items-center">
@@ -71,7 +71,7 @@ export default function Navbar() {
     <div className="">
     <ul className="py-1 text-sm text-gray-200 ">
       <li className="text-center">
-        <a href="/profile" className="block py-2 px-4  hover:bg-gray-600 hover:text-gray-200">Профиль</a>
+        <a href="/profile" className="block py-2 px-4  hover:bg-gray-600 hover:text-gray-200 ">Профиль</a>
       </li>
       {/* Купить експанд */}
       <li className="text-center relative" onClick={()=>{
@@ -109,7 +109,7 @@ export default function Navbar() {
                             <>
                                 <div className="align-middle flex-1 md:ml-8 text-xl md:my-0 my-7">
                                     <Link href={"/auth/login"}>
-                                        <a className="hover:text-gray-400 text-gray-200">Логин</a>
+                                        <a className="hover:text-gray-400 text-gray-200 transition-all duration-300">Логин</a>
                                     </Link>
                                 </div>
                                 <Button>Подключиться</Button>

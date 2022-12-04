@@ -35,24 +35,24 @@ export default function LoginPage() {
                     <form>
 
                         <div className="group mt-10">
-                            <input type="text" value={userLogin} onChange={(e)=>{setUserLogin(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800" required />
+                            <input type="text" value={userLogin} onChange={(e)=>{setUserLogin(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
                             <label className="ml-2 text-gray-400">Логин</label>
                         </div>
                         <div className="group">
-                            <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800" required />
+                            <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
                             {hidden ? <AiOutlineEyeInvisible onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> }
                             <label className="ml-2 text-gray-400 peer-focus:text-gray-100">Пароль</label>
                         </div>
                         <div className="mt-[-20px]">
 <a className="text-gray-200 text-lg">У вас нет акаунта? </a>
                         <Link href="/auth/signup">
-                        <a className="text-gray-300 text-lg  hover:underline hover:text-gray-400">Зарегистрируйтесь !</a>
+                        <a className="text-gray-300 text-lg  hover:underline hover:text-gray-400 transition-all duration-300">Зарегистрируйтесь !</a>
                         </Link>
                         </div>
                         
 
                     </form>
-                    <button onClick={submitLogin} className="bg-gray-800 hover:bg-gray-700 rounded-2xl p-3 px-5 text-lg font-medium mt-5 text-gray-200">Отправить</button>
+                    <button onClick={submitLogin} className="bg-gray-800 hover:bg-gray-900 hover:scale-110 rounded-2xl p-3 px-5 text-lg font-medium mt-5 text-gray-200 transition-all duration-500">Отправить</button>
                 </div>
             </div>
         </div>
