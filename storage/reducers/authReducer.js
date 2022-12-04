@@ -7,6 +7,7 @@ const setUserType = 'SET_USER'
 const setGuestType = 'SET_GUEST'
 const setMac = "SET_MAC"
 const setFullProfileType = 'SET_FULL_PROFILE'
+const clearProfile = 'CLEAR_PROFILE'
 
 const instance = axios.create({
     baseUrl: `http://localhost:8000/api`,
@@ -74,6 +75,11 @@ export default function authReducer(state = initialState, action) {
         //     refreshToken: action.user.refreshToken,
         //     login: action.user.login
         // }
+        case clearProfile:{
+            return {
+                ...initialState
+            }
+        }
 
         default:
             return state
@@ -84,6 +90,7 @@ const setUserAction = (user) => ({type: setUserType, user})
 const setGuestAction = (guest) => ({type: setGuestType, guest})
 const setMacAction = (mac) => ({type: setMac, mac})
 const setFullProfile = (profile) => ({type: setFullProfileType, profile})
+const clearProfileAC = () => ({type:clearProfile})
 
 // export const getUser = (userLogin) => async (dispatch) => {
 //     const response = await api.get(`http://a7777.top:80/stalker_portal/api/v1/users/${userLogin}`)
@@ -110,6 +117,7 @@ export const register = (login, password, fullName, email, phone, address) => as
     localStorage.setItem('token', response.data.userData.accessToken)
     const guest = response.data.userData.user
     dispatch(setGuestAction(guest))
+    if(response.data.userData.accessToken) {Router.push("/profile")}
 }
 
 export const login = (login, password) => async (dispatch) => {
@@ -193,4 +201,11 @@ export const getFullProfile = () => async (dispatch) => {
     }
     const parsedProfile = JSON.parse(response.data.fullProfile.fullProfile)
     dispatch(setFullProfile(parsedProfile))
+}
+export const logout = () => async (dispatch) => {
+    const response = await api.post(`${serverUrl}/api/logout`, {withCredentials: true})
+    console.log(response)
+    dispatch(clearProfileAC())
+    Router.push('/auth/login')
+    Router.push('/')
 }

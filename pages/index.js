@@ -7,6 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
 import {AiFillCaretUp} from "@react-icons/all-files/ai/AiFillCaretUp";
 import dynamic from 'next/dynamic';
+import { setCookie } from 'cookies-next';
+import { getCookie } from 'cookies-next';
+import { hasCookie } from 'cookies-next';
+
 
 
 const MainChunk = dynamic(()=>import('../comps/MainChunk'))
@@ -16,6 +20,13 @@ const FeedChunk = dynamic(()=>import('../comps/FeedChunk'))
 export default function Home() {
     const router = useRouter()
     const dispatch = useDispatch()
+    const [Hidden, setHidden] = useState(false)
+
+useEffect(
+()=>{
+getCookie('cookieAccept') == "hidden" ? setHidden(true) : setHidden(false)
+}
+,[])
     const [scrollTop, setScrollTop] = useState(false)
     const onScroll = useCallback(event => {
         if (window.scrollY > 0) {
@@ -47,12 +58,18 @@ export default function Home() {
         <div className="w-full overflow-hidden">
             
   <div  x-show="open"     
-         className="hidden max-w-screen-lg mx-auto fixed bg-gray-800 inset-x-5 p-5 bottom-10 z-10 rounded-lg drop-shadow-2xl flex gap-4 flex-wrap md:flex-nowrap text-center md:text-left items-center justify-center md:justify-between">
-    <div className="w-full text-white">Этот веб-сайт использует файлы cookie, чтобы обеспечить вам максимальное удобство на нашем веб-сайте. 
-      <a href="#" className="text-indigo-300 whitespace-nowrap  hover:underline"> Читать больше</a></div>
+         className={`${Hidden ? "hidden" : "visible"} max-w-screen-lg mx-auto fixed bg-gray-800 inset-x-5 p-5 bottom-10 z-10 rounded-lg drop-shadow-2xl flex gap-4 flex-wrap md:flex-nowrap text-center md:text-left items-center justify-center md:justify-between`}>
+    <div className="w-full text-white text-sm sm:text-md ">Этот веб-сайт использует файлы cookie, чтобы обеспечить вам максимальное удобство на нашем веб-сайте. 
+      <a href="#" className="text-indigo-300 whitespace-nowrap  hover:underline text-sm sm:text-md"> Читать больше</a></div>
     <div className="flex gap-4 items-center flex-shrink-0">
-      <button className="text-indigo-300 focus:outline-none hover:underline">Отклонить</button>
-      <button className="bg-indigo-500 px-5 py-2 text-white rounded-md hover:bg-indigo-700 focus:outline-none">Разрешить Coockies</button>
+      <button className="text-indigo-300 focus:outline-none hover:underline text-sm pl-5 sm:pl-0"
+      onClick={()=>{
+      setHidden(true)
+        setCookie('cookieAccept', 'hidden')}}>Отклонить</button>
+      <button className="bg-indigo-500 sm:px-5 sm:py-2 px-2 py-2 text-sm sm:text-md mr-3 sm:mr-0 text-white rounded-md hover:bg-indigo-700 focus:outline-none"
+      onClick={()=>{
+      setHidden(true)
+        setCookie('cookieAccept', 'hidden')}}>Разрешить Coockies</button>
     </div>
   </div>
  
