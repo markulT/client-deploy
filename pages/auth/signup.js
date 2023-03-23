@@ -99,6 +99,8 @@ export default function RegisterPage() {
         <Link href={'/policy'} >
         <a className="text-gray-200 text-sm sm:text-lg">Я согласен с
         <a href="#" className=" text-gray-400 text-sm sm:text-lg  hover:underline hover:text-gray-500 transition-all duration-500"> политикой конфиденициальности</a></a>
+
+
     </Link>
     </div>
                     </form>
