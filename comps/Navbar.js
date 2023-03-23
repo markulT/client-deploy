@@ -2,7 +2,6 @@ import Link from "next/link";
 import Button from "./Button";
 import {useRouter} from "next/router";
 import {useState} from "react";
-import Script from "next/script";
 import {useSelector} from "react-redux";
 import {BiUserCircle} from "@react-icons/all-files/bi/BiUserCircle";
 import {BiHome} from "@react-icons/all-files/bi/BiHome";
