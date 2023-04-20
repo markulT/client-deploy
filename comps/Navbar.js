@@ -111,7 +111,7 @@ export default function Navbar() {
                                         <a className="hover:text-gray-400 text-gray-200 transition-all duration-300">Логин</a>
                                     </Link>
                                 </div>
-                                <Button>Подключиться</Button>
+                                <Button>Регистрация</Button>
                             </>
                         }
                     </div>

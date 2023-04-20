@@ -79,13 +79,13 @@ getCookie('cookieAccept') == "hidden" ? setHidden(true) : setHidden(false)
                     className="font-[Oswald] h-screen md:h-[105vh] w-full" id='backImg'>
                         <div className=" h-screen md:h-[105vh] w-full">
                         <div className="container mx-auto h-full flex-col flex items-center justify-center">
-                        <h2 className="text-5xl font-medium text-gray-200">Подключайтесь</h2>
-                        <h3 className="text-xl text-center mt-4 text-gray-200">Интернет телевидение<br/>
-                            В Израиле на русском и иврите</h3>
+                        <h2 className="text-5xl font-medium text-gray-200">Заказывайте</h2>
+                        <h3 className="text-xl text-center mt-4 text-gray-200">Актуальную программу<br/>
+                            телевидения</h3>
                         <button onClick={() => {
                             router.push('/profile')
                         }}
-                                className= "text-gray-50 bg-indigo-600 hover:scale-110 hover:bg-indigo-800 hover:bg-blend-darken rounded-2xl p-3 px-5 mt-8 text-xl font-[Oswald] font-medium transition-all duration-500">Подключайтесь
+                                className= "text-gray-50 bg-indigo-600 hover:scale-110 hover:bg-indigo-800 hover:bg-blend-darken rounded-2xl p-3 px-5 mt-8 text-xl font-[Oswald] font-medium transition-all duration-500">Получить программу
                         </button>
                     </div>
                         
@@ -105,8 +105,8 @@ getCookie('cookieAccept') == "hidden" ? setHidden(true) : setHidden(false)
                 </div>
                     <MainChunk />
                     <HelpChunk />
-                    <FAQChunk />
-                    <FeedChunk />
+                    {/*<FAQChunk />*/}
+                    {/*<FeedChunk />*/}
                 </section>
             </main>
         </div>
