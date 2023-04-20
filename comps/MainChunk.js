@@ -24,9 +24,9 @@ export default function MainChunk() {
                                 <div className="flex flex-col 2xl:mr-16 items-start">
                                     <h3 className="text-4xl sm:text-6xl text-gray-200 font-medium pl-4">Почему ты должен ее купить?
                                     </h3>
-                                    <p className="text-gray-300 text-3xl sm:text-4xl pl-4 mt-2">Приобретая рассылку телеканалов всего за 1 доллар в месяц,
+                                    <p className="text-gray-300 text-3xl sm:text-4xl pl-4 mt-2">Приобретая рассылку телепрограмм телеканалов всего за 1 доллар в месяц,
                                         вы получите множество возможностей для увлекательного времяпрепровождения.
-                                        Не упустите шанс получить доступ к множеству телепередач по самой выгодной цене.</p>
+                                        Не упустите шанс получить доступ к множеству программ телепередач по самой выгодной цене.</p>
                                 </div>
                                 <Image className={'rotate-12'} src={'/PickRestTV/Lending/remoteCntrl2.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}
                                        height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
@@ -38,7 +38,7 @@ export default function MainChunk() {
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="text-4xl sm:text-6xl text-gray-200 pl-4 font-medium">Мульти
                                         Национальность</h3>
-                                    <p className="text-gray-300 text-3xl sm:text-4xl pl-4">Программа вмещает в себя национальные телеканалы из
+                                    <p className="text-gray-300 text-3xl sm:text-4xl pl-4">Программа телеканалов вмещает в себя национальные телеканалы из
                                         Израиля, РФ, Украины, стран СНГ, а также стран Европы и Америки. 200+ Каналов на
                                         национальных языках.</p>
                                 </div>
@@ -77,8 +77,8 @@ export default function MainChunk() {
                                 <Image src={'/PickRestTV/Lending/adm7.png'} width={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000} height={typeof window !=='undefined' ? window.innerWidth > 1023 ? window.innerWidth*1.5 : window.innerWidth*0.5 : 1000}/>
                                 <div className="flex flex-col 2xl:ml-16 items-start">
                                     <h3 className="pl-4 text-4xl sm:text-6xl text-gray-200 font-medium">Настройте рассылку</h3>
-                                    <p className="text-gray-300 pl-4 text-3xl sm:text-4xl">Настройка рассылки телеканалов происходит очень быстро и просто.
-                                        Вы можете выбрать из широкого спектра каналов по любым критериям: жанру, направлению, языку и т.д. </p>
+                                    <p className="text-gray-300 pl-4 text-3xl sm:text-4xl">Настройка рассылки программ телеканалов происходит очень быстро и просто.
+                                        Вы можете выбрать из широкого спектра программ каналов по любым критериям: жанру, направлению, языку и т.д. </p>
                                 </div>
                             </div>
                             {/*<div*/}
