@@ -3,11 +3,12 @@ import Script from "next/script";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 const Layout = ({children}) => {
     return(
 
-        <div>
+        <div id={'#footer'}>
             <Navbar />
             {children}
             <footer className={styles.footer}>
@@ -16,6 +17,10 @@ const Layout = ({children}) => {
                     <img src="/PickRestTV/Lending/resttv.png" className="h-20 w-auto" alt=""/>
                             <span className="mt-4 text-sm text-gray-500 sm:text-center dark:text-gray-400 flex ">© 2023 RestTV™ Все права защищены.
                             </span>
+                    </div>
+                    <div className={'w-50 h-50 py-10'}>
+                        <Image src={'/catalogPick/masterlogo.png'} height={60} width={100} className={''}/>
+                        <Image src={'/catalogPick/visalogo.png'} height={60} width={100} className={''}/>
                     </div>
                     <div className={'flex'}>
                         <div className={'px-10'}>
