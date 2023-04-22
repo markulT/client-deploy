@@ -1,6 +1,8 @@
 import Image from "next/image"
+import Router, {useRouter} from 'next/router'
 
 export default function MainChunk() {
+    const router = useRouter();
     return (
         <div className="container mx-auto">
                         <div className="flex flex-col items-center">
@@ -17,7 +19,16 @@ export default function MainChunk() {
                                         программы, спортивные трансляции,
                                         фильмы, детские передачи в HD и Full HD
                                         качестве на русском языке.</p>
+                                    <button onClick={() => {
+                                        router.push('/catalog')
+                                    }}
+                                    className={'p-2 px-10 ml-4 mt-4 bg-indigo-600 rounded-lg text-2xl font-semibold hover:bg-indigo-800 transition-all duration-500 hover:scale-110'}>
+                                        Купить
+                                    </button>
                                 </div>
+
+
+
                             </div>
                             <div
                                 className="bg-gray-700 pb-8 pt-8 mt-16 mb-16 rounded-3xl flex-col-reverse flex flex-col lg:flex-row items-center justify-between w-full md">
