@@ -1,3 +1,5 @@
+import api, {serverUrl} from "../axios/authApi";
+
 const SET_PASSWORD_TYPE = "SET_PASSWORD"
 const SET_TARIFF_TYPE = 'SET_TARIFF'
 
@@ -28,3 +30,8 @@ export default function payReducer(state = initialState, action) {
 export const setPasswordAction = (password) => ({type:SET_PASSWORD_TYPE, password:password})
 export const setTariffAction = (tariff) => ({type:SET_TARIFF_TYPE, tariff:tariff})
 
+export const downloadScheduleThunk = () => async (dispatch) => {
+    const response = await api.post(`${serverUrl}/payments/schedule`);
+
+
+}
