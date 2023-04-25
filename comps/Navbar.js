@@ -84,9 +84,6 @@ export default function Navbar() {
       <li className={``}>
         <a href="/profile#subs" className="block py-1 px-1  hover:bg-gray-600 hover:text-gray-200">Премиум</a>
       </li>
-      <li className={``}>
-        <a href="/profile#subsMobile" className="block py-1 px-1  hover:bg-gray-600 hover:text-gray-200">Мобильную</a>
-      </li>
       </div>
       </li>
     </ul>
