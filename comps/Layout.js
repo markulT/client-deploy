@@ -71,6 +71,14 @@ const Layout = ({children}) => {
                                 </li>
                             </div>
                         </div>
+                        <div className={'px-10'}>
+                            <a className="text-gray-200 text-lg font-bold ">Контакты</a>
+                            <div>
+                                <li>
+                                    <a className="text-gray-200">tkostruba@ukr.net</a>
+                                </li>
+                            </div>
+                        </div>
                     </div>
                 </ul>
             </footer>

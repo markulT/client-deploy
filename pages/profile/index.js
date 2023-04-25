@@ -96,13 +96,13 @@ export default function ProfilePage() {
                             {user.tariff_plan == "1" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
                             <Link href="/catalogPick/1.jpg" download>
-                                Скачать программу
+                                Скачать программу STANDART
                             </Link>
                         </div>
                             : user.tariff_plan == "2" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/1.jpg" download>
-                            Скачать программу
+                            <Link href="/catalogPick/2.jpg" download>
+                            Скачать программу PREMIUM
                             </Link>
                         </div>
                             : ""}
@@ -119,27 +119,42 @@ export default function ProfilePage() {
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Стандарт
                         </h3>
                         <p className="text-center text-gray-300 text-2xl mt-4">
-                            Стандартный тариф. <br/> Список програм включен
+                            Стандартный тариф. <br/> Список програм <br/> <a className={'font-bold'}>STANDART</a> включен
                         </p>
                         <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 px-5 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
-                    {/*<div className="bg-gray-800 mt-8 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">*/}
-                    {/*    <h3 className="text-3xl text-center text-gray-200 font-bold">Premium*/}
-                    {/*    </h3>*/}
-                    {/*    <p className="text-center text-gray-300 text-2xl mt-4 px-90 ">*/}
-                    {/*        Премиум тариф.<br/>*/}
-                    {/*        <span className="whitespace-nowrap">Расширеные возможности</span>*/}
-                    {/*    </p>*/}
-                    {/*    <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 text-lg font-medium">Заказать</button>*/}
-                    {/*</div>*/}
-                </div>
-                <div className="container pb-8 mx-auto">
-                    <div className="flex items-center justify-center w-full">
-                        <button onClick={()=>{
-                            router.push("/payments/cancelSub")
-                        }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium mr-4 hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
+                    <div className="bg-gray-800 mt-8 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                        <h3 className="text-3xl text-center text-gray-200 font-bold">Premium
+                        </h3>
+                        <p className="text-center text-gray-300 text-2xl mt-4 px-90 ">
+                            Премиум тариф.<br/>
+                            <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>PREMIUM</a>  включен</span>
+                        </p>
+                        <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 px-5 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                 </div>
+
+                <div className={'flex justify-center'}>
+                    {user.tariff_plan == "1" ?
+                        <div className="container pb-8 mx-auto">
+                            <div className="flex items-center justify-center w-full">
+                                <button onClick={()=>{
+                                    router.push("/payments/cancelSub")
+                                }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium mr-4 hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
+                            </div>
+                        </div>
+                        : user.tariff_plan == "2" ?
+                            <div className="container pb-8 mx-auto">
+                                <div className="flex items-center justify-center w-full">
+                                    <button onClick={()=>{
+                                        router.push("/payments/cancelSub")
+                                    }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium mr-4 hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
+                                </div>
+                            </div>
+                            : ""}
+                </div>
+
+
 
             </div>
             {/*<div className="container mx-auto pb-4">*/}
