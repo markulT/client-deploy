@@ -101,8 +101,14 @@ export default function ProfilePage() {
                         </div>
                             : user.tariff_plan == "2" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/2.jpg" download>
-                            Скачать программу PREMIUM
+                            <Link href="/catalogPick/3.jpg" download>
+                                Скачать программу PREMIUM
+                            </Link>
+                        </div>
+                            : user.tariff_plan == "3" ?
+                        <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
+                            <Link href="/catalogPick/4.jpg" download>
+                                Скачать программу MINIMAL
                             </Link>
                         </div>
                             : ""}
@@ -116,12 +122,20 @@ export default function ProfilePage() {
                 <h2 id={"subs"} className="text-gray-200 text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
                 <div className="flex flex-col sm:flex-row items-center justify-around mt-8">
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
+                        <h3 className="text-3xl text-center text-gray-200 font-bold">Минимальный
+                        </h3>
+                        <p className="text-center text-gray-300 text-2xl mt-4">
+                            Минимальный  тариф. <br/> Список програм <br/> <a className={'font-bold'}>MINIMAL</a> включен
+                        </p>
+                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                    </div>
+                    <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Стандарт
                         </h3>
                         <p className="text-center text-gray-300 text-2xl mt-4">
                             Стандартный тариф. <br/> Список програм <br/> <a className={'font-bold'}>STANDART</a> включен
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 px-5 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                     <div className="bg-gray-800 mt-8 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Premium
@@ -130,7 +144,7 @@ export default function ProfilePage() {
                             Премиум тариф.<br/>
                             <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>PREMIUM</a>  включен</span>
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-2xl p-3 px-5 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                 </div>
 
