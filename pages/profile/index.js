@@ -95,19 +95,19 @@ export default function ProfilePage() {
                         <div className={'flex justify-center'}>
                             {user.tariff_plan == "1" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/1.jpg" download>
+                            <Link href="/catalogPick/1test.png" download>
                                 Скачать программу STANDART
                             </Link>
                         </div>
                             : user.tariff_plan == "2" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/3.jpg" download>
+                            <Link href="/catalogPick/3test.png" download>
                                 Скачать программу PREMIUM
                             </Link>
                         </div>
                             : user.tariff_plan == "3" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/4.jpg" download>
+                            <Link href="/catalogPick/4test.png" download>
                                 Скачать программу MINIMAL
                             </Link>
                         </div>
