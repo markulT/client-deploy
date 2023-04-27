@@ -73,19 +73,7 @@ export default function Navbar() {
         <a href="/profile" className="block py-2 px-4  hover:bg-gray-600 hover:text-gray-200 ">Профиль</a>
       </li>
       {/* Купить експанд */}
-      <li className="text-center relative" onClick={()=>{
-                            setExpand(!expand)}}>
-        <a className="block py-2 px-4  hover:bg-gray-600 hover:text-gray-200">Купить подписку</a>
-        {/* Топ */}
-        <div className={`${expand ? "visible" : "hidden"} absolute right-40 top-[-18px] transition-all duration-500 bg-gray-700 rounded  p-3 flex flex-wrap items-center justify-center`}>
-      <li className={``}>
-        <a href="/profile#subs" className="block py-1 px-1  hover:bg-gray-600 hover:text-gray-200">Стандарт</a>
-      </li>
-      <li className={``}>
-        <a href="/profile#subs" className="block py-1 px-1  hover:bg-gray-600 hover:text-gray-200">Премиум</a>
-      </li>
-      </div>
-      </li>
+
     </ul>
     </div>
            {/* Вихід */}

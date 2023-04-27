@@ -127,7 +127,7 @@ export default function ProfilePage() {
                         <p className="text-center text-gray-300 text-2xl mt-4">
                             Минимальный  тариф. <br/> Список програм <br/> <a className={'font-bold'}>MINIMAL</a> включен
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/minimum')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Стандарт

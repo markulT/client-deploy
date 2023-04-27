@@ -37,12 +37,17 @@ export default function PaymentsPage() {
         standartMobile:{
             data:'eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJzdWJzY3JpYmUiLCJhbW91bnQiOiIxNSIsImN1cnJlbmN5IjoiVVNEIiwiZGVzY3JpcHRpb24iOiLQn9C+0LTQv9C40YHQutCwIE1vYmlsZSBNYXhpbXVtIiwicHVibGljX2tleSI6InNhbmRib3hfaTE1NTk3MDAyNTI3IiwibGFuZ3VhZ2UiOiJydSIsInN1YnNjcmliZSI6MSwic3Vic2NyaWJlX2RhdGVfc3RhcnQiOiJub3ciLCJzdWJzY3JpYmVfcGVyaW9kaWNpdHkiOiJtb250aCJ9',
             signature: 'KKoZbXoq/hrPb23KnyPr4+a/TRw='
+        },
+        minimumTv: {
+            data:'eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJzdWJzY3JpYmUiLCJhbW91bnQiOiIxIiwiY3VycmVuY3kiOiJVU0QiLCJkZXNjcmlwdGlvbiI6ItCc0ZbQuSDRgtC+0LLQsNGAIiwicHVibGljX2tleSI6InNhbmRib3hfaTE1NTk3MDAyNTI3IiwibGFuZ3VhZ2UiOiJ1ayIsInN1YnNjcmliZSI6MSwic3Vic2NyaWJlX2RhdGVfc3RhcnQiOiJub3ciLCJzdWJzY3JpYmVfcGVyaW9kaWNpdHkiOiJtb250aCJ9',
+            signature:'YRWOsmbxTxaA5sFMny258Zoc9u4='
         }
     }
     const liqpayDataList = {
         'standart':subList.standartTV,
         'premium':subList.premiumTV,
-        'mobile':subList.standartMobile
+        'mobile':subList.standartMobile,
+        'minimum':subList.minimumTv
     }
 
     useEffect(()=>{
