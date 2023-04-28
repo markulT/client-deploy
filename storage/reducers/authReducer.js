@@ -8,6 +8,7 @@ const setGuestType = 'SET_GUEST'
 const setMac = "SET_MAC"
 const setFullProfileType = 'SET_FULL_PROFILE'
 const clearProfile = 'CLEAR_PROFILE'
+const setError = "SET_ERROR"
 
 const instance = axios.create({
     baseUrl: `http://localhost:8000/api`,
@@ -36,7 +37,8 @@ const initialState = {
     subscribed: [],
     subscribed_id: [],
     mobileSubLevel:0,
-    mobileSubOrderId:''
+    mobileSubOrderId:'',
+    error:''
 }
 // const initialState = {
 //     login: '',
@@ -70,6 +72,11 @@ export default function authReducer(state = initialState, action) {
                 ...state,
                 stb_mac: action.mac
             }
+        case setError:
+            return {
+                ...state,
+                error:action.error
+            }
         // return {
         //     accessToken: action.user.accessToken,
         //     refreshToken: action.user.refreshToken,
@@ -91,6 +98,7 @@ const setGuestAction = (guest) => ({type: setGuestType, guest})
 const setMacAction = (mac) => ({type: setMac, mac})
 const setFullProfile = (profile) => ({type: setFullProfileType, profile})
 const clearProfileAC = () => ({type:clearProfile})
+const setErrorAction = (error) => ({type:setError, error})
 
 // export const getUser = (userLogin) => async (dispatch) => {
 //     const response = await api.get(`http://a7777.top:80/stalker_portal/api/v1/users/${userLogin}`)
@@ -136,12 +144,17 @@ export const login = (login, password) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
+    console.log(response.status)
+    if (response.status == 417) {
+        dispatch(setErrorAction('Неправильный пароль'))
+        return
+    }
     const data = await response.json()
-    console.log(data)
     localStorage.setItem('token', data.userData.accessToken)
 
     const user = JSON.parse(data.userData.fullProfile)
     const guest = data.userData.user
+    dispatch(setErrorAction(''))
     if (user.results == null) {
         dispatch(setGuestAction(guest))
     } else {
