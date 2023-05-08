@@ -30,7 +30,7 @@ export default function ProfilePage() {
 
     const createSub = async (password, tariff) => {
         await dispatch(createSubThunk({
-            login:user.login,
+            email:user.email,
             password:password,
             fullName:user.fullName,
             tariff:tariff
@@ -38,12 +38,12 @@ export default function ProfilePage() {
     }
 
     const changeMacAddress = () => {
-        dispatch(changeMac(user.login, mac))
+        dispatch(changeMac(user.email, mac))
     }
 
     const cancelSub = async (password) => {
         await dispatch(cancelSubThunk({
-            login:user.login,
+            email:user.email,
             pass
         }))
     }
@@ -54,7 +54,7 @@ export default function ProfilePage() {
 
 
     useEffect(() => {
-        if (!user.login) {
+        if (!user.email) {
             Router.push({
                 pathname: '/auth/login'
             })
@@ -72,7 +72,7 @@ export default function ProfilePage() {
                     </div>
                     <div className={''}>
                         <div className={'text-center md:text-left bg-gray-800 p-8 rounded-3xl transition-all duration-800 ease-in-out'}>
-                            <h3 className="text-3xl font-medium text-gray-200">Логин: {user.login}</h3>
+                            <h3 className="text-3xl font-medium text-gray-200">Email: {user.email}</h3>
                             <h3 className="text-3xl font-medium text-gray-200">Полное имя: {user.full_name}</h3>
                             {/*<h3 className="text-3xl flex items-center font-medium text-gray-200">Мобильный тариф: {user.mobileSubLevel == 0 ? "Нету" : user.mobileSubLevel == null ? "Нету" : "Премиум"}</h3>*/}
                             <a  className="text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan == "1" ? "Активна" : user.tariff_plan == "2" ? "Активна" : "Нету"}</a>

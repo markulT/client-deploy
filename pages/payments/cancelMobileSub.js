@@ -18,7 +18,7 @@ export default function CancelMobileSub() {
         router.push('/profile')
     }
     useEffect(() => {
-        if (!user.login) {
+        if (!user.email) {
             Router.push({
                 pathname: '/auth/login'
             })

@@ -58,7 +58,6 @@ export const checkPass = (password) => async (dispatch) => {
         return
     }
     dispatch(setError(''))
-    console.log(response.data.isCorrect)
     dispatch(setPasswordValidity(true))
 
 }

@@ -16,7 +16,7 @@ const instance = axios.create({
 })
 
 const initialState = {
-    login: '',
+    email: '',
     full_name: '',
     phone: '',
     account_number: '',
@@ -55,7 +55,7 @@ export default function authReducer(state = initialState, action) {
         case setGuestType:
             return {
                 ...state,
-                login: action.guest.login,
+                email: action.guest.email,
                 full_name: action.guest.fullName,
                 mobileSubLevel: action.guest.mobileSubLevel,
                 mobileSubOrderId: action.guest.mobileSubOrderId
@@ -64,7 +64,7 @@ export default function authReducer(state = initialState, action) {
 
             return {
                 ...action.profile.results,
-                login: state.login,
+                email: state.email,
                 full_name: state.full_name
             }
         case setMac:
@@ -105,17 +105,16 @@ const setErrorAction = (error) => ({type:setError, error})
 //     dispatch(response)
 //     console.log(response.data.results);
 // }
-export const changeMac = (login, newMac) => async (dispatch) => {
+export const changeMac = (email, newMac) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/ministra/changeMacAddress`, {
-        login: login,
+        login: email,
         newMac: newMac
     }, {withCredentials: true})
     setMacAction(newMac)
 }
 
-export const register = (login, password, fullName, email, phone, address) => async (dispatch) => {
+export const register = (password, fullName, email, phone, address) => async (dispatch) => {
     const response = await axios.post(`${serverUrl}/api/registration`, {
-        login: login,
         password: password,
         fullName: fullName,
         email: email,
@@ -128,7 +127,7 @@ export const register = (login, password, fullName, email, phone, address) => as
     if(response.data.userData.accessToken) {Router.push("/profile")}
 }
 
-export const login = (login, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
     // const response = await axios.post(`${serverUrl}/api/login`, {
     //     login: login,
     //     password: password
@@ -136,7 +135,7 @@ export const login = (login, password) => async (dispatch) => {
     const response = await fetch(`${serverUrl}/api/login`, {
         method:"POST",
         credentials:'include',
-        body:JSON.stringify({login:login, password:password}),
+        body:JSON.stringify({email:email, password:password}),
         mode:'cors',
         headers:{
             'Access-Control-Allow-Origin':'*',
@@ -144,7 +143,6 @@ export const login = (login, password) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
-    console.log(response.status)
     if (response.status == 417) {
         dispatch(setErrorAction('Неправильный пароль'))
         return
@@ -167,9 +165,9 @@ export const checkAuth = () => async (dispatch) => {
     const response = await axios.get(`${serverUrl}/api/refresh`, {withCredentials: true})
 }
 
-export const createSubThunk = ({login, password, fullName, tariff, orderId, acqId, paymentData}) => async (dispatch) => {
+export const createSubThunk = ({email, password, fullName, tariff, orderId, acqId, paymentData}) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/payments/callback`, {
-        login: login,
+        email:email,
         password: password,
         fullName: fullName,
         tariff: tariff,
@@ -180,9 +178,9 @@ export const createSubThunk = ({login, password, fullName, tariff, orderId, acqI
     return 0
 }
 
-export const cancelSubThunk = ({login, password}) => async (dispatch) => {
+export const cancelSubThunk = ({email, password}) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/payments/cancelSub`, {
-        login: login,
+        email:email,
         password: password
     }, {withCredentials: true})
 
@@ -217,7 +215,6 @@ export const getFullProfile = () => async (dispatch) => {
 }
 export const logout = () => async (dispatch) => {
     const response = await api.post(`${serverUrl}/api/logout`, {withCredentials: true})
-    console.log(response)
     dispatch(clearProfileAC())
     Router.push('/auth/login')
     Router.push('/')

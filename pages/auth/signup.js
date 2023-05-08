@@ -15,7 +15,6 @@ export default function RegisterPage() {
     const [policyRead, setPolicyRead] = useState(false)
     const dispatch = useDispatch()
     const router = useRouter()
-    const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [fullName, setFullName] = useState('')
     const [phone, setPhone] = useState('')
@@ -30,7 +29,7 @@ export default function RegisterPage() {
         if (!policyRead) {
             return;
         }
-        if(login=="" || password =="" || fullName=="" || phone=="" || email=="" || address==""){
+        if(password =="" || fullName=="" || phone=="" || email=="" || address==""){
             return
         }
 
@@ -39,7 +38,7 @@ export default function RegisterPage() {
             setEmailError(!emailError)
             return;
         }
-        dispatch(register(login, password,fullName,email,phone,address))
+        dispatch(register(password,fullName,email,phone,address))
 
 
     }
@@ -51,10 +50,6 @@ export default function RegisterPage() {
                 <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold md:mt-[-40px] mt-20 ">Регистрация</h1>
                     <form className=" mt-10">
                         <div className=" flex flex-col md:grid md:gap-x-4 md:grid-cols-2 md:grid-rows-3 md:mt-0 px-12 md:px-0 ">
-                        <div className="group">
-                            <input type="text" value={login} onChange={(e)=>{setLogin(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
-                            <label className="ml-2">Логин</label>
-                        </div>
 
                         <div className="group">
                             <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={fullName} onChange={(e)=>{setFullName(e.target.value)}} required />

@@ -10,16 +10,16 @@ export default function LoginPage() {
     const [hidden, setHidden] = useState(true)
     const router = useRouter()
     const dispatch = useDispatch()
-    const [userLogin, setUserLogin] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const userExists = useSelector(state=>state.authReducer.login)
     const error = useSelector(state=>state.authReducer.error)
 
     const submitLogin = async () => {
-        if (userLogin == "" || password == '') {
+        if (email == "" || password == '') {
             return
         }
-        await dispatch(login(userLogin, password))
+        await dispatch(login(email, password))
         if (error) {
             console.log(error)
             return
@@ -43,8 +43,8 @@ export default function LoginPage() {
                     <form>
 
                         <div className="group mt-10">
-                            <input type="text" value={userLogin} onChange={(e)=>{setUserLogin(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
-                            <label className="ml-2 text-gray-400">Логин</label>
+                            <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
+                            <label className="ml-2 text-gray-400">Email</label>
                         </div>
                         <div className="group">
                             <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />

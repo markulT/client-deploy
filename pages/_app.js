@@ -9,9 +9,9 @@ import "modernizr";
 
 function MyApp({Component, pageProps}) {
     const dispatch = useDispatch()
-    const login = useSelector(state => state.authReducer.login)
+    const email= useSelector(state => state.authReducer.email)
     useEffect(()=>{
-        if (!login) {
+        if (!email) {
             console.log('loading profile...')
             dispatch(getProfile())
             dispatch(getFullProfile())

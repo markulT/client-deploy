@@ -15,7 +15,7 @@ export default function CancelSub() {
 
     const cancelSub = async () => {
         await dispatch(cancelSubThunk({
-            login:user.login,
+            email:user.email,
             password:password
         }))
         await dispatch(getProfile())
@@ -23,7 +23,7 @@ export default function CancelSub() {
         Router.push('/profile')
     }
     useEffect(() => {
-        if (!user.login) {
+        if (!user.email) {
             Router.push({
                 pathname: '/auth/login'
             })

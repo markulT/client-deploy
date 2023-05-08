@@ -15,7 +15,7 @@ export default function PaymentsPage() {
 
     const createSub = async (password, tariff, orderId, acqId,paymentData) => {
         await dispatch(createSubThunk({
-            login:user.login,
+            email:user.email,
             password:password,
             fullName:user.fullName,
             tariff:tariff,
