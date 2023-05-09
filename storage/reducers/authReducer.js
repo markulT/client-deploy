@@ -143,14 +143,18 @@ export const login = (email, password) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
+    console.log(response)
     // if (response.status == 417) {
     //     dispatch(setErrorAction('Неправильный пароль'))
     //     return
     // }
     const data = await response.json()
     localStorage.setItem('token', data.userData.accessToken)
+    console.log(data)
     const user = JSON.parse(data.userData.fullProfile)
+    console.log(user)
     const guest = data.userData.user
+    console.log(guest)
     if (user.results == null) {
         dispatch(setGuestAction(guest))
     } else {
