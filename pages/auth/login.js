@@ -22,11 +22,11 @@ export default function LoginPage() {
         await dispatch(login(email, password))
         router.push('/profile')
     }
-    useEffect(()=>{
-        if (userExists) {
-            router.push('/profile')
-        }
-    },[])
+    // useEffect(()=>{
+    //     if (userExists) {
+    //         router.push('/profile')
+    //     }
+    // },[])
 
 
     return (
@@ -52,7 +52,7 @@ export default function LoginPage() {
                         <a className="text-gray-300 text-lg  hover:underline hover:text-gray-400 transition-all duration-300">Зарегистрируйтесь !</a>
                         </Link>
                         </div>
-                        
+
 
                     </form>
                     <button onClick={submitLogin} className="bg-gray-800 hover:bg-gray-900 hover:scale-110 rounded-2xl p-3 px-5 text-lg font-medium mt-5 text-gray-200 transition-all duration-500">Отправить</button>
