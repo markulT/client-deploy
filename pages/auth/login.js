@@ -20,13 +20,14 @@ export default function LoginPage() {
             return
         }
         await dispatch(login(email, password))
+        console.log(dispatch(login(email, password)))
         router.push('/profile')
     }
-    // useEffect(()=>{
-    //     if (userExists) {
-    //         router.push('/profile')
-    //     }
-    // },[])
+    useEffect(()=>{
+        if (userExists) {
+            router.push('/profile')
+        }
+    },[])
 
 
     return (

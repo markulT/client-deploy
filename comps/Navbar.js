@@ -64,7 +64,7 @@ export default function Navbar() {
                                <div className={`${menuOpen ? "opacity-100 translate-y-[-10px] translate-y-3" : "opacity-0 translate-y-0"} absolute top-14 left-0 right-0 transition-all duration-500 bg-gray-700 rounded divide-y mt-3 p-3 flex flex-wrap items-center justify-center`}>
             <div className="py-3 px-4 text-sm text-gray-200 justify-center text-center items-center">
       <div>{fullName}</div>
-      <div className="font-medium ">@{email}</div>
+      <div className="font-medium ">{email}</div>
     </div>
    {/* Менюха */}
     <div className="">

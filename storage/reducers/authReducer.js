@@ -121,7 +121,9 @@ export const register = (password, fullName, email, phone, address) => async (di
         phone: phone,
         address: address
     }, {withCredentials: true})
+    console.log(response)
     localStorage.setItem('token', response.data.userData.accessToken)
+    console.log(response.data.userData.accessToken)
     const guest = response.data.userData.user
     dispatch(setGuestAction(guest))
     if(response.data.userData.accessToken) {Router.push("/profile")}
@@ -152,6 +154,7 @@ export const login = (email, password) => async (dispatch) => {
     localStorage.setItem('token', data.userData.accessToken)
     console.log(data)
     const user = JSON.parse(data.userData.fullProfile)
+    console.log(data.userData)
     console.log(user)
     const guest = data.userData.user
     console.log(guest)

@@ -15,16 +15,14 @@ export default function ProfilePage() {
     const user = useSelector(state => state.authReducer)
     const dispatch = useDispatch()
     const router = useRouter()
+    const userExists = useSelector(state=>state.authReducer.login)
 
 
-    useEffect(() => {
-        if (!user.email) {
-            Router.push({
-                pathname: '/auth/login'
-            })
+    useEffect(()=>{
+        if (userExists) {
+            router.push('/profile')
         }
-
-    }, [])
+    },[])
     return (
         <div className="w-ful min-h-screen bg-gradient-to-t from-grad_from to-grad_to">
             <div className="container mx-auto">

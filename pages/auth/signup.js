@@ -41,6 +41,7 @@ export default function RegisterPage() {
         dispatch(register(password,fullName,email,phone,address))
 
 
+
     }
 
     return (
