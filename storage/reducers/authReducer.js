@@ -113,6 +113,7 @@ export const changeMac = (email, newMac) => async (dispatch) => {
 }
 
 export const register = (password, fullName, email, phone, address) => async (dispatch) => {
+    console.log(password, fullName, email, phone, address)
     const response = await axios.post(`${serverUrl}/api/registration`, {
         password: password,
         fullName: fullName,
