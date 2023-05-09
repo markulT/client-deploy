@@ -51,41 +51,43 @@ export default function RegisterPage() {
                     <form className=" mt-10">
                         <div className=" flex flex-col md:grid md:gap-x-4 md:grid-cols-2 md:grid-rows-3 md:mt-0 px-12 md:px-0 ">
 
-                        <div className="group">
-                            <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={fullName} onChange={(e)=>{setFullName(e.target.value)}} required />
-                            {/* <span className="highlight"></span> */}
-                            {/* <span className="bar"></span> */}
-                            <label className="ml-2">Полное имя</label>
-                        </div>
+                            <div className="group">
+                                <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} className={`${emailError ? "border-red-500" : "border-gray-700"} text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 text-gray-300 autofill:bg-gray-800 transition-all duration-500`} required />
+                                {/* <span className="highlight"></span> */}
+                                {/* <span className="bar"></span> */}
+                                <label className="ml-2">Email</label>
+                            </div>
 
-                        <div className="group">
-                            <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
-                            {/* <span className="highlight"></span> */}
-                            {/* <span className="bar"></span> */}
-                            {hidden ? <AiOutlineEyeInvisible onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> }
-                            <label className="ml-2">Пароль</label>
-                        </div>
+                            <div className="group">
+                                <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
+                                {/* <span className="highlight"></span> */}
+                                {/* <span className="bar"></span> */}
+                                {hidden ? <AiOutlineEyeInvisible onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> }
+                                <label className="ml-2">Пароль</label>
+                            </div>
 
-                        <div className="group">
-                            <input type="text" className={`border-gray-700 text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800  text-gray-300 autofill:bg-gray-800 transition-all duration-500`} value={phone} onChange={(e)=>{setPhone(e.target.value)}} required />
-                            {/* <span className="highlight"></span> */}
-                            {/* <span className="bar"></span> */}
-                            <label className="ml-2">Номер телефона</label>
-                        </div>
+                            <div className="group">
+                                <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={fullName} onChange={(e)=>{setFullName(e.target.value)}} required />
+                                {/* <span className="highlight"></span> */}
+                                {/* <span className="bar"></span> */}
+                                <label className="ml-2">Полное имя</label>
+                            </div>
 
-                        <div className="group">
-                            <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} className={`${emailError ? "border-red-500" : "border-gray-700"} text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 text-gray-300 autofill:bg-gray-800 transition-all duration-500`} required />
-                            {/* <span className="highlight"></span> */}
-                            {/* <span className="bar"></span> */}
-                            <label className="ml-2">Email</label>
-                        </div>
 
-                        <div className="group">
-                            <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={address} onChange={(e)=>{setAddress(e.target.value)}} required />
-                            {/* <span className="highlight"></span> */}
-                            {/* <span className="bar"></span> */}
-                            <label className="ml-2">Адресс</label>
-                        </div>
+                            <div className="group">
+                                <input type="text" className={`border-gray-700 text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800  text-gray-300 autofill:bg-gray-800 transition-all duration-500`} value={phone} onChange={(e)=>{setPhone(e.target.value)}} required />
+                                {/* <span className="highlight"></span> */}
+                                {/* <span className="bar"></span> */}
+                                <label className="ml-2">Номер телефона</label>
+                            </div>
+
+
+                            <div className="group col-span-2">
+                                <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={address} onChange={(e)=>{setAddress(e.target.value)}} required />
+                                {/* <span className="highlight"></span> */}
+                                {/* <span className="bar"></span> */}
+                                <label className="ml-2">Адресс</label>
+                            </div>
                         </div>
                         <div className="flex items-center mb-5 mt-[-30px] mx-12 justify-center sm:justify-start sm:mx-0">
             <div className="flex items-center mr-2 ">
@@ -111,14 +113,14 @@ export default function RegisterPage() {
                     </Link> */}
                     <div className="flex flex-col items-center whitespace-nowrap mb-5">
                      <Link href="/auth/login">
-                        <a className="text-gray-200 text-lg ">У вас нет акаунта?  
+                        <a className="text-gray-200 text-lg ">У вас нет акаунта?
                         <a className="text-gray-300 text-lg ml-1.5 hover:underline hover:text-gray-400 transition-all duration-500">Зарегистрируйтесь !</a></a>
                         </Link>
                    </div>
                     <button onClick={registerSubmit}  className="md:mb-0 mb-10 bg-gray-800 hover:bg-gray-900 hover:scale-110 rounded-2xl p-3 px-5 text-lg font-medium  text-gray-200 transition-all duration-500">Отправить</button>
-                   
-                   
-                    
+
+
+
                 </div>
             </div>
         </div>

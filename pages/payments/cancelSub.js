@@ -14,6 +14,7 @@ export default function CancelSub() {
     const [hidden, setHidden] = useState(true)
 
     const cancelSub = async () => {
+        console.log(password)
         await dispatch(cancelSubThunk({
             email:user.email,
             password:password

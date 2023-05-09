@@ -178,6 +178,16 @@ export const createSubThunk = ({email, password, fullName, tariff, orderId, acqI
     return 0
 }
 
+export const createTestSubThunk = ({email, password, tariff}) => async (dispatch) => {
+    const response = await api.post(`${serverUrl}/payments/createTestSub`, {
+        email:email,
+        password: password,
+        tariff: tariff,
+    }, {withCredentials: true})
+    return 0
+}
+
+
 export const cancelSubThunk = ({email, password}) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/payments/cancelSub`, {
         email:email,

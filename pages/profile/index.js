@@ -16,42 +16,6 @@ export default function ProfilePage() {
     const dispatch = useDispatch()
     const router = useRouter()
 
-    const [macOpen, setMacOpen] = useState(false)
-    const [scrollTop, setScrollTop] = useState(false)
-    const tariffs = {
-        "1":"standart",
-        "2":"premium",
-        "3":"mobile"
-    }
-
-    const [password, setPassword] = useState('')
-    const [tariff, setTariff] = useState('')
-    const [mac, setMac] = useState('')
-
-    const createSub = async (password, tariff) => {
-        await dispatch(createSubThunk({
-            email:user.email,
-            password:password,
-            fullName:user.fullName,
-            tariff:tariff
-        }))
-    }
-
-    const changeMacAddress = () => {
-        dispatch(changeMac(user.email, mac))
-    }
-
-    const cancelSub = async (password) => {
-        await dispatch(cancelSubThunk({
-            email:user.email,
-            pass
-        }))
-    }
-
-    const downloadSchedule = async () => {
-        await dispatch(downloadScheduleThunk)
-    }
-
 
     useEffect(() => {
         if (!user.email) {
@@ -59,7 +23,7 @@ export default function ProfilePage() {
                 pathname: '/auth/login'
             })
         }
-        
+
     }, [])
     return (
         <div className="w-ful min-h-screen bg-gradient-to-t from-grad_from to-grad_to">
@@ -120,11 +84,11 @@ export default function ProfilePage() {
             </div>
             <div className="container mx-auto">
                 <h2 id={"subs"} className="text-gray-200 text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
-                <div className="flex flex-col sm:flex-row items-center justify-around mt-8">
+                <div className="flex flex-col sm:flex-row items-center justify-around mt-8 gap-5">
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Минимальный
                         </h3>
-                        <p className="text-center text-gray-300 text-2xl mt-4">
+                        <p className="text-center text-gray-300 text-2xl">
                             Минимальный  тариф. <br/> Список програм <br/> <a className={'font-bold'}>MINIMAL</a> включен
                         </p>
                         <button onClick={()=>{router.push('/payGateway/minimum')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
@@ -132,24 +96,33 @@ export default function ProfilePage() {
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Стандарт
                         </h3>
-                        <p className="text-center text-gray-300 text-2xl mt-4">
+                        <p className="text-center text-gray-300 text-2xl">
                             Стандартный тариф. <br/> Список програм <br/> <a className={'font-bold'}>STANDART</a> включен
                         </p>
                         <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
-                    <div className="bg-gray-800 mt-8 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                    <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
                         <h3 className="text-3xl text-center text-gray-200 font-bold">Premium
                         </h3>
-                        <p className="text-center text-gray-300 text-2xl mt-4 px-90 ">
+                        <p className="text-center text-gray-300 text-2xl px-90 ">
                             Премиум тариф.<br/>
                             <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>PREMIUM</a>  включен</span>
                         </p>
                         <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
+                    <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                        <h3 className="text-3xl text-center text-gray-200 font-bold">Тест
+                        </h3>
+                        <p className="text-center text-gray-300 text-2xl px-90 ">
+                            Тест тариф.<br/>
+                            <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>TEST SUB</a>  включен</span>
+                        </p>
+                        <button onClick={()=>{router.push('/payGateway/test')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                    </div>
                 </div>
 
                 <div className={'flex justify-center'}>
-                    {user.tariff_plan == "1" ?
+                    {user.tariff_plan == "1" || "2" ?
                         <div className="container pb-8 mx-auto">
                             <div className="flex items-center justify-center w-full">
                                 <button onClick={()=>{
@@ -157,14 +130,6 @@ export default function ProfilePage() {
                                 }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium mr-4 hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
                             </div>
                         </div>
-                        : user.tariff_plan == "2" ?
-                            <div className="container pb-8 mx-auto">
-                                <div className="flex items-center justify-center w-full">
-                                    <button onClick={()=>{
-                                        router.push("/payments/cancelSub")
-                                    }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium mr-4 hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
-                                </div>
-                            </div>
                             : ""}
                 </div>
 

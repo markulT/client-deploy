@@ -15,13 +15,13 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [expand, setExpand] = useState(false)
     const [open, setOpen] = useState(false)
-    const login = useSelector(state => state.authReducer.login)
+    const email = useSelector(state => state.authReducer.email)
     const fullName = useSelector(state => state.authReducer.full_name)
     const dispatch = useDispatch()
     async function handleLogout() {
         setMenuOpen(false)
-        await dispatch(logout()) 
-       
+        await dispatch(logout())
+
         }
     return (
         <nav className="p-5 bg-gray-800 w-full z-[999] ">
@@ -47,24 +47,24 @@ export default function Navbar() {
                                 </a>
                             </Link>
                         </div>
-                        {login ?
+                        {email ?
                            <div className="relative  inline-block align-middle flex-1 md:ml-8 text-xl md:my-0 my-0  bg-indigo-500 hover:bg-indigo-500 p-3 rounded-2xl transition-all duration-300">
                             <div >
-                             
+
                                    <a className=" text-gray-200 flex items-center">
                                        <BiUserCircle className={'inline text-2xl mr-2'} />
-                                       {login}
+                                       {email}
                                        <HiChevronDown
                          className={`${menuOpen ? "rotate-180" : "rotate-0"} transition-all duration-500 text-2xl inline cursor-pointer ml-2 mt-1 focus:rotate-90 text-gray-200 `} onClick={()=>{
                             setMenuOpen(!menuOpen)}
                         }/>
                                    </a>
-                               
+
 
                                <div className={`${menuOpen ? "opacity-100 translate-y-[-10px] translate-y-3" : "opacity-0 translate-y-0"} absolute top-14 left-0 right-0 transition-all duration-500 bg-gray-700 rounded divide-y mt-3 p-3 flex flex-wrap items-center justify-center`}>
             <div className="py-3 px-4 text-sm text-gray-200 justify-center text-center items-center">
       <div>{fullName}</div>
-      <div className="font-medium ">@{login}</div>
+      <div className="font-medium ">@{email}</div>
     </div>
    {/* Менюха */}
     <div className="">
@@ -77,7 +77,7 @@ export default function Navbar() {
     </ul>
     </div>
            {/* Вихід */}
-        
+
            <ul className="py-1 text-sm text-gray-200 ">
             <li>
         <a onClick={handleLogout} className="block py-2 px-12  hover:bg-gray-600 hover:text-gray-200">Выход</a>
@@ -85,10 +85,10 @@ export default function Navbar() {
                       </ul>
     </div>
 
-                              
+
                             </div>
                            </div>
-                           
+
                             :
                             <>
                                 <div className="align-middle flex-1 md:ml-8 text-xl md:my-0 my-7">
@@ -102,8 +102,8 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-            
+
         </nav>
-        
+
     )
 }
