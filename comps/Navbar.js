@@ -15,7 +15,7 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [expand, setExpand] = useState(false)
     const [open, setOpen] = useState(false)
-    const email = useSelector(state => state.authReducer.login)
+    const email = useSelector(state => state.authReducer.email)
     const fullName = useSelector(state => state.authReducer.full_name)
     const dispatch = useDispatch()
     async function handleLogout() {
