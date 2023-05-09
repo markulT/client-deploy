@@ -38,7 +38,6 @@ const initialState = {
     subscribed_id: [],
     mobileSubLevel:0,
     mobileSubOrderId:'',
-    error:''
 }
 // const initialState = {
 //     login: '',
@@ -143,16 +142,14 @@ export const login = (email, password) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
-    if (response.status == 417) {
-        dispatch(setErrorAction('Неправильный пароль'))
-        return
-    }
+    // if (response.status == 417) {
+    //     dispatch(setErrorAction('Неправильный пароль'))
+    //     return
+    // }
     const data = await response.json()
     localStorage.setItem('token', data.userData.accessToken)
-
     const user = JSON.parse(data.userData.fullProfile)
     const guest = data.userData.user
-    dispatch(setErrorAction(''))
     if (user.results == null) {
         dispatch(setGuestAction(guest))
     } else {

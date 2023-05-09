@@ -12,18 +12,14 @@ export default function LoginPage() {
     const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const userExists = useSelector(state=>state.authReducer.login)
-    const error = useSelector(state=>state.authReducer.error)
+    const userExists = useSelector(state=>state.authReducer.email)
+    // const error = useSelector(state=>state.authReducer.error)
 
     const submitLogin = async () => {
         if (email == "" || password == '') {
             return
         }
         await dispatch(login(email, password))
-        if (error) {
-            console.log(error)
-            return
-        }
         router.push('/profile')
     }
     useEffect(()=>{
@@ -31,9 +27,7 @@ export default function LoginPage() {
             router.push('/profile')
         }
     },[])
-    useEffect(()=>{
-        console.log(error)
-    }, [error])
+
 
     return (
         <div className="min-h-[100vh] w-full bg-gradient-to-r from-grad_from to-grad_to bg-blur-sm">
@@ -50,7 +44,6 @@ export default function LoginPage() {
                             <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
                             {hidden ? <AiOutlineEyeInvisible onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> }
                             <label className="ml-2 text-gray-400 peer-focus:text-gray-100">Пароль</label>
-                            <p className={`text-red-600 ${error ? 'visible' : 'hidden'}`}>{error}</p>
                         </div>
 
                         <div className="mt-[-20px]">
