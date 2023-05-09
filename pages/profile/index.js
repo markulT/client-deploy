@@ -57,21 +57,9 @@ export default function ProfilePage() {
                             {/* <h3  className="text-3xl font-medium text-gray-200">{tariffs[user.tariff_plan]}</h3> */}
                         </div>
                         <div className={'flex justify-center'}>
-                            {user.tariff_plan == "1" ?
+                            {user.tariff_plan == "1" || "2" || "3" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
                             <Link href="/catalogPick/1.jpg" download>
-                                Скачать программу
-                            </Link>
-                        </div>
-                            : user.tariff_plan == "2" ?
-                        <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/3.jpg" download>
-                                Скачать программу
-                            </Link>
-                        </div>
-                            : user.tariff_plan == "3" ?
-                        <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/4.jpg" download>
                                 Скачать программу
                             </Link>
                         </div>
