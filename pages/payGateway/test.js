@@ -28,7 +28,7 @@ export default function PaymentGateway() {
     const submit = async () =>{
         await dispatch(await checkPass(password))
         if(isPasswordCorrect) {
-            createTestSub(password, 1)
+            createTestSub(password, "premium")
             router.push(`/profile`)
         }
     }

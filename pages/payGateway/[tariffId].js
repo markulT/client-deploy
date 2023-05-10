@@ -19,6 +19,7 @@ export default function PaymentGateway() {
         await dispatch(await checkPass(password))
         dispatch(setTariffAction(router.query.tariffId))
         dispatch(setPasswordAction(password))
+        console.log(router.query.tariffId)
         if(isPasswordCorrect) {
             router.push(`/payments/${actionId}`)
         }

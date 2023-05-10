@@ -29,6 +29,7 @@ export default function Navbar() {
                 <div className="md:flex w-full align-middle justify-between items-center">
                     <div className="text-5xl font-[Poppins] cursor-pointer h-[48px] w-auto" onClick={() => {
                         router.push('/')
+                        console.log(email)
                     }}>
                         <img src="/PickRestTV/Lending/resttv.png" className="h-full w-auto hover:scale-125 transition-all duration-500" alt=""/>
                     </div>

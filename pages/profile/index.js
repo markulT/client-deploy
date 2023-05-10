@@ -15,11 +15,11 @@ export default function ProfilePage() {
     const user = useSelector(state => state.authReducer)
     const dispatch = useDispatch()
     const router = useRouter()
-    const userExists = useSelector(state=>state.authReducer.login)
 
 
     useEffect(()=>{
-        if (userExists) {
+        user.tariff_plan
+        if (!user.email) {
             router.push('/profile')
         }
     },[])
@@ -37,7 +37,7 @@ export default function ProfilePage() {
                             <h3 className="text-3xl font-medium text-gray-200">Email: {user.email}</h3>
                             <h3 className="text-3xl font-medium text-gray-200">Полное имя: {user.full_name}</h3>
                             {/*<h3 className="text-3xl flex items-center font-medium text-gray-200">Мобильный тариф: {user.mobileSubLevel == 0 ? "Нету" : user.mobileSubLevel == null ? "Нету" : "Премиум"}</h3>*/}
-                            <a  className="text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan == "1" ? "Активна" : user.tariff_plan == "2" ? "Активна" : "Нету"}</a>
+                            <a  className="text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan ? "Активна" : "Нету"}</a>
                             {/*<div className="flex flex-wrap flex-col items-center">*/}
                             {/*    <h3 className={`${macOpen ? 'text-3xl' : 'text-3xl'} transition-all duration-200 ease-in font-medium text-gray-200`}>{user.stb_mac ? user.stb_mac : "Установите свой мак адрес"} <AiOutlineDownCircle onClick={()=>{*/}
                             {/*        setMac('')*/}
@@ -55,7 +55,7 @@ export default function ProfilePage() {
                             {/* <h3  className="text-3xl font-medium text-gray-200">{tariffs[user.tariff_plan]}</h3> */}
                         </div>
                         <div className={'flex justify-center'}>
-                            {user.tariff_plan == "1" || "2" || "3" ?
+                            {user.tariff_plan ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
                             <Link href="/catalogPick/1.jpg" download>
                                 Скачать программу
@@ -108,7 +108,7 @@ export default function ProfilePage() {
                 </div>
 
                 <div className={'flex justify-center'}>
-                    {user.tariff_plan == "1" || "2" ?
+                    {user.tariff_plan ?
                         <div className="container pb-8 mx-auto">
                             <div className="flex items-center justify-center w-full">
                                 <button onClick={()=>{
