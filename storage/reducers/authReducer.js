@@ -192,6 +192,14 @@ export const createTestSubThunk = ({email, password, tariff}) => async (dispatch
     return 0
 }
 
+export const createMobileTestSubThunk = (email) => async (dispatch) => {
+    const response = await api.post(`${serverUrl}/payments/createMobileTestSub`, {
+        email:email,
+    }, {withCredentials: true})
+    console.log(response)
+    return 0
+}
+
 
 export const cancelSubThunk = ({email, password}) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/payments/cancelSub`, {
@@ -203,6 +211,12 @@ export const cancelSubThunk = ({email, password}) => async (dispatch) => {
 
 export const cancelMobileSubThunk = ({password}) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/payments/cancelMobileSub`, {
+        password: password
+    }, {withCredentials: true})
+}
+export const cancelTestMobileSubThunk = ({email, password}) => async (dispatch) => {
+    const response = await api.post(`${serverUrl}/payments/cancelTestMobileSub`, {
+        email: email,
         password: password
     }, {withCredentials: true})
 }

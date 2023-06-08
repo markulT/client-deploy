@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../storage/reducers/authReducer'
-import {useRouter} from "next/router";
+import {getFullProfile, getProfile, login} from '../../storage/reducers/authReducer'
+import Router, {useRouter} from "next/router";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 
@@ -20,8 +20,9 @@ export default function LoginPage() {
             return
         }
         await dispatch(login(email, password))
-        console.log(dispatch(login(email, password)))
-        router.push('/profile')
+        await dispatch(getProfile())
+        await dispatch(getFullProfile())
+        await Router.push(`/profile`);
     }
     useEffect(()=>{
         if (userExists) {

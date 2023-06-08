@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {cancelSubThunk, getFullProfile, getProfile} from "../../storage/reducers/authReducer";
+import {cancelSubThunk, cancelTestMobileSubThunk, getFullProfile, getProfile} from "../../storage/reducers/authReducer";
 import Router, {useRouter} from "next/router";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
@@ -15,13 +15,17 @@ export default function CancelSub() {
 
     const cancelSub = async () => {
         console.log(password)
+        await dispatch(cancelTestMobileSubThunk({
+            email:user.email,
+            password:password
+        }))
         await dispatch(cancelSubThunk({
             email:user.email,
             password:password
         }))
         await dispatch(getProfile())
         await dispatch(getFullProfile())
-        Router.push('/profile')
+        await Router.push('/profile')
     }
     useEffect(() => {
         if (!user.email) {

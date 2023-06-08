@@ -1,10 +1,15 @@
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {checkPass, setPasswordAction, setTariffAction} from "../../storage/reducers/payReducer";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
-import {createTestSubThunk} from "../../storage/reducers/authReducer";
+import {
+    createMobileTestSubThunk,
+    createTestSubThunk,
+    getFullProfile,
+    getProfile
+} from "../../storage/reducers/authReducer";
 
 export default function PaymentGateway() {
 
@@ -25,14 +30,22 @@ export default function PaymentGateway() {
         }))
     }
 
-    const submit = async () =>{
-        await dispatch(await checkPass(password))
-        if(isPasswordCorrect) {
-            createTestSub(password, "premium")
-            router.push(`/profile`)
-        }
+    const createMobileTestSub = async () => {
+        await dispatch(createMobileTestSubThunk({
+            email: user.email,
+        }))
     }
 
+    const submit = async () => {
+        dispatch(checkPass(password));
+        if (isPasswordCorrect) {
+            await dispatch(createMobileTestSubThunk({email: user.email}))
+            await dispatch(createTestSubThunk({email: user.email, password: password, tariff: "premium"}))
+            await dispatch(getProfile())
+            await dispatch(getFullProfile())
+            await Router.push(`/profile`);
+        }
+    }
 
     return (
         <div className="w-full min-h-screen bg-gradient-to-t from-grad_from to-grad_to">

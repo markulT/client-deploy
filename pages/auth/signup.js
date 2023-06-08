@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { register } from '../../storage/reducers/authReducer'
+import {getFullProfile, getProfile, register} from '../../storage/reducers/authReducer'
 import c from './auth.module.css'
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 import {AiOutlineCheck} from "@react-icons/all-files/ai/AiOutlineCheck";
 import {ImCross} from "@react-icons/all-files/im/ImCross";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
@@ -25,21 +25,23 @@ export default function RegisterPage() {
     const [phoneError, setPhoneError] = useState(false)
     const emailValidate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    const registerSubmit = () => {
+    const registerSubmit = async () => {
         if (!policyRead) {
             return;
         }
-        if(password =="" || fullName=="" || phone=="" || email=="" || address==""){
+        if (password == "" || fullName == "" || phone == "" || email == "" || address == "") {
             return
         }
 
         const emailCorrect = emailValidate.test(email)
-        if(!emailCorrect) {
+        if (!emailCorrect) {
             setEmailError(!emailError)
             return;
         }
-        dispatch(register(password,fullName,email,phone,address))
-
+        await dispatch(register(password, fullName, email, phone, address))
+        await dispatch(getProfile())
+        await dispatch(getFullProfile())
+        await Router.push(`/profile`);
 
 
     }
