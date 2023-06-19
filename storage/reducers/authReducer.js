@@ -214,9 +214,8 @@ export const cancelMobileSubThunk = ({password}) => async (dispatch) => {
         password: password
     }, {withCredentials: true})
 }
-export const cancelTestMobileSubThunk = ({email, password}) => async (dispatch) => {
-    const response = await api.post(`${serverUrl}/payments/cancelTestMobileSub`, {
-        email: email,
+export const cancelTestMobileSubThunk = ({password}) => async (dispatch) => {
+    const response = await api.post(`${serverUrl}/payments/cancelMobileSub`, {
         password: password
     }, {withCredentials: true})
 }
