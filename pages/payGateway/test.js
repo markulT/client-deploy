@@ -21,6 +21,7 @@ export default function PaymentGateway() {
     const [hidden, setHidden] = useState(true)
     const isPasswordCorrect = useSelector(state=>state.payReducer.isPassCorrect)
     const error = useSelector(state => state.payReducer.error)
+    const [disable, setDisable] = useState(false)
 
     const createTestSub = async (password, tariff) => {
         await dispatch(createTestSubThunk({
@@ -37,7 +38,9 @@ export default function PaymentGateway() {
     }
 
     const submit = async () => {
+        setDisable(true)
         dispatch(checkPass(password));
+        console.log(isPasswordCorrect)
         if (isPasswordCorrect) {
             await dispatch(createMobileTestSubThunk({email: user.email}))
             await dispatch(createTestSubThunk({email: user.email, password: password, tariff: "premium"}))
@@ -45,6 +48,7 @@ export default function PaymentGateway() {
             await dispatch(getFullProfile())
             await Router.push(`/profile`);
         }
+        setDisable(false)
     }
 
     return (
@@ -57,7 +61,7 @@ export default function PaymentGateway() {
                     <label className="ml-2">Пароль</label>
                     <p className={`text-red-600 ${error ? 'visible' : 'hidden'}`}>{error}</p>
                 </div>
-                <button onClick={submit} className="bg-gray-800 hover:bg-gray-700 rounded-2xl p-3 px-5 text-lg font-medium  text-gray-200">Подтвердить</button>
+                <button onPointerDown={submit} disabled={false} className="bg-gray-800 hover:bg-gray-700 rounded-2xl p-3 px-5 text-lg font-medium  text-gray-200">Подтвердить</button>
             </div>
         </div>
     )
