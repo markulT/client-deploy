@@ -9,6 +9,7 @@ const setMac = "SET_MAC"
 const setFullProfileType = 'SET_FULL_PROFILE'
 const clearProfile = 'CLEAR_PROFILE'
 const setError = "SET_ERROR"
+const setSchedule = "SET_SCHEDULE"
 
 const instance = axios.create({
     baseUrl: `http://localhost:8000/api`,
@@ -38,6 +39,7 @@ const initialState = {
     subscribed_id: [],
     mobileSubLevel:0,
     mobileSubOrderId:'',
+    schedule:[]
 }
 // const initialState = {
 //     login: '',
@@ -86,6 +88,12 @@ export default function authReducer(state = initialState, action) {
                 ...initialState
             }
         }
+        case setSchedule: {
+            return {
+                ...state,
+                schedule: action.schedule
+            }
+        }
 
         default:
             return state
@@ -98,6 +106,7 @@ const setMacAction = (mac) => ({type: setMac, mac})
 const setFullProfile = (profile) => ({type: setFullProfileType, profile})
 const clearProfileAC = () => ({type:clearProfile})
 const setErrorAction = (error) => ({type:setError, error})
+const setScheduleAction = (schedule) => ({type:setSchedule, schedule})
 
 // export const getUser = (userLogin) => async (dispatch) => {
 //     const response = await api.get(`http://a7777.top:80/stalker_portal/api/v1/users/${userLogin}`)
@@ -145,19 +154,15 @@ export const login = (email, password) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
-    console.log(response)
     // if (response.status == 417) {
     //     dispatch(setErrorAction('Неправильный пароль'))
     //     return
     // }
     const data = await response.json()
     localStorage.setItem('token', data.userData.accessToken)
-    console.log(data)
     const user = JSON.parse(data.userData.fullProfile)
-    console.log(data.userData)
-    console.log(user)
     const guest = data.userData.user
-    console.log(guest)
+
     if (user.results == null) {
         dispatch(setGuestAction(guest))
     } else {
@@ -246,4 +251,15 @@ export const logout = () => async (dispatch) => {
     dispatch(clearProfileAC())
     Router.push('/auth/login')
     Router.push('/')
+}
+
+export const getSchedule = () => async (dispatch) => {
+    const currentDate = new Date()
+    const year = currentDate.getFullYear()
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+    const day = String(currentDate.getDate()).padStart(2, '0')
+    const formattedDate = `${year}-${month}-${day}`
+    const response = await api.get(`${serverUrl}/channelManagement/getSchedule102?date=${formattedDate}`, {withCredentials:true})
+    console.log(response.data)
+    dispatch(setScheduleAction(response.data))
 }

@@ -3,7 +3,7 @@ import {
     cancelSubThunk,
     changeMac,
     createSubThunk,
-    getFullProfile, getProfile,
+    getFullProfile, getProfile, getSchedule,
     getUser,
     logout
 } from '../../storage/reducers/authReducer'
@@ -17,11 +17,14 @@ import { BsCart2 } from "react-icons/bs";
 import Image from 'next/image'
 import {downloadScheduleThunk} from "../../storage/reducers/payReducer";
 import Link from "next/link";
+import ScheduleElement from "../../comps/ScheduleElement";
 
 export default function ProfilePage() {
     const user = useSelector(state => state.authReducer)
     const dispatch = useDispatch()
     const router = useRouter()
+
+    const schedule = useSelector(state=>state.authReducer.schedule)
 
 
     useEffect(()=>{
@@ -66,9 +69,14 @@ export default function ProfilePage() {
                         <div className={'flex justify-center'}>
                             {user.tariff_plan === "1" || user.tariff_plan === "2" ?
                         <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <Link href="/catalogPick/1.jpg" download>
+                            <button className={"p-2"} onClick={()=>{
+                                dispatch(getSchedule())
+                            }}>
                                 Скачать программу
-                            </Link>
+                            </button>
+                            {/*<Link href="/catalogPick/1.jpg" download>*/}
+                            {/*    Скачать программу*/}
+                            {/*</Link>*/}
                         </div>
                             : ""}
                         </div>
@@ -77,6 +85,11 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </div>
+
+            <div className={"container mx-auto rounded-3xl p-4 flex flex-wrap items-center justify-center gap-3"}>
+                {schedule ? schedule.map((item)=><ScheduleElement name={item.name} from={item.t_time} to={item.t_time_to} />) : ''}
+            </div>
+
             <div className="container mx-auto">
                 <h2 id={"subs"} className="text-gray-200 text-3xl md:text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
                 <div className="flex flex-col sm:flex-row items-center justify-around mt-8 gap-5">
