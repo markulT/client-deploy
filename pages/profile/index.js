@@ -97,7 +97,7 @@ export default function ProfilePage() {
                 <h2 className={'text-3xl font-bold'}>ICTV</h2>
 
                 <div className={"container mx-auto rounded-3xl p-4 grid grid-cols-2 gap-3 lg:grid-cols-4"}>
-                    {schedule ? schedule.map((item) => <ScheduleElement name={item.name} from={item.t_time} to={item.t_time_to} key={t_time}/>) : ''}
+                    {schedule ? schedule.map((item) => <ScheduleElement name={item.name} from={item.t_time} to={item.t_time_to} key={0}/>) : ''}
                 </div>
             </section> : ''}
 
