@@ -12,7 +12,7 @@ const Layout = ({children}) => {
             <Navbar/>
             {children}
             <footer className={styles.footer}>
-                <ul className="flex container flex-col md:flex-row justify-around text-xl text-gray-200 ">
+                <ul className="flex container flex-col md:grid md:grid-cols-3 lg:flex lg:flex-row justify-around text-xl text-gray-200 ">
                     <div className={'flex flex-col justify-center'}>
                         <div className={"flex justify-center md:justify-start"}>
                             <img src="/PickRestTV/Lending/resttv.png" className="h-20 w-24" alt=""/>

@@ -25,6 +25,7 @@ export default function ProfilePage() {
     const router = useRouter()
 
     const schedule = useSelector(state=>state.authReducer.schedule)
+    const [scheduleVisibility, setScheduleVisibility] = useState(false)
 
 
     useEffect(()=>{
@@ -68,11 +69,17 @@ export default function ProfilePage() {
                         </div>
                         <div className={'flex justify-center'}>
                             {user.tariff_plan === "1" || user.tariff_plan === "2" ?
-                        <div className={'bg-gray-700 mt-4 p-4 rounded-xl hover:bg-gray-800 hover:scale-110  transition-all duration-500'}>
-                            <button className={"p-2"} onClick={()=>{
-                                dispatch(getSchedule())
+                        <div className={'bg-gray-700 mt-4 p-2 w-full rounded-xl hover:bg-gray-800 hover:scale-105  transition-all duration-500'}>
+                            <button className={"p-2 text-center w-full"} onClick={()=>{
+
+                                if(scheduleVisibility) {
+                                    setScheduleVisibility(false)
+                                } else {
+                                    setScheduleVisibility(true)
+                                    dispatch(getSchedule())
+                                }
                             }}>
-                                Скачать программу
+                                {scheduleVisibility ? "Закрыть программу" : "Посмотреть программу"}
                             </button>
                             {/*<Link href="/catalogPick/1.jpg" download>*/}
                             {/*    Скачать программу*/}
@@ -86,13 +93,17 @@ export default function ProfilePage() {
                 </div>
             </div>
 
-            <div className={"container mx-auto rounded-3xl p-4 flex flex-wrap items-center justify-center gap-3"}>
-                {schedule ? schedule.map((item)=><ScheduleElement name={item.name} from={item.t_time} to={item.t_time_to} />) : ''}
-            </div>
+            {scheduleVisibility ? <section className={'mt-8 flex justify-center flex-col items-center'}>
+                <h2 className={'text-3xl font-bold'}>ICTV</h2>
 
-            <div className="container mx-auto">
+                <div className={"container mx-auto rounded-3xl p-4 grid grid-cols-2 gap-3 lg:grid-cols-4"}>
+                    {schedule ? schedule.map((item) => <ScheduleElement name={item.name} from={item.t_time} to={item.t_time_to} />) : ''}
+                </div>
+            </section> : ''}
+
+            <div className="container mx-auto pb-8 md:pb-0">
                 <h2 id={"subs"} className="text-gray-200 text-3xl md:text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
-                <div className="flex flex-col sm:flex-row items-center justify-around mt-8 gap-5">
+                <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row items-center justify-around mt-8 gap-5">
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Минимальный
                         </h3>
@@ -118,7 +129,7 @@ export default function ProfilePage() {
                         </p>
                         <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
-                    <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
+                    <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6 ">
                         <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Тест
                         </h3>
                         <p className="text-center text-gray-300 text-xl md:text-2xl px-90 ">
@@ -135,7 +146,7 @@ export default function ProfilePage() {
                             <div className="flex items-center justify-center w-full">
                                 <button onClick={()=>{
                                     router.push("/payments/cancelSub")
-                                }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium mr-4 hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
+                                }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-3xl p-3 mt-5 text-lg font-medium hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
                             </div>
                         </div>
                             : ""}
