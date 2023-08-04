@@ -22,7 +22,7 @@ export default function Home() {
     const [Hidden, setHidden] = useState(false)
 
     useEffect(() => {
-            getCookie('cookieAccept') == "hidden" ? setHidden(true) : setHidden(false)
+            getCookie('cookieAccept') === "hidden" ? setHidden(true) : setHidden(false)
         }, [])
     const [scrollTop, setScrollTop] = useState(false)
     const onScroll = useCallback(event => {

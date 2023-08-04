@@ -102,7 +102,7 @@ export default function ProfilePage() {
             </section> : ''}
 
             <div className="container mx-auto pb-8 md:pb-0">
-                <h2 id={"subs"} className="text-gray-200 text-3xl md:text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подпискиn</h2>
+                <h2 id={"subs"} className="text-gray-200 text-3xl md:text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
                 <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row items-center justify-around mt-8 gap-5">
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Минимальный
