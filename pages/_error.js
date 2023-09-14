@@ -16,7 +16,6 @@
  *  - https://reactjs.org/docs/error-boundaries.html
  */
 
-import * as Sentry from '@sentry/nextjs';
 import NextErrorComponent from 'next/error';
 
 const CustomErrorComponent = props => {

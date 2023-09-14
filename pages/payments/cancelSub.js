@@ -15,10 +15,6 @@ export default function CancelSub() {
 
     const cancelSub = async () => {
         console.log(password)
-        await dispatch(cancelTestMobileSubThunk({
-            email:user.email,
-            password:password
-        }))
         await dispatch(cancelSubThunk({
             email:user.email,
             password:password

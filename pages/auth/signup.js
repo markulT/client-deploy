@@ -29,7 +29,7 @@ export default function RegisterPage() {
         if (!policyRead) {
             return;
         }
-        if (password == "" || fullName == "" || phone == "" || email == "" || address == "") {
+        if (password == "" || fullName == "" ||  email == "") {
             return
         }
 
@@ -38,7 +38,7 @@ export default function RegisterPage() {
             setEmailError(!emailError)
             return;
         }
-        await dispatch(register(password, fullName, email, phone, address))
+        await dispatch(register(password, fullName, email, "", ""))
         await dispatch(getProfile())
         await dispatch(getFullProfile())
         await Router.push(`/profile`);
@@ -74,22 +74,6 @@ export default function RegisterPage() {
                                 {/* <span className="highlight"></span> */}
                                 {/* <span className="bar"></span> */}
                                 <label className="ml-2">Полное имя</label>
-                            </div>
-
-
-                            <div className="group">
-                                <input type="text" className={`border-gray-700 text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800  text-gray-300 autofill:bg-gray-800 transition-all duration-500`} value={phone} onChange={(e)=>{setPhone(e.target.value)}} required />
-                                {/* <span className="highlight"></span> */}
-                                {/* <span className="bar"></span> */}
-                                <label className="ml-2">Номер телефона</label>
-                            </div>
-
-
-                            <div className="group col-span-2">
-                                <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={address} onChange={(e)=>{setAddress(e.target.value)}} required />
-                                {/* <span className="highlight"></span> */}
-                                {/* <span className="bar"></span> */}
-                                <label className="ml-2">Адресс</label>
                             </div>
                         </div>
                         <div className="flex items-center mb-5 mt-[-30px] mx-12 justify-center sm:justify-start sm:mx-0">

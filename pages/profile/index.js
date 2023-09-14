@@ -31,7 +31,7 @@ export default function ProfilePage() {
     useEffect(()=>{
         dispatch(getProfile)
         dispatch(getFullProfile)
-        console.log(user.tariff_plan)
+        console.log(user)
         if (!user.email) {
             router.push('/auth/login')
         }
@@ -50,7 +50,7 @@ export default function ProfilePage() {
                             <h3 className="text-xl md:text-3xl text-left font-medium text-gray-200">Email: {user.email}</h3>
                             <h3 className="text-xl md:text-3xl text-left font-medium text-gray-200">Полное имя: {user.full_name}</h3>
                             {/*<h3 className="text-3xl flex items-center font-medium text-gray-200">Мобильный тариф: {user.mobileSubLevel == 0 ? "Нету" : user.mobileSubLevel == null ? "Нету" : "Премиум"}</h3>*/}
-                            <a  className="text-xl md:text-3xl flex items-center font-medium text-gray-200">Подписка: {user.tariff_plan === "1"  ? "Активна" : user.tariff_plan === "2"  ? "Премиум" : "Нету"}</a>
+                            <a  className="text-xl md:text-3xl flex items-center font-medium text-gray-200">Подписка: {Number(user.tariff_plan) == 1  ? "Минимум" : Number(user.tariff_plan) == 2  ? "Стандарт" : Number(user.tariff_plan) == 3  ? "Премиум" : "Неактивна"}</a>
                             {/*<div className="flex flex-wrap flex-col items-center">*/}
                             {/*    <h3 className={`${macOpen ? 'text-3xl' : 'text-3xl'} transition-all duration-200 ease-in font-medium text-gray-200`}>{user.stb_mac ? user.stb_mac : "Установите свой мак адрес"} <AiOutlineDownCircle onClick={()=>{*/}
                             {/*        setMac('')*/}
@@ -68,7 +68,7 @@ export default function ProfilePage() {
                             {/* <h3  className="text-3xl font-medium text-gray-200">{tariffs[user.tariff_plan]}</h3> */}
                         </div>
                         <div className={'flex justify-center'}>
-                            {user.tariff_plan === "1" || user.tariff_plan === "2" ?
+                            {Number(user.tariff_plan) == 1 || Number(user.tariff_plan) == 2 || Number(user.tariff_plan) == 3 ?
                         <div className={'bg-gray-700 mt-4 p-2 w-full rounded-xl hover:bg-gray-800 hover:scale-105  transition-all duration-500'}>
                             <button className={"p-2 text-center w-full"} onClick={()=>{
 
@@ -103,7 +103,7 @@ export default function ProfilePage() {
 
             <div className="container mx-auto pb-8 md:pb-0">
                 <h2 id={"subs"} className="text-gray-200 text-3xl md:text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>
-                <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row items-center justify-around mt-8 gap-5">
+                <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid lg:grid-cols-3 items-center justify-around my-8 gap-5">
                     <div className="bg-gray-800 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6  ">
                         <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Минимальный
                         </h3>
@@ -116,9 +116,9 @@ export default function ProfilePage() {
                         <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Стандарт
                         </h3>
                         <p className="text-center text-gray-300 text-xl md:text-2xl">
-                            Стандартный тариф. <br/> Список програм <br/> <a className={'font-bold'}>STANDART</a> включен
+                            Стандартный тариф. <br/> Список програм <br/> <a className={'font-bold'}>STANDARD</a> включен
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/standart')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                        <button onClick={()=>{router.push('/payGateway/standard')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                     <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6">
                         <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Премиум
@@ -130,18 +130,36 @@ export default function ProfilePage() {
                         <button onClick={()=>{router.push('/payGateway/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                     <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6 ">
-                        <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Тест
+                        <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Тест минимум
+                        </h3>
+                        <p className="text-center text-gray-300 text-xl md:text-2xl px-90 ">
+                            Тест тариф .<br/>
+                            <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>TEST SUB MINIMUM</a>  включен</span>
+                        </p>
+                        <button onClick={()=>{router.push('/test/minimum')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                    </div>
+                    <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6 ">
+                        <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Тест стандарт
                         </h3>
                         <p className="text-center text-gray-300 text-xl md:text-2xl px-90 ">
                             Тест тариф.<br/>
-                            <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>TEST SUB</a>  включен</span>
+                            <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>TEST SUB STANDART</a>  включен</span>
                         </p>
-                        <button onClick={()=>{router.push('/payGateway/test')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                        <button onClick={()=>{router.push('/test/standard')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
+                    </div>
+                    <div className="bg-gray-800 sm:mt-0 rounded-3xl flex flex-col z-[2] items-center basis-1/4 p-6 ">
+                        <h3 className="text-2xl md:text-3xl text-center text-gray-200 font-bold">Тест премиум
+                        </h3>
+                        <p className="text-center text-gray-300 text-xl md:text-2xl px-90 ">
+                            Тест тариф.<br/>
+                            <span className="whitespace-nowrap">Список програм <br/> <a className={'font-bold'}>TEST SUB PREMIUM</a>  включен</span>
+                        </p>
+                        <button onClick={()=>{router.push('/test/premium')}} className="bg-gray-600 hover:bg-gray-700 text-gray-200 mt-4 rounded-xl p-3 px-7 text-lg font-medium transition-all hover:-translate-y-1 duration-500 hover:scale-110">Заказать</button>
                     </div>
                 </div>
 
                 <div className={'flex justify-center'}>
-                    {user.tariff_plan === "1" || user.tariff_plan === "2" ?
+                    {Number(user.tariff_plan) == 1 || Number(user.tariff_plan) == 2 || Number(user.tariff_plan) == 3 ?
                         <div className="container pb-8 mx-auto">
                             <div className="flex items-center justify-center w-full">
                                 <button onClick={()=>{

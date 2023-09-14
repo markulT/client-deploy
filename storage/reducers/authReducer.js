@@ -37,6 +37,7 @@ const initialState = {
     last_active: '',
     subscribed: [],
     subscribed_id: [],
+    subLevel: 0,
     mobileSubLevel:0,
     mobileSubOrderId:'',
     schedule:[]
@@ -59,6 +60,7 @@ export default function authReducer(state = initialState, action) {
                 email: action.guest.email,
                 full_name: action.guest.fullName,
                 mobileSubLevel: action.guest.mobileSubLevel,
+                subLevel: action.guest.subLevel,
                 mobileSubOrderId: action.guest.mobileSubOrderId
             }
         case setFullProfileType:
@@ -189,6 +191,8 @@ export const createSubThunk = ({email, password, fullName, tariff, orderId, acqI
 }
 
 export const createTestSubThunk = ({email, password, tariff}) => async (dispatch) => {
+    console.log("reducer")
+    console.log(tariff)
     const response = await api.post(`${serverUrl}/payments/createTestSub`, {
         email:email,
         password: password,
