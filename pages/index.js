@@ -10,6 +10,9 @@ import dynamic from 'next/dynamic';
 import {setCookie} from 'cookies-next';
 import {getCookie} from 'cookies-next';
 import {hasCookie} from 'cookies-next';
+import MainSection from "../comps/HomePage/sections/MainSection";
+import FeaturesSection from "../comps/HomePage/sections/FeaturesSection";
+import Steps from "../comps/HomePage/sections/Steps";
 
 
 const MainChunk = dynamic(() => import('../comps/MainChunk'))
@@ -52,7 +55,7 @@ export default function Home() {
     // bg-[url('/PickRestTV/Lending/backgpick.png')]
     return (
 
-        <div className="w-full overflow-hidden">
+        <div className="w-full">
 
             <div x-show="open"
                  className={`${Hidden ? "hidden" : "visible"} max-w-screen-lg mx-auto fixed bg-gray-800 inset-x-5 p-5 bottom-10 z-10 rounded-lg drop-shadow-2xl flex gap-4 flex-wrap md:flex-nowrap text-center md:text-left items-center justify-center md:justify-between`}>
@@ -80,42 +83,46 @@ export default function Home() {
             </div>
 
 
-            <main className={styles.main}>
-                <section
-                    className="font-[Oswald] h-screen md:h-[105vh] w-full" id='backImg'>
-                    <div className=" h-screen md:h-[105vh] w-full">
-                        <div className="container mx-auto h-full flex-col flex items-center justify-center">
-                            <h2 className="text-5xl font-medium text-gray-200">Заказывайте</h2>
-                            <h3 className="text-xl text-center mt-4 text-gray-200">Актуальную программу<br/>
-                                телевидения</h3>
-                            <button onClick={() => {
-                                router.push('/profile')
-                            }}
-                                    className="text-gray-50 bg-indigo-600 hover:scale-110 hover:bg-indigo-800 hover:bg-blend-darken rounded-2xl p-3 px-5 mt-8 text-xl font-[Oswald] font-medium transition-all duration-500">Получить
-                                программу
-                            </button>
-                        </div>
+
+                {/*<section*/}
+                {/*    className="font-[Oswald] h-screen md:h-[105vh] w-full" id='backImg'>*/}
+                {/*    <div className=" h-screen md:h-[105vh] w-full">*/}
+                {/*        <div className="container mx-auto h-full flex-col flex items-center justify-center">*/}
+                {/*            <h2 className="text-5xl font-medium text-gray-200">Заказывайте</h2>*/}
+                {/*            <h3 className="text-xl text-center mt-4 text-gray-200">Актуальную программу<br/>*/}
+                {/*                телевидения</h3>*/}
+                {/*            <button onClick={() => {*/}
+                {/*                router.push('/profile')*/}
+                {/*            }}*/}
+                {/*                    className="text-gray-50 bg-indigo-600 hover:scale-110 hover:bg-indigo-800 hover:bg-blend-darken rounded-2xl p-3 px-5 mt-8 text-xl font-[Oswald] font-medium transition-all duration-500">Получить*/}
+                {/*                программу*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
 
 
-                    </div>
+                {/*    </div>*/}
 
 
-                </section>
-                <section className="bg-gradient-to-t w-full from-grad_from to-grad_to flex flex-col">
+                {/*</section>*/}
+                <main className="flex w-full flex-col">
                     <div
-                        className={`fixed bottom-5 right-5 p-4 bg-black cursor-pointer rounded-[50%] ${scrollTop ? 'visible' : 'hidden'}`}
+                        className={`z-20 fixed bottom-5 right-5 p-4 bg-primary-black cursor-pointer rounded-[50%] ${scrollTop ? 'visible' : 'hidden'}`}
                         onClick={() => {
                             window.scrollTo({top: 0, behavior: 'smooth'})
                         }}
                     >
                         <AiFillCaretUp className={'text-2xl'}/>
                     </div>
-                    <MainChunk/>
-                    <HelpChunk/>
-                    {/*<FAQChunk />*/}
-                    {/*<FeedChunk />*/}
-                </section>
-            </main>
+                    <div className={"flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-24 xl:gap-28 2xl:gap-32 mt-8 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28 2xl:mt-32"}>
+                        <MainSection/>
+                        <FeaturesSection/>
+                        <Steps/>
+                    </div>
+                    {/*<MainChunk/>*/}
+                    {/*<HelpChunk/>*/}
+                    {/*/!*<FAQChunk />*!/*/}
+                    {/*/!*<FeedChunk />*!/*/}
+                </main>
         </div>
     )
 }

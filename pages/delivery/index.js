@@ -10,12 +10,12 @@ export default function Delivery() {
     const router = useRouter()
     const dispatch = useDispatch()
     return (
-        <div className="h-full bg-gradient-to-t from-grad_from to-grad_to ">
-            <div className={'font-[Inter] text-gray-200 items-center justify-center w-full'}>
-                <div className='container min-h-screen mx-auto pt-6 pb-4 '>
-                    <div className="bg-gray-800 pl-4 pr-4 rounded-3xl ">
+        <div className="flex flex-col h-full z-[30] mb-8 ">
+            <div className={'z-[20] font-primary text-gray-200 items-center justify-center z-20 px-4 sm:px-16 md:px-20 lg:px-24 xl:px-28 2xl:px-32 w-full'}>
+                <div className=' min-h-screen pt-6 pb-4 '>
+                    <div className="bg-secondary-black pl-4 pr-4 rounded-3xl ">
                         <div className="text-center pt-2">
-                            <h2 className={'text-3xl mt-4 font-semi-bold'}>Доставка і оплата</h2>
+                            <h2 className={'text-3xl mt-4 font-semibold'}>Доставка і оплата</h2>
                         </div>
                         <p className={'text-xl mt-4'}>1. Замовник своєчасно та в повному обсязі сплачує вартість наданих йому  послуг, згідно тарифів, встановлених на сайті
                             <a className={'hover:text-gray-400 transition-all duration-300 ml-2'}>

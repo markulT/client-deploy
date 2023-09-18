@@ -27,16 +27,25 @@ export default function PaymentGateway() {
 
 
     return (
-        <div className="w-full min-h-screen bg-gradient-to-t from-grad_from to-grad_to">
-            <div className="container h-screen mx-auto flex flex-col items-center justify-center">
-            <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold mt-[-70px] ">Покупка подписки</h1>
-                    <div className={`group mt-20`}>
-                    <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800" required />
-                    {hidden ? <AiOutlineEyeInvisible onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> }
-                            <label className="ml-2">Пароль</label>
-                        <p className={`text-red-600 ${error ? 'visible' : 'hidden'}`}>{error}</p>
+        <div className="w-full flex lg:h-[55rem] h-[30rem] items-center pb-8 bg-primary-black">
+            <div className="container mx-auto flex flex-col items-center justify-center">
+            <h1 className="z-20 text-2xl text-gray-200 sm:text-3xl text-center font-bold mt-[-70px] ">Покупка подписки</h1>
+                <div className={`lg:w-1/5 w-2/3 group mt-8 flex items-center justify-center`}>
+                    <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e) => {
+                        setPassword(e.target.value)
+                    }}
+                           className="text-md px-24 items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800"
+                           required/>
+                    {hidden ? <AiOutlineEyeInvisible onClick={() => {
+                        setHidden(!hidden)
+                    }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={() => {
+                        setHidden(!hidden)
+                    }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/>}
+                    <label className="ml-2 text-outline-white">Пароль</label>
+                    <p className={`text-red-600 ${error ? 'visible' : 'hidden'}`}>{error}</p>
                 </div>
-                <button onClick={submit} className="bg-gray-800 hover:bg-gray-700 rounded-2xl p-3 px-5 text-lg font-medium  text-gray-200">Подтвердить</button>
+                <button onClick={submit} className={"z-10 text-primary lg:w-1/5 text-white font-medium text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl bg-gradient-to-r from-primary-blue to-primary-yellow " +
+                    "rounded-xl w-2/3 p-3 lg:p-4 lg:px-8 hover:scale-105 duration-500 transition-all"}>Подтвердить</button>
             </div>
         </div>
     )

@@ -1,13 +1,13 @@
 
 
-export default function ScheduleElement({name, from, to}) {
+export default function ScheduleElement({name, from, to, color}) {
     return (
-        <div className={"bg-gray-700 rounded-3xl p-4 whitespace-pre-wrap break-words flex flex-col justify-between"}>
-            <div className={"font-bold"}>
-                {name.length > 45 ? `${name.substring(0, 45)}...` : name}
-            </div>
-            <div className={'text-md'}>
+        <div className={`grid text-${color} grid-cols-5 w-full justify-start`}>
+            <div className={'text-start w-fit text-xs md:text-sm col-span-2'}>
                 {from}-{to}
+            </div>
+            <div className={"ml-2 text-xs md:text-sm w-full text-start truncate col-span-3"}>
+                "{name.length > 45 ? `${name.substring(0, 45)}...` : name}"
             </div>
         </div>
     )

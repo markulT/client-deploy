@@ -4,7 +4,7 @@ import Router, {useRouter} from 'next/router'
 export default function MainChunk() {
     const router = useRouter();
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto z-20">
                         <div className="flex flex-col items-center">
                             <h2 className="text-gray-200 text-4xl sm:text-6xl text-center font-bold font-[Inter] mt-8">Все возможности<br/>
                             </h2>

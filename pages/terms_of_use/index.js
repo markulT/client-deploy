@@ -10,12 +10,12 @@ export default function TermsOfUse() {
     const router = useRouter()
     const dispatch = useDispatch()
     return (
-        <div className="h-full bg-gradient-to-t from-grad_from to-grad_to ">
-            <div className={'font-[Inter] text-gray-200 items-center justify-center w-full'}>
-                <div className='container min-h-screen mx-auto pt-6 pb-4 '>
-                    <div className="bg-gray-800 pl-4 pr-4 rounded-3xl ">
+        <div className="flex flex-col h-full z-[30] mb-8 ">
+            <div className={'z-[20] font-primary text-gray-200 items-center justify-center z-20 px-4 sm:px-16 md:px-20 lg:px-24 xl:px-28 2xl:px-32 w-full'}>
+                <div className='z-[30] min-h-screen pt-6 pb-4 '>
+                    <div className="z-[30] bg-secondary-black pl-4 pr-4 rounded-3xl ">
                         <div className="text-center pt-2">
-                            <h2 className={'text-3xl mt-4 font-semi-bold'}>Публічна оферта
+                            <h2 className={'text-3xl mt-4 font-semibold'}>Публічна оферта
                             </h2>
                         </div>
 
@@ -24,7 +24,7 @@ export default function TermsOfUse() {
                         {/*</h2>*/}
 
                         <h3 className={'text-xl mt-2 font-medium'}>Розділ І. Основні поняття</h3>
-                        <p className={'text-xl'}>Публічний договір (далі просто Договір ) укладається між Виконавцем з одного боку та Користувачам, з іншого боку. Договір укладається на надання інформаційних послуг Виконавцем .
+                        <p className={'z-20 text-xl'}>Публічний договір (далі просто Договір ) укладається між Виконавцем з одного боку та Користувачам, з іншого боку. Договір укладається на надання інформаційних послуг Виконавцем .
                         </p>
                         <p className={'text-xl '}>Сайт – (надалі просто сайт) інтернет-сайт, розташований за адресою
                             <a className={'hover:text-gray-400 transition-all duration-300 ml-2'}>

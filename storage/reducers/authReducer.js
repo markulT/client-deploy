@@ -40,7 +40,12 @@ const initialState = {
     subLevel: 0,
     mobileSubLevel:0,
     mobileSubOrderId:'',
-    schedule:[]
+    ministraDate: '',
+    signDate: '',
+    schedule:[],
+    error: null
+
+
 }
 // const initialState = {
 //     login: '',
@@ -55,20 +60,30 @@ export default function authReducer(state = initialState, action) {
                 ...action.user
             }
         case setGuestType:
+            console.log(action)
             return {
                 ...state,
                 email: action.guest.email,
-                full_name: action.guest.fullName,
-                mobileSubLevel: action.guest.mobileSubLevel,
+                fullName: action.guest.fullName,
+                isActivated: action.guest.isActivated,
+                address: action.guest.address,
+                ministraDate: action.guest.ministraDate,
+                phone: action.guest.phone,
+                signDate: action.guest.signDate,
                 subLevel: action.guest.subLevel,
-                mobileSubOrderId: action.guest.mobileSubOrderId
             }
         case setFullProfileType:
 
             return {
                 ...action.profile.results,
                 email: state.email,
-                full_name: state.full_name
+                fullName: state.full_name,
+                address: state.address,
+                isActivated: state.isActivated,
+                ministraDate: state.ministraDate,
+                phone: state.phone,
+                signDate: state.signDate,
+                subLevel: state.subLevel,
             }
         case setMac:
             return {
@@ -123,6 +138,10 @@ export const changeMac = (email, newMac) => async (dispatch) => {
     setMacAction(newMac)
 }
 
+export const setCustomError = (error) => async (dispatch) => {
+    setErrorAction(error)
+}
+
 export const register = (password, fullName, email, phone, address) => async (dispatch) => {
     console.log(password, fullName, email, phone, address)
     const response = await axios.post(`${serverUrl}/api/registration`, {
@@ -141,37 +160,45 @@ export const register = (password, fullName, email, phone, address) => async (di
 }
 
 export const login = (email, password) => async (dispatch) => {
-    // const response = await axios.post(`${serverUrl}/api/login`, {
-    //     login: login,
-    //     password: password
-    // }, {withCredentials: true})
-    const response = await fetch(`${serverUrl}/api/login`, {
-        method:"POST",
-        credentials:'include',
-        body:JSON.stringify({email:email, password:password}),
-        mode:'cors',
-        headers:{
-            'Access-Control-Allow-Origin':'*',
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+    try {
+        const response = await fetch(`${serverUrl}/api/login`, {
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify({ email: email, password: password }),
+            mode: 'cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            // Handle the error response here
+            console.log(response);
+            console.error('Server error: Неверный логин или пароль');
+            dispatch(setErrorAction('Неверный логин или пароль')); // Dispatch an action to handle the error in your Redux store or state
+            return;
         }
-    })
-    // if (response.status == 417) {
-    //     dispatch(setErrorAction('Неправильный пароль'))
-    //     return
-    // }
-    const data = await response.json()
-    localStorage.setItem('token', data.userData.accessToken)
-    const user = JSON.parse(data.userData.fullProfile)
-    const guest = data.userData.user
 
-    if (user.results == null) {
-        dispatch(setGuestAction(guest))
-    } else {
-        dispatch(setUserAction(user.results))
+        const data = await response.json();
+        localStorage.setItem('token', data.userData.accessToken);
+        const user = JSON.parse(data.userData.fullProfile);
+        const guest = data.userData.user;
+        dispatch(setErrorAction(null)); // Dispatch an action to handle the error in your Redux store or state
+
+        if (user.results == null) {
+            dispatch(setGuestAction(guest));
+        } else {
+            dispatch(setUserAction(user.results));
+        }
+    } catch (error) {
+        // Handle any other errors that might occur during the fetch or data parsing
+        console.error('An error occurred:', error);
     }
-
 }
+
+
 
 export const checkAuth = () => async (dispatch) => {
     const response = await axios.get(`${serverUrl}/api/refresh`, {withCredentials: true})
@@ -247,8 +274,9 @@ export const getFullProfile = () => async (dispatch) => {
         Router.push('/auth/login')
         return
     }
-    const parsedProfile = JSON.parse(response.data.fullProfile.fullProfile)
-    dispatch(setFullProfile(parsedProfile))
+    console.log("response")
+    console.log(response.data.fullProfile.fullProfile)
+    dispatch(setFullProfile(response.data.fullProfile))
 }
 export const logout = () => async (dispatch) => {
     const response = await api.post(`${serverUrl}/api/logout`, {withCredentials: true})

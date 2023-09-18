@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getFullProfile, getProfile, register} from '../../storage/reducers/authReducer'
 import c from './auth.module.css'
 import Router, {useRouter} from "next/router";
 import {AiOutlineCheck} from "@react-icons/all-files/ai/AiOutlineCheck";
 import {ImCross} from "@react-icons/all-files/im/ImCross";
-import { AiOutlineEyeInvisible } from "react-icons/ai";
-import { AiOutlineEye } from "react-icons/ai";
+import {AiOutlineEyeInvisible} from "react-icons/ai";
+import {AiOutlineEye} from "react-icons/ai";
 
 
 export default function RegisterPage() {
@@ -29,7 +29,7 @@ export default function RegisterPage() {
         if (!policyRead) {
             return;
         }
-        if (password == "" || fullName == "" ||  email == "") {
+        if (password === "" || fullName === "" || email === "") {
             return
         }
 
@@ -47,46 +47,61 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="md:min-h-[100vh]  w-full bg-gradient-to-r from-grad_from to-grad_to">
-            <div className="container md:h-screen mx-auto flex items-center justify-center">
-                <div className="flex flex-col items-center">
-                <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold md:mt-[-40px] mt-20 ">Регистрация</h1>
-                    <form className=" mt-10">
-                        <div className=" flex flex-col md:grid md:gap-x-4 md:grid-cols-2 md:grid-rows-3 md:mt-0 px-12 md:px-0 ">
-
-                            <div className="group">
-                                <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} className={`${emailError ? "border-red-500" : "border-gray-700"} text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 text-gray-300 autofill:bg-gray-800 transition-all duration-500`} required />
-                                {/* <span className="highlight"></span> */}
-                                {/* <span className="bar"></span> */}
-                                <label className="ml-2">Email</label>
-                            </div>
-
-                            <div className="group">
-                                <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e)=>{setPassword(e.target.value)}} className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" required />
-                                {/* <span className="highlight"></span> */}
-                                {/* <span className="bar"></span> */}
-                                {hidden ? <AiOutlineEyeInvisible onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> : <AiOutlineEye onClick={()=>{setHidden(!hidden)}} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> }
-                                <label className="ml-2">Пароль</label>
-                            </div>
-
-                            <div className="group">
-                                <input type="text" className="text-md px-20 rounded-lg border-8  focus:border-gray-300  focus:border-8 block w-full pl-3 bg-gray-800 border-gray-700  text-gray-300 autofill:bg-gray-800 transition-all duration-500" value={fullName} onChange={(e)=>{setFullName(e.target.value)}} required />
-                                {/* <span className="highlight"></span> */}
-                                {/* <span className="bar"></span> */}
-                                <label className="ml-2">Полное имя</label>
-                            </div>
+        <div className="z-20 w-full flex lg:py-32 items-center pb-8 bg-primary-black">
+            <div className="w-full h-full flex items-center justify-center">
+                <div className="flex w-full h-full flex-col items-center">
+                    <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold md:mt-[-40px] mt-20 ">Регистрация</h1>
+                    <form className={"w-full flex flex-col items-center"}>
+                        <div className={`lg:w-1/4 w-2/3 mt-8 group flex items-center justify-center`}>
+                            <input type="text" value={fullName} onChange={(e) => {
+                                setFullName(e.target.value)
+                            }}
+                                   className="text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800"
+                                   required/>
+                            <label className="ml-2">Полное имя</label>
                         </div>
-                        <div className="flex items-center mb-5 mt-[-30px] mx-12 justify-center sm:justify-start sm:mx-0">
-            <div className="flex items-center mr-2 ">
-                <input value={policyRead} onClick={()=>{setPolicyRead(!policyRead)}}  type="checkbox" className="w-4 h-4 bg-red-100 border-red-300 text-red-500 focus:ring-red-200"/>
-        </div>
-        <Link href={'/policy'} >
-        <a className="text-gray-200 text-sm sm:text-lg">Я согласен с
-        <a href="#" className=" text-gray-400 text-sm sm:text-lg  hover:underline hover:text-gray-500 transition-all duration-500"> политикой конфиденициальности</a></a>
+                        <div className={`lg:w-1/4 w-2/3 group  flex items-center justify-center`}>
+                            <input type="text" value={email} onChange={(e) => {
+                                setEmail(e.target.value)
+                            }}
+                                   className={`${emailError ? "border-red-500" : "border-gray-700"} text-md  items-center rounded-lg flex w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
+                                   required/>
+                            <label className="ml-2 text-gray-400">Email</label>
+                        </div>
+
+                        <div className={`lg:w-1/4 w-2/3 group flex items-center justify-center`}>
+                            <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e) => {
+                                setPassword(e.target.value)
+                            }}
+                                   className="text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800"
+                                   required/>
+                            {hidden ? <AiOutlineEyeInvisible onClick={() => {
+                                    setHidden(!hidden)
+                                }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> :
+                                <AiOutlineEye onClick={() => {
+                                    setHidden(!hidden)
+                                }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/>}
+                            <label className="ml-2 text-outline-white">Пароль</label>
+                        </div>
 
 
-    </Link>
-    </div>
+                        <div
+                            className="z-20 flex items-center mb-5 mt-[-30px] mx-12 justify-center sm:justify-start sm:mx-0">
+                            <div className="flex items-center mr-2 ">
+                                <input value={policyRead} onClick={() => {
+                                    setPolicyRead(!policyRead)
+                                }} type="checkbox"
+                                       className="w-4 h-4 bg-red-100 border-red-300 text-red-500 focus:ring-red-200"/>
+                            </div>
+                            <Link href={'/policy'}>
+                                <a className="text-gray-200 text-sm sm:text-lg">Я согласен с
+                                    <a href="#"
+                                       className=" text-gray-400 text-sm sm:text-lg  hover:underline hover:text-gray-500 transition-all duration-500"> политикой
+                                        конфиденициальности</a></a>
+
+
+                            </Link>
+                        </div>
                     </form>
                     {/* <p className={'text-red-600'}>{emailError}</p> */}
                     {/* <Link href={'/policy'}>
@@ -98,18 +113,23 @@ export default function RegisterPage() {
                             Политика Конфиденциальности
                         </a>
                     </Link> */}
-                    <div className="flex flex-col items-center whitespace-nowrap mb-5">
-                     <Link href="/auth/login">
-                        <a className="text-gray-200 text-lg ">У вас нет акаунта?
-                        <a className="text-gray-300 text-lg ml-1.5 hover:underline hover:text-gray-400 transition-all duration-500">Зарегистрируйтесь !</a></a>
+                    <div className=" z-20">
+                        <a className="text-gray-200 text-sm lg:text-lg">Есть аккаунт? </a>
+                        <Link href="/auth/login">
+                            <a className="text-gray-300 text-sm lg:text-lg hover:underline hover:text-gray-400 transition-all duration-300">Ввойдите
+                                !</a>
                         </Link>
-                   </div>
-                    <button onClick={registerSubmit}  className="md:mb-0 mb-10 bg-gray-800 hover:bg-gray-900 hover:scale-110 rounded-2xl p-3 px-5 text-lg font-medium  text-gray-200 transition-all duration-500">Отправить</button>
+                    </div>
 
 
-
+                    <button onClick={registerSubmit}
+                            className={"z-10 mb-8 mt-4 text-primary lg:w-1/5 text-white font-medium text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl bg-gradient-to-r from-primary-blue to-primary-yellow " +
+                                "rounded-xl w-2/3 p-3 lg:p-4 lg:px-8 hover:scale-105 duration-500 transition-all"}>Подтвердить
+                    </button>
                 </div>
+
             </div>
+
         </div>
     )
 }

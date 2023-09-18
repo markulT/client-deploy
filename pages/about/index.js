@@ -10,12 +10,12 @@ export default function About() {
     const router = useRouter()
     const dispatch = useDispatch()
     return (
-        <div className="h-full bg-gradient-to-t from-grad_from to-grad_to ">
-            <div className={'font-[Inter] text-gray-200 items-center justify-center w-full'}>
+        <div className="flex flex-col h-full z-[30] mb-8 ">
+            <div className={'z-[20] font-primary text-gray-200 items-center justify-center z-20 px-4 sm:px-16 md:px-20 lg:px-24 xl:px-28 2xl:px-32 w-full'}>
                 <div className='container min-h-screen mx-auto pt-6 pb-4 '>
-                    <div className="bg-gray-800 pl-4 pr-4 rounded-3xl ">
+                    <div className="bg-secondary-black px-4 rounded-3xl ">
                         <div className="text-center pt-2">
-                            <h2 className={'text-3xl mt-4 font-semi-bold'}>Про нас
+                            <h2 className={'text-3xl mt-4 font-semibold'}>Про нас
                             </h2>
                         </div>
                         <p className={'text-xl'}>На даному сайті представлена програма передач ефірних, кабельних/супутникових телеканалів. Наш сервіс проводить розсилку програм телепередач нашим підписникам.
