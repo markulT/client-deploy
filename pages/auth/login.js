@@ -5,7 +5,7 @@ import {getFullProfile, getProfile, login, setCustomError} from '../../storage/r
 import Router, {useRouter} from "next/router";
 import {AiOutlineClose, AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
-import {BiErrorCircle, } from "react-icons/all";
+import {BiErrorCircle} from "react-icons/bi";
 
 
 export default function LoginPage() {
