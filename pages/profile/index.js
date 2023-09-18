@@ -238,7 +238,7 @@ export default function ProfilePage() {
                     {Object.keys(subsList).map((currentSub) => {
                         const sub = subsList[currentSub];
                         return (
-                            <div className="bg-secondary-black py-8 md:py-12 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center p-2 lg:p-6  ">
+                            <div key={currentSub} className="bg-secondary-black py-8 md:py-12 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center p-2 lg:p-6  ">
                                 <h3 className="text-xl md:text-3xl text-center text-gray-200 font-bold">{sub.title}
                                 </h3>
                                 <p className="text-center text-gray-300 text-lg md:text-2xl ">
