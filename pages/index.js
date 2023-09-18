@@ -55,10 +55,10 @@ export default function Home() {
     // bg-[url('/PickRestTV/Lending/backgpick.png')]
     return (
 
-        <div className="w-full">
+        <div className="z-50 w-full">
 
-            <div x-show="open"
-                 className={`${Hidden ? "hidden" : "visible"} max-w-screen-lg mx-auto fixed bg-gray-800 inset-x-5 p-5 bottom-10 z-10 rounded-lg drop-shadow-2xl flex gap-4 flex-wrap md:flex-nowrap text-center md:text-left items-center justify-center md:justify-between`}>
+            <div x-show="z-50 open"
+                 className={`${Hidden ? "hidden" : "visible"}  max-w-screen-lg mx-auto fixed bg-gray-800 inset-x-5 p-5 bottom-10 z-50  rounded-lg drop-shadow-2xl flex gap-4 flex-wrap md:flex-nowrap text-center md:text-left items-center justify-center md:justify-between`}>
                 <div className="w-full text-white text-sm sm:text-md ">Этот веб-сайт использует файлы cookie, чтобы
                     обеспечить вам максимальное удобство на нашем веб-сайте.
                     <a href="#"
