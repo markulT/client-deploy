@@ -40,8 +40,9 @@ const initialState = {
     subLevel: 0,
     mobileSubLevel:0,
     mobileSubOrderId:'',
-    ministraDate: '',
-    signDate: '',
+    ministraDate: null,
+    trialExpirationDate:null,
+    signDate: null,
     schedule:[],
     error: null
 
@@ -60,17 +61,18 @@ export default function authReducer(state = initialState, action) {
                 ...action.user
             }
         case setGuestType:
-            console.log(action)
             return {
                 ...state,
                 email: action.guest.email,
                 fullName: action.guest.fullName,
                 isActivated: action.guest.isActivated,
                 address: action.guest.address,
-                ministraDate: action.guest.ministraDate,
                 phone: action.guest.phone,
-                signDate: action.guest.signDate,
                 subLevel: action.guest.subLevel,
+                ministraDate: new Date(action.guest.ministraDate),
+                signDate: new Date(action.guest.signDate),
+                trialExpirationDate: new Date(action.guest.trialExpirationDate),
+                orderId: action.guest.orderId
             }
         case setFullProfileType:
 
@@ -80,10 +82,12 @@ export default function authReducer(state = initialState, action) {
                 fullName: state.full_name,
                 address: state.address,
                 isActivated: state.isActivated,
-                ministraDate: state.ministraDate,
-                phone: state.phone,
-                signDate: state.signDate,
                 subLevel: state.subLevel,
+                phone: state.phone,
+                ministraDate: new Date(state.ministraDate),
+                signDate: new Date(state.signDate),
+                trialExpirationDate: new Date(state.trialExpirationDate),
+                orderId: state.orderId,
             }
         case setMac:
             return {
@@ -142,18 +146,16 @@ export const setCustomError = (error) => async (dispatch) => {
     setErrorAction(error)
 }
 
-export const register = (password, fullName, email, phone, address) => async (dispatch) => {
-    console.log(password, fullName, email, phone, address)
+export const register = (password, fullName, email, phone, address, dealer) => async (dispatch) => {
     const response = await axios.post(`${serverUrl}/api/registration`, {
         password: password,
         fullName: fullName,
         email: email,
         phone: phone,
-        address: address
+        address: address,
+        dealer: dealer
     }, {withCredentials: true})
-    console.log(response)
     localStorage.setItem('token', response.data.userData.accessToken)
-    console.log(response.data.userData.accessToken)
     const guest = response.data.userData.user
     dispatch(setGuestAction(guest))
     if(response.data.userData.accessToken) {Router.push("/profile")}
@@ -175,8 +177,6 @@ export const login = (email, password) => async (dispatch) => {
 
         if (!response.ok) {
             // Handle the error response here
-            console.log(response);
-            console.error('Server error: Неверный логин или пароль');
             dispatch(setErrorAction('Неверный логин или пароль')); // Dispatch an action to handle the error in your Redux store or state
             return;
         }
@@ -218,8 +218,6 @@ export const createSubThunk = ({email, password, fullName, tariff, orderId, acqI
 }
 
 export const createTestSubThunk = ({email, password, tariff}) => async (dispatch) => {
-    console.log("reducer")
-    console.log(tariff)
     const response = await api.post(`${serverUrl}/payments/createTestSub`, {
         email:email,
         password: password,
@@ -232,7 +230,6 @@ export const createMobileTestSubThunk = (email) => async (dispatch) => {
     const response = await api.post(`${serverUrl}/payments/createMobileTestSub`, {
         email:email,
     }, {withCredentials: true})
-    console.log(response)
     return 0
 }
 
@@ -274,9 +271,21 @@ export const getFullProfile = () => async (dispatch) => {
         Router.push('/auth/login')
         return
     }
-    console.log("response")
-    console.log(response.data.fullProfile.fullProfile)
-    dispatch(setFullProfile(response.data.fullProfile))
+
+    const userMinistra = response.data.fullProfile.fullProfile;
+    // Convert date strings to Date objects
+    if (userMinistra && userMinistra.ministraDate) {
+        userMinistra.ministraDate = new Date(userMinistra.ministraDate);
+    }
+
+    if (userMinistra && userMinistra.signDate) {
+        userMinistra.signDate = new Date(userMinistra.signDate);
+    }
+
+    if (userMinistra && userMinistra.trialExpirationDate) {
+        userMinistra.trialExpirationDate = new Date(userMinistra.trialExpirationDate);
+    }
+    dispatch(setFullProfile(userMinistra))
 }
 export const logout = () => async (dispatch) => {
     const response = await api.post(`${serverUrl}/api/logout`, {withCredentials: true})
@@ -292,6 +301,5 @@ export const getSchedule = () => async (dispatch) => {
     const day = String(currentDate.getDate()).padStart(2, '0')
     const formattedDate = `${year}-${month}-${day}`
     const response = await api.get(`${serverUrl}/channelManagement/getSchedule102?date=${formattedDate}`, {withCredentials:true})
-    console.log(response.data)
     dispatch(setScheduleAction(response.data))
 }

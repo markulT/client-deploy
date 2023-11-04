@@ -29,16 +29,16 @@ export default function Navbar() {
         <nav className={`   py-8 ${open ? 'bg-secondary-black absolute' : 'bg-transparent'} w-full z-[999] px-12 sm:px-16 md:px-20 lg:px-24 xl:px-28 2xl:px-32`}>
             <div className="">
                 <div className="md:flex w-full align-middle justify-between items-center">
-                    <div className="z-20 text-5xl font-[Poppins] cursor-pointer h-[48px] w-auto" onClick={() => {
+                    <div className="z-30 flex text-5xl font-[Poppins] cursor-pointer h-[48px] w-auto" onClick={() => {
                         router.push('/')
                         console.log(email)
                     }}>
                         <img src="/PickRestTV/Lending/resttv.png"
-                             className="h-full w-auto hover:scale-125 transition-all duration-500" alt=""/>
+                             className="z-30 h-full w-auto hover:scale-125 transition-all duration-500" alt=""/>
                     </div>
                     <div onClick={() => {
                         setOpen(!open)
-                    }} className="text-5xl absolute right-8 text-gray-200 top-6 cursor-pointer md:hidden">
+                    }} className="text-5xl absolute z-40 right-8 text-gray-200 top-6 cursor-pointer md:hidden">
                         <ion-icon name={open ? 'close' : 'menu-outline'}></ion-icon>
                     </div>
                     <div
@@ -54,7 +54,7 @@ export default function Navbar() {
                         {email ? (
                             <div className="relative inline-block align-middle flex-1 md:ml-8 text-md lg:text-xl md:my-0 my-0">
                                 <div>
-                                    <a className="truncate cursor-pointer text-white bg-gradient-to-r from-primary-blue to-primary-yellow rounded-2xl p-4 flex items-center" onClick={() => setMenuOpen(!menuOpen)}>
+                                    <a className="truncate cursor-pointer text-white bg-gradient-to-r from-highlightBlue to-highlightDarkBlue rounded-2xl p-4 flex items-center" onClick={() => setMenuOpen(!menuOpen)}>
                                         <BiUserCircle className="inline text-2xl mr-2" />
                                         {email}
                                         <HiChevronDown
@@ -83,7 +83,7 @@ export default function Navbar() {
                                 </div>
                             </div>
                         ) : (
-                            <div className={"flex items-center"}>
+                            <div className={"flex md:flex-row flex-col items-center"}>
                                 <div className="align-middle flex md:ml-8 text-xl md:my-0 my-7">
                                     <Link href={"/auth/login"}>
                                         <a className="hover:text-gray-400 text-gray-200 transition-all duration-300">Логин</a>

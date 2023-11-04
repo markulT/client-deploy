@@ -1,42 +1,62 @@
-import { useDispatch, useSelector } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {
-    cancelSubThunk,
-    changeMac,
-    createSubThunk,
-    getFullProfile, getProfile, getSchedule,
-    getUser,
-    logout
+    getFullProfile, getProfile, getSchedule
 } from '../../storage/reducers/authReducer'
 // import { useRouter } from 'next/router'
-import Router, {useRouter} from 'next/router'
-import {useCallback, useEffect, useState} from 'react'
-import style from '../../styles/payButton.module.css'
-import {useEffectOnce} from "../../hooks/useEffectOnce";
-import {AiOutlineDownCircle} from "@react-icons/all-files/ai/AiOutlineDownCircle";
-import { BsCart2 } from "react-icons/bs";
-import Image from 'next/image'
-import {downloadScheduleThunk} from "../../storage/reducers/payReducer";
-import Link from "next/link";
+import {useRouter} from 'next/router'
+import {useEffect, useState} from 'react'
 import ScheduleElement from "../../comps/ScheduleElement";
-import FeatureComponent from "../../comps/HomePage/utils/FeatureComponent";
+import PopUpAlert from "../../comps/PopUpAlert";
 
 export default function ProfilePage() {
     const user = useSelector(state => state.authReducer)
     const dispatch = useDispatch()
     const router = useRouter()
 
-    const schedule = useSelector(state=>state.authReducer.schedule)
+    const schedule = useSelector(state => state.authReducer.schedule)
     const [scheduleVisibility, setScheduleVisibility] = useState(false)
+    const [popUpVisible, setPopUpVisible] = useState(false)
 
 
-    useEffect(()=>{
-        dispatch(getProfile)
-        dispatch(getFullProfile)
-        console.log(user)
-        if (!user.email) {
-            router.push('/auth/login')
+    useEffect(() => {
+        const fetchData = async () => {
+            await getUser();
+            if (!user.email) {
+                router.push('/auth/login');
+            }
+            console.log(user.isActivated)
+            if (user.isActivated === false) {
+                setPopUpVisible(true);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const [daysUntilExpiration, setDaysUntilExpiration] = useState(null);
+
+    useEffect(() => {
+        if (user.ministraDate) {
+
+            const expirationDate = new Date(user.ministraDate); // Create a valid Date object
+            expirationDate.setDate(expirationDate.getDate() + 14);
+
+            const today = new Date()
+            const timeDifference = expirationDate - today;
+            const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+            console.log(timeDifference)
+
+            setDaysUntilExpiration(daysDifference);
         }
-    },[])
+
+    }, [user.ministraDate]);
+
+
+    const getUser = async () => {
+        await dispatch(getProfile);
+        await dispatch(getFullProfile);
+    };
+
 
     const subsList = {
         "1": {
@@ -96,60 +116,88 @@ export default function ProfilePage() {
 
     return (
         <div className="flex flex-col z-[10] w-full min-h-screen px-12 sm:px-16 md:px-20 lg:px-24 xl:px-28 2xl:px-32">
-
+            <PopUpAlert setVisible={setPopUpVisible} visible={popUpVisible}/>
             <div className="flex flex-col lg:flex-row w-full">
                 <section className={"flex lg:w-1/2 flex-col z-[10]"}>
                     <h1 className="text-center lg:text-start font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Профиль</h1>
                     <h2 className="text-primary-text font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-8 lg:mt-16">Приветствуем {user.fullName}</h2>
                     <div>
-                        <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Ваш email:</p>
+                        <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Ваш
+                            email:</p>
                         <p className={"font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl"}>{user.email}</p>
                     </div>
                     <div>
-                        <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Ваш телефон:</p>
+                        <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Ваш
+                            телефон:</p>
                         <p className={"font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl"}>{user.phone == "" ? "Не указан" : user.phone}</p>
                     </div>
                     <div>
-                        <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Активация емейла:</p>
+                        <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Активация
+                            емейла:</p>
                         <div className={"flex items-center"}>
-                            <p className={"font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl"}>{user.isActivated == false ? "Неактивирован" : "Активирована"}</p>
-                            {user.isActivated == false ?
-                                <p className={"ml-4 font-medium text-sm md:text-md lg:text-lg italic cursor-pointer"} onClick={handleActivateEmailClick}>Активировать почту</p>
-                                : <></>
-                            }
+                            <p className={"font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl"}>{user.isActivated == false ? "Неактивирован" : "Активирован"}</p>
+                            {/*{user.isActivated == false ?*/}
+                            {/*    <p className={"ml-4 font-medium text-sm md:text-md lg:text-lg italic cursor-pointer"}*/}
+                            {/*       onClick={handleActivateEmailClick}>Активировать почту</p>*/}
+                            {/*    : <></>*/}
+                            {/*}*/}
 
                         </div>
                     </div>
+                    {user.orderId === "TRIAL" && user.subLevel === 4 ?
+                        <div>
+                            <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Конец
+                                тестового периода:</p>
+                            <div className={"flex items-center"}>
+                                <p className={"font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl"}>{user.trialExpirationDate != null ? user.trialExpirationDate.toLocaleDateString("de-DE", {
+                                    year: 'numeric',
+                                    month: '2-digit',
+                                    day: '2-digit'
+                                }) : "Нету"}
+                                    </p>
+                                {/*{user.isActivated == false ?*/}
+                                {/*    <p className={"ml-4 font-medium text-sm md:text-md lg:text-lg italic cursor-pointer"}*/}
+                                {/*       onClick={handleActivateEmailClick}>Активировать почту</p>*/}
+                                {/*    : <></>*/}
+                                {/*}*/}
+
+                            </div>
+                        </div> :
+                        <></>
+                    }
+                    {/*<button onClick={() => console.log(user)}>colog</button>*/}
                     <div>
                         <p className={"text-outline-white text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl"}>Подписка:</p>
                         <p className={"font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl"}>{
                             user.subLevel == 0 ? "Неактивна" :
-                                user.subLevel == 1 ? "Минимум":
+                                user.subLevel == 1 ? "Минимум" :
                                     user.subLevel == 2 ? "Стандарт" :
                                         user.subLevel == 3 ? "Премиум" :
-                                            "Неактивна"
+                                            user.subLevel == 4 ? "Тестовый период" :
+                                                "Неактивна"
                         }</p>
                     </div>
                     {/*<button onClick={() => console.log(user)}>log</button>*/}
 
-                            <div className={'flex justify-start'}>
-                                {user.subLevel == 1 ||  user.subLevel == 2 ||  user.subLevel == 3 ?
-                                    <button className={"mt-4 z-10 text-primary w-full sm:w-fit text-white font-medium text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl bg-gradient-to-r from-primary-blue to-primary-yellow " +
-                                        "rounded-2xl p-3 lg:p-4 lg:px-8 hover:scale-105 duration-500 transition-all"}
+                    <div className={'flex justify-start'}>
+                        {user.subLevel == 1 || user.subLevel == 2 || user.subLevel == 3 || user.subLevel == 4 ?
+                            <button
+                                className={"mt-4 z-10 text-primary w-full sm:w-fit text-white font-medium text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl bg-gradient-to-r from-highlightBlue to-highlightDarkBlue " +
+                                    "rounded-2xl p-3 lg:p-4 lg:px-8 hover:scale-105 duration-500 transition-all"}
 
-                                            onClick={()=>{
+                                onClick={() => {
 
-                                                if(scheduleVisibility) {
-                                                    setScheduleVisibility(false)
-                                                } else {
-                                                    setScheduleVisibility(true)
-                                                    dispatch(getSchedule())
-                                                }
-                                            }}>
-                                        {scheduleVisibility ? "Закрыть программу" : "Посмотреть программу"}
-                                    </button>
-                                    : <></>}
-                            </div>
+                                    if (scheduleVisibility) {
+                                        setScheduleVisibility(false)
+                                    } else {
+                                        setScheduleVisibility(true)
+                                        dispatch(getSchedule())
+                                    }
+                                }}>
+                                {scheduleVisibility ? "Закрыть программу" : "Посмотреть программу"}
+                            </button>
+                            : <></>}
+                    </div>
 
                 </section>
                 {scheduleVisibility ? <section className={'mt-8 flex justify-center flex-col items-center'}>
@@ -226,7 +274,6 @@ export default function ProfilePage() {
                             : ''}
 
 
-
                     </div>
                 </section> : ''}
             </div>
@@ -234,18 +281,24 @@ export default function ProfilePage() {
 
             <div className="pb-8 md:pb-0 my-16">
                 {/*<h2 id={"subs"} className="text-gray-200 text-3xl md:text-6xl text-center flex-wrap font-bold font-[Inter] mt-8">Подписки</h2>*/}
-                <div className="flex flex-col text-w h-fit sm:grid  md:grid-cols-2 lg:grid lg:grid-cols-3 items-center justify-around  gap-5">
+                <div
+                    className="flex flex-col text-w h-fit sm:grid  md:grid-cols-2 lg:grid lg:grid-cols-3 items-center justify-around  gap-5">
                     {Object.keys(subsList).map((currentSub) => {
                         const sub = subsList[currentSub];
                         return (
-                            <div key={currentSub} className="bg-secondary-black py-8 md:py-12 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center p-2 lg:p-6  ">
+                            <div key={currentSub}
+                                 className="bg-secondary-black py-8 md:py-12 drop-shadow-2xl rounded-3xl flex flex-col z-[2] items-center p-2 lg:p-6  ">
                                 <h3 className="text-xl md:text-3xl text-center text-gray-200 font-bold">{sub.title}
                                 </h3>
                                 <p className="text-center text-gray-300 text-lg md:text-2xl ">
                                     {sub.paragraph}
                                 </p>
-                                <button onClick={()=>{router.push(`${sub.src}`)}} className={"mt-4 text-primary text-white font-medium text-md md:text-lg lg:text-xl xl:text-2xl bg-gradient-to-r from-primary-blue to-primary-yellow " +
-                                    "rounded-2xl p-3 md:p-4 px-8 md:px-16 hover:scale-105 duration-500 transition-all"}>Подписаться</button>
+                                <button onClick={() => {
+                                    router.push(`${sub.src}`)
+                                }}
+                                        className={"mt-4 text-primary text-white font-medium text-md md:text-lg lg:text-xl xl:text-2xl bg-gradient-to-r from-highlightBlue to-highlightDarkBlue " +
+                                            "rounded-2xl p-3 md:p-4 px-8 md:px-16 hover:scale-105 duration-500 transition-all"}>Подписаться
+                                </button>
                             </div>
                         )
                     })}
@@ -303,18 +356,20 @@ export default function ProfilePage() {
                     {/*</div>*/}
                 </div>
 
-                <div className={'flex justify-center'}>
+                <div className={'z-30 flex justify-center'}>
                     {user.subLevel == 1 || user.subLevel == 2 || user.subLevel == 3 ?
-                        <div className="container pb-8 mx-auto">
+                        <div className="z-30 container pb-8 mx-auto">
                             <div className="flex items-center justify-center w-full">
-                                <button onClick={()=>{
+                                <button onClick={() => {
                                     router.push("/payments/cancelSub")
-                                }} className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-xl w-full md:w-fit p-3 mt-8 text-sm md:text-lg font-medium hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить подписку</button>
+                                }}
+                                        className="bg-red-500 hover:bg-red-600 text-gray-200 rounded-xl w-full md:w-fit p-3 mt-8 text-sm md:text-lg font-medium hover:scale-110 hover:-translate-y-1 transition-all duration-500">Отменить
+                                    подписку
+                                </button>
                             </div>
                         </div>
-                            : ""}
+                        : ""}
                 </div>
-
 
 
             </div>

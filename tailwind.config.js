@@ -6,6 +6,34 @@ module.exports = {
         "./comps/**/*.{js,ts,jsx,tsx}"
     ],
     theme: {
+        screens: {
+            '4xs': '180px',
+            // => @media (min-width: 640px) { ... }
+
+            '3xs': '280px',
+            // => @media (min-width: 640px) { ... }
+
+            '2xs': '320px',
+            // => @media (min-width: 640px) { ... }
+
+            'xs': '420px',
+            // => @media (min-width: 640px) { ... }
+
+            'sm': '640px',
+            // => @media (min-width: 640px) { ... }
+
+            'md': '768px',
+            // => @media (min-width: 768px) { ... }
+
+            'lg': '1024px',
+            // => @media (min-width: 1024px) { ... }
+
+            'xl': '1280px',
+            // => @media (min-width: 1280px) { ... }
+
+            '2xl': '1536px',
+            // => @media (min-width: 1536px) { ... }
+        },
         extend: {
             fontFamily: {
                 'primary': ['Montserrat']
@@ -94,6 +122,9 @@ module.exports = {
                 "primary-yellow": "#F6D251",
                 "outline-white": "#D9D9D9",
                 "disabled-white": "#D9D9D9",
+                'highlightBlue': '#50B6E3',
+                'highlightDarkBlue': '#2270B2'
+                ,
 
             },
         },

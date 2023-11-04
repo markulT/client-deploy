@@ -1,22 +1,22 @@
 import Link from 'next/link'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getFullProfile, getProfile, register} from '../../storage/reducers/authReducer'
-import c from './auth.module.css'
 import Router, {useRouter} from "next/router";
-import {AiOutlineCheck} from "@react-icons/all-files/ai/AiOutlineCheck";
-import {ImCross} from "@react-icons/all-files/im/ImCross";
 import {AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
 
 
 export default function RegisterPage() {
     const [hidden, setHidden] = useState(true)
+    const [confirmHidden, setConfirmHidden] = useState(true)
     const [policyRead, setPolicyRead] = useState(false)
     const dispatch = useDispatch()
     const router = useRouter()
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [fullName, setFullName] = useState('')
+    const [dealerCode, setDealerCode] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
@@ -26,25 +26,19 @@ export default function RegisterPage() {
     const emailValidate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const registerSubmit = async () => {
-        if (!policyRead) {
-            return;
-        }
-        if (password === "" || fullName === "" || email === "") {
-            return
-        }
 
-        const emailCorrect = emailValidate.test(email)
-        if (!emailCorrect) {
-            setEmailError(!emailError)
-            return;
-        }
-        await dispatch(register(password, fullName, email, "", ""))
+        await dispatch(register(password, fullName, email, "", "", dealerCode))
         await dispatch(getProfile())
         await dispatch(getFullProfile())
         await Router.push(`/profile`);
-
-
     }
+
+
+    useEffect(() => {
+        setDealerCode(router.query.dealerCode)
+    }, [router.query.dealerCode])
+
+    const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
     return (
         <div className="z-20 w-full flex lg:py-32 items-center pb-8 bg-primary-black">
@@ -52,28 +46,35 @@ export default function RegisterPage() {
                 <div className="flex w-full h-full flex-col items-center">
                     <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold md:mt-[-40px] mt-20 ">Регистрация</h1>
                     <form className={"w-full flex flex-col items-center"}>
-                        <div className={`lg:w-1/4 w-2/3 mt-8 group flex items-center justify-center`}>
+                        <div className={`lg:w-1/4 w-10/12 mt-8 group flex flex-col items-start justify-center`}>
                             <input type="text" value={fullName} onChange={(e) => {
                                 setFullName(e.target.value)
                             }}
-                                   className="text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800"
+                                   className={`text-md items-center ${fullName === "" ? "border-2  border-red-500" : ""} rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
                                    required/>
                             <label className="ml-2">Полное имя</label>
+                            {fullName === "" ?
+                                <p className={"text-red-500 text-sm"}>Незаполненное текстовое поле</p> : <></>}
                         </div>
-                        <div className={`lg:w-1/4 w-2/3 group  flex items-center justify-center`}>
+
+                        <div className={`lg:w-1/4 w-10/12 group  flex flex-col items-start justify-center`}>
                             <input type="text" value={email} onChange={(e) => {
                                 setEmail(e.target.value)
                             }}
-                                   className={`${emailError ? "border-red-500" : "border-gray-700"} text-md  items-center rounded-lg flex w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
+                                   className={`${email === "" || !emailRegExp.test(email) ? "border-2  border-red-500" : ""} text-md  items-center rounded-lg flex w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
                                    required/>
                             <label className="ml-2 text-gray-400">Email</label>
+                            {email === "" ?
+                                <p className={"text-red-500 text-sm"}>Незаполненное текстовое поле</p> : <></>}
+                            {email !== "" ? emailRegExp.test(email) ? <> </> :
+                                <p className={"text-red-500 text-sm"}>Емейл не валидный</p> : <> </>}
                         </div>
 
-                        <div className={`lg:w-1/4 w-2/3 group flex items-center justify-center`}>
+                        <div className={`lg:w-1/4 w-10/12 group flex flex-col items-start justify-center`}>
                             <input type={`${hidden ? 'password' : 'text'}`} value={password} onChange={(e) => {
                                 setPassword(e.target.value)
                             }}
-                                   className="text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800"
+                                   className={`${password.length < 8 ? "border-2  border-red-500" : ""} text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
                                    required/>
                             {hidden ? <AiOutlineEyeInvisible onClick={() => {
                                     setHidden(!hidden)
@@ -82,8 +83,42 @@ export default function RegisterPage() {
                                     setHidden(!hidden)
                                 }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/>}
                             <label className="ml-2 text-outline-white">Пароль</label>
+                            {password === "" ?
+                                <p className={"text-red-500 text-sm"}>Незаполненное текстовое поле</p> : <></>}
+                            {password !== "" ? password.length > 7 ? <> </> :
+                                <p className={"text-red-500 text-sm"}>Пароль должен состоять из 8 и более
+                                    символов</p> : <> </>}
                         </div>
 
+                        <div className={`lg:w-1/4 w-10/12 group flex flex-col items-start justify-center`}>
+                            <input type={`${confirmHidden ? 'password' : 'text'}`} value={confirmPassword}
+                                   onChange={(e) => {
+                                       setConfirmPassword(e.target.value)
+                                   }}
+                                   className={`${confirmPassword !== password || confirmPassword === "" ? "border-2  border-red-500" : ""} text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
+                                   required/>
+                            {confirmHidden ? <AiOutlineEyeInvisible onClick={() => {
+                                    setConfirmHidden(!confirmHidden)
+                                }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/> :
+                                <AiOutlineEye onClick={() => {
+                                    setConfirmHidden(!confirmHidden)
+                                }} className="h-6 w-6 fill-gray-300 absolute top-3 right-3"/>}
+                            <label className="ml-2 text-outline-white">Подтвердите пароль</label>
+                            {confirmPassword === "" ?
+                                <p className={"text-red-500 text-sm"}>Незаполненное текстовое поле</p> : <></>}
+                            {confirmPassword !== "" ? confirmPassword === password ? <> </> :
+                                <p className={"text-red-500 text-sm"}>Пароли не сходятся</p> : <> </>}
+                        </div>
+
+                        <div className={`lg:w-1/4 w-10/12 group flex flex-col items-start justify-center`}>
+                            <input type="text" value={dealerCode} onChange={(e) => {
+                                setDealerCode(e.target.value)
+                            }}
+                                   className={`text-md items-center rounded-lg  w-full pl-3 bg-secondary-black text-white autofill:bg-gray-800`}
+                                   required/>
+                            <label className="ml-2">Код дилера (если есть)</label>
+
+                        </div>
 
                         <div
                             className="z-20 flex items-center mb-5 mt-[-30px] mx-12 justify-center sm:justify-start sm:mx-0">
@@ -122,9 +157,11 @@ export default function RegisterPage() {
                     </div>
 
 
-                    <button onClick={registerSubmit}
-                            className={"z-10 mb-8 mt-4 text-primary lg:w-1/5 text-white font-medium text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl bg-gradient-to-r from-primary-blue to-primary-yellow " +
-                                "rounded-xl w-2/3 p-3 lg:p-4 lg:px-8 hover:scale-105 duration-500 transition-all"}>Подтвердить
+                    <button
+                        disabled={fullName === "" || !emailRegExp.test(email) || !(password.length > 7) || confirmPassword !== password || !policyRead}
+                        onClick={registerSubmit}
+                        className={"z-10 mb-8 mt-4 w-10/12 text-primary lg:w-1/5 text-white font-medium text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl bg-gradient-to-r from-highlightBlue to-highlightDarkBlue " +
+                            `rounded-xl ${fullName === "" || !emailRegExp.test(email) || !(password.length > 7) || confirmPassword !== password || !policyRead ? "opacity-50" : "opacity-100 hover:scale-105"} w-10/12se p-3 lg:p-4 lg:px-8  duration-500 transition-all`}>Подтвердить
                     </button>
                 </div>
 
