@@ -23,7 +23,7 @@ api.interceptors.response.use((config) => {
 }, async (error) => {
 
     const originalRequest = error.config
-    if (error.response.status == 401) {
+    if (error.response && error.response.status == 401) {
         const response = await axios.get(`${serverUrl}/api/refresh`, { withCredentials: true })
         localStorage.setItem('token', response.data.userData.token)
         return api.request(originalRequest)
