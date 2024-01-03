@@ -294,6 +294,15 @@ export const logout = () => async (dispatch) => {
     Router.push('/')
 }
 
+export const updatePassword = (newPassword, renewalCode) => async (dispatch) => {
+    const response = await api.put(`${serverUrl}/api/updatePassword`, {
+        newPassword:newPassword,
+        renewalCode: renewalCode,
+    }, {withCredentials: true})
+    Router.push('/auth/login')
+
+}
+
 export const getSchedule = () => async (dispatch) => {
     const currentDate = new Date()
     const year = currentDate.getFullYear()
