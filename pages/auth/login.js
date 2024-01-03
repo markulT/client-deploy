@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getFullProfile, getProfile, login, setCustomError} from '../../storage/reducers/authReducer'
-import Router, {useRouter} from "next/router";
+import { useRouter } from 'next/router';
 import {AiOutlineClose, AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
 import {BiErrorCircle} from "react-icons/bi";

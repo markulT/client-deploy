@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getFullProfile, getProfile, register} from '../../storage/reducers/authReducer'
-import {Router, useRouter} from "next/router";
+import { useRouter } from 'next/router';
 import {AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
 
@@ -30,7 +30,7 @@ export default function RegisterPage() {
         await dispatch(register(password, fullName, email, "", "", dealerCode))
         await dispatch(getProfile())
         await dispatch(getFullProfile())
-        await Router.push(`/profile`);
+        await router.push(`/profile`);
     }
 
 

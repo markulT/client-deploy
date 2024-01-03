@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getFullProfile, getProfile, register, updatePassword} from '../../storage/reducers/authReducer'
-import {useRouter} from "next/router";
+import {useRouter} from 'next/router';
 import {AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
 
@@ -30,13 +30,19 @@ export default function ResetPassword() {
     }, [router.query.recoveryCode])
 
 
+    const recovery = () => {
+        dispatch(updatePassword(password, recoveryCode))
+        router.push('/auth/login');
+    }
+
     const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
     return (
         <div className="z-20 w-full flex lg:py-32 items-center pb-8 bg-primary-black">
             <div className="w-full h-full flex items-center justify-center">
                 <div className="flex w-full h-full flex-col items-center">
-                    <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold md:mt-[-40px] mt-20 ">ВОССТАНОВЛЕНИЕ ПАРОЛЯ</h1>
+                    <h1 className="text-2xl text-gray-200 sm:text-3xl text-center font-bold md:mt-[-40px] mt-20 ">ВОССТАНОВЛЕНИЕ
+                        ПАРОЛЯ</h1>
                     <form className={"w-full flex flex-col items-center"}>
                         <div className={`lg:w-1/4 w-10/12 mt-8 group flex flex-col items-start justify-center`}>
                         </div>
@@ -85,11 +91,10 @@ export default function ResetPassword() {
                     </form>
 
 
-
                     <button
                         disabled={!(password.length > 7) || confirmPassword !== password}
                         //onClick={event => console.log(recoveryCode)}
-                        onClick={dispatch(updatePassword(password, recoveryCode))}
+                        onClick={recovery}
                         className={"z-10 mb-8 mt-4 w-10/12 text-primary lg:w-1/5 text-white font-medium text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl bg-gradient-to-r from-highlightBlue to-highlightDarkBlue " +
                             `rounded-xl ${!(password.length > 7) || confirmPassword !== password ? "opacity-50" : "opacity-100 hover:scale-105"} w-10/12se p-3 lg:p-4 lg:px-8  duration-500 transition-all`}>Подтвердить
                     </button>

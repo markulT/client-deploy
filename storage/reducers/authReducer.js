@@ -121,6 +121,7 @@ export default function authReducer(state = initialState, action) {
     }
 }
 
+
 const setUserAction = (user) => ({type: setUserType, user})
 const setGuestAction = (guest) => ({type: setGuestType, guest})
 const setMacAction = (mac) => ({type: setMac, mac})
@@ -256,7 +257,7 @@ export const cancelTestMobileSubThunk = ({password}) => async (dispatch) => {
 export const getProfile = (redirect = true) => async (dispatch) => {
     const response = await api.get(`${serverUrl}/api/refresh`, {withCredentials: true})
     if(!response) {
-        Router.push('/auth/login')
+       Router.push('/auth/login')
         return
     }
     localStorage.setItem('token', response.data.userData.accessToken)
@@ -300,8 +301,6 @@ export const updatePassword = (newPassword, renewalCode) => async (dispatch) => 
         renewalCode: renewalCode,
 
     }, {withCredentials: true})
-
-    Router.push('/auth/login')
 
 }
 
